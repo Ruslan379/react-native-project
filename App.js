@@ -48,6 +48,8 @@ const styles = StyleSheet.create({
     borderColor: "red",
     borderRadius: 30,
     padding: 40,
-    width: 300
+    width: 300,
+    backgroundColor: "#61dafb",
+    textAlign: "center",
   },
 });
