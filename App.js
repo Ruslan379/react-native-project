@@ -1,5 +1,8 @@
+import React from "react";
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+
+
 
 export default function App() {
   return (
@@ -10,17 +13,17 @@ export default function App() {
       <Text style={{ color: "blue", fontSize: 30 }}>Open up App.js to start working on your app thrice!</Text> */}
 
       <View style={styles.innerBox}>
-        <Text style={styles.textFirst}>Open up App.js to start working on your app!</Text>
+        <Text style={styles.textFirst}>Open App.js to start working on your app for the FIRST time!</Text>
       </View>
 
-      <Text style={styles.textTwice}>Open up App.js to start working on your app twice!</Text>
-      <Text style={styles.textThrice}>Open up App.js to start working on your app thrice!</Text>
+      <Text style={styles.textSecond}>Open App.js to start working on your app a SECOND time!</Text>
+      <Text style={styles.textThird}>Open App.js to start working on your app a THIRD time!</Text>
       <StatusBar style="auto" />
     </View>
   );
 }
 
-//!
+//! JS-объект со стилями
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -30,20 +33,20 @@ const styles = StyleSheet.create({
   },
   textFirst: {
     color: "red",
-    fontSize: 40
-  },
-  textTwice: {
-    color: "green",
     fontSize: 30
   },
-  textThrice: {
+  textSecond: {
+    color: "green",
+    fontSize: 25
+  },
+  textThird: {
     color: "blue",
     fontSize: 20
   },
   innerBox: {
     borderWidth: 1,
     borderColor: "red",
-    borderRadius: 10,
+    borderRadius: 30,
     padding: 40,
     width: 300
   },
