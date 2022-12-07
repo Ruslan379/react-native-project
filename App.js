@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   StyleSheet,
@@ -12,6 +12,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
+  Dimensions, //? 2.14
 } from 'react-native';
 
 import * as Font from 'expo-font';
@@ -42,6 +43,24 @@ export default function App() {
   const [state, setState] = useState(initialState);
   const [iasReady, setIasReady] = useState(false);
 
+  //? ----------  2.14 -----------------
+  const [dimensions, setdimensions] = useState(
+    Dimensions.get("window").width - 20 * 2
+  );
+
+  //? ----------  2.14 -----------------
+  useEffect(() => {
+    const onChange = () => {
+      const width = Dimensions.get("window").width - 20 * 2;
+      console.log("width:", width); //!
+      setdimensions(width);
+    };
+    Dimensions.addEventListener("change", onChange);
+    return () => {
+      Dimensions.removeEventListener("change", onChange);
+    };
+  }, []);
+  //? ----------------------------------
 
   const keboardHide = () => {
     setIsShowKeyboard(false);
@@ -78,7 +97,11 @@ export default function App() {
           // behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
             {/* <View style={styles.form}> */}
-            <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 100 }}>
+            <View style={{
+              ...styles.form,
+              marginBottom: isShowKeyboard ? 20 : 100,
+              width: dimensions //? 2.14
+            }}>
               <View style={styles.header}>
                 <Text style={styles.headerTitle}>Hello again</Text>
                 <Text style={styles.headerTitle}>Welcome back</Text>
@@ -141,7 +164,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
-    // alignItems: 'center',
+    alignItems: 'center', //? 2.14
     // justifyContent: "center",
     justifyContent: "flex-end",
   },
@@ -154,7 +177,7 @@ const styles = StyleSheet.create({
     color: "#f0f8ff",
   },
   form: {
-    marginHorizontal: 40,
+    // marginHorizontal: 40, //? 2.14
     // marginBottom: 100,
   },
   inputTitle: {
