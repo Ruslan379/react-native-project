@@ -24,7 +24,7 @@ export default function App() {
 
 
   const keboardHide = () => {
-    setIsShowKeyboard(true)
+    setIsShowKeyboard(false)
     Keyboard.dismiss()
   }
 
