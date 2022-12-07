@@ -8,11 +8,13 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 
 
 
 export default function App() {
+  console.log(Platform.OS);
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   btn: {
-    backgroundColor: '#ffb6c1',
+    backgroundColor: Platform.OS === "ios" ? "transparent" : "#ffb6c1",
     height: 40,
     borderRadius: 10,
     marginTop: 40,
