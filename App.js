@@ -30,7 +30,13 @@ export default function App() {
   const keboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    console.log("state:", state);
+  };
+
+  const keboardHideAndSubmit = () => {
+    setIsShowKeyboard(false);
+    Keyboard.dismiss();
+    console.log("state:", state); //!
+    setState(initialState);
   }
 
   return (
@@ -56,6 +62,7 @@ export default function App() {
                   style={styles.input}
                   textAlign={"center"}
                   onFocus={() => setIsShowKeyboard(true)}
+                  value={state.email}
                   onChangeText={(value) => setState((prevState) => ({ ...prevState, email: value }))}
                 />
               </View>
@@ -66,6 +73,7 @@ export default function App() {
                   textAlign={"center"}
                   secureTextEntry={true}
                   onFocus={() => setIsShowKeyboard(true)}
+                  value={state.password}
                   onChangeText={(value) => setState((prevState) => ({ ...prevState, password: value }))}
                 />
               </View>
@@ -81,7 +89,7 @@ export default function App() {
               <TouchableOpacity
                 activeOpacity={0.8}
                 style={styles.btn}
-                onPress={keboardHide}
+                onPress={keboardHideAndSubmit}
               >
                 <Text style={styles.btnTitle}>SIGN IN</Text>
               </TouchableOpacity>
