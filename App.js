@@ -7,6 +7,7 @@ import {
   ImageBackground,
   TextInput,
   Button,
+  TouchableOpacity,
 } from 'react-native';
 
 
@@ -33,14 +34,20 @@ export default function App() {
               secureTextEntry={true}
             />
           </View>
-          <Button
+          {/* <Button
             // onPress={onPressLearnMore}
-            title="SIGN IN"
+            // title="SIGN IN"/
           // color="#841584"
           // accessibilityLabel="Learn more about this purple button"
-          />
-        </View>
+          /> */}
 
+          <TouchableOpacity
+            style={styles.btn}
+          >
+
+
+          </TouchableOpacity>
+        </View>
       </ImageBackground>
     </View>
   );
@@ -77,5 +84,8 @@ const styles = StyleSheet.create({
     color: "#f0f8ff",
     marginBottom: 10,
     fontSize: 18,
+  },
+  btn: {
+    backgroundColor: '#ffb6c1',
   },
 });
