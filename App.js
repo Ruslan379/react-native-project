@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   StyleSheet,
@@ -9,48 +9,62 @@ import {
   Button,
   TouchableOpacity,
   Platform,
+  KeyboardAvoidingView,
 } from 'react-native';
+
+
+// -------------------------------------------------------------------------------------------------------
 
 
 
 export default function App() {
-  console.log(Platform.OS);
+  console.log(Platform.OS); //!
+  const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+
+
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
         source={require("./assets/images/stars-on-night.jpg")}
       >
-        <View style={styles.form}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 100 }}>
+            <View>
+              <Text style={styles.inputTitle}>Email</Text>
+              <TextInput
+                style={styles.input}
+                textAlign={"center"}
+                onFocus={() => setIsShowKeyboard(true)}
+              />
+            </View>
+            <View style={{ marginTop: 20 }}>
+              <Text style={styles.inputTitle}>Password</Text>
+              <TextInput
+                style={styles.input}
+                textAlign={"center"}
+                secureTextEntry={true}
+                onFocus={() => setIsShowKeyboard(true)}
+              />
+            </View>
 
-          <View>
-            <Text style={styles.inputTitle}>Email</Text>
-            <TextInput style={styles.input} textAlign={"center"} />
-          </View>
-
-          <View style={{ marginTop: 20 }}>
-            <Text style={styles.inputTitle}>Password</Text>
-            <TextInput
-              style={styles.input}
-              textAlign={"center"}
-              secureTextEntry={true}
-            />
-          </View>
-
-          {/* <Button
+            {/* <Button
             // onPress={onPressLearnMore}
             // title="SIGN IN"/
           // color="#841584"
           // accessibilityLabel="Learn more about this purple button"
           /> */}
 
-          <TouchableOpacity
-            activeOpacity={0.8}
-            style={styles.btn}
-          >
-            <Text style={styles.btnTitle}>SIGN IN</Text>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={styles.btn}
+            >
+              <Text style={styles.btnTitle}>SIGN IN</Text>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
     </View>
   );
@@ -83,6 +97,7 @@ const styles = StyleSheet.create({
   },
   form: {
     marginHorizontal: 40,
+    // marginBottom: 100,
   },
   inputTitle: {
     color: "#f0f8ff",
