@@ -29,8 +29,10 @@ export default function App() {
         source={require("./assets/images/stars-on-night.jpg")}
       >
         <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        //! не работает на Android
+        // behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
+          {/* <View style={styles.form}> */}
           <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 100 }}>
             <View>
               <Text style={styles.inputTitle}>Email</Text>
@@ -57,9 +59,11 @@ export default function App() {
           // accessibilityLabel="Learn more about this purple button"
           /> */}
 
+            {/* //! Кнопка "SIGN IN" */}
             <TouchableOpacity
               activeOpacity={0.8}
               style={styles.btn}
+            // onPress={() => setIsShowKeyboard(false)}
             >
               <Text style={styles.btnTitle}>SIGN IN</Text>
             </TouchableOpacity>
