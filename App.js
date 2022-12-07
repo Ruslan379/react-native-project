@@ -90,9 +90,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   btn: {
-    backgroundColor: Platform.OS === "ios" ? "transparent" : "#ffb6c1",
+    backgroundColor: Platform.OS === "ios" ? "transparent" : "#4169e1",
     height: 40,
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: Platform.OS === "ios" ? "#ffb6c1" : "transparent",
     marginTop: 40,
     marginHorizontal: 20,
     color: "#f0f8ff",
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnTitle: {
-    color: "#f0f8ff",
+    color: Platform.OS === "ios" ? "#4169e1" : "#f0f8ff",
     fontSize: 18,
   },
 });
