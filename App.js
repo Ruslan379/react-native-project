@@ -17,16 +17,20 @@ import {
 
 // -------------------------------------------------------------------------------------------------------
 
-
+const initialState = {
+  email: "",
+  password: ""
+}
 
 export default function App() {
   console.log(Platform.OS); //!
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-
+  const [state, setState] = useState(initialState);
 
   const keboardHide = () => {
-    setIsShowKeyboard(false)
-    Keyboard.dismiss()
+    setIsShowKeyboard(false);
+    Keyboard.dismiss();
+    console.log("state:", state);
   }
 
   return (
@@ -52,6 +56,7 @@ export default function App() {
                   style={styles.input}
                   textAlign={"center"}
                   onFocus={() => setIsShowKeyboard(true)}
+                  onChangeText={(value) => setState((prevState) => ({ ...prevState, email: value }))}
                 />
               </View>
               <View style={{ marginTop: 20 }}>
@@ -61,6 +66,7 @@ export default function App() {
                   textAlign={"center"}
                   secureTextEntry={true}
                   onFocus={() => setIsShowKeyboard(true)}
+                  onChangeText={(value) => setState((prevState) => ({ ...prevState, password: value }))}
                 />
               </View>
 
