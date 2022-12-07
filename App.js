@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 
 import * as Font from 'expo-font';
-// import { AppLoading } from 'expo';
+// import { AppLoading } from 'expo'; //! уже устарело!!!
 import AppLoading from 'expo-app-loading';
 
 
@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
     color: "#f0f8ff",
     marginBottom: 10,
     fontSize: 18,
+    fontFamily: "DMMono-Regular"
   },
   btn: {
     height: 40,
@@ -193,6 +194,7 @@ const styles = StyleSheet.create({
   btnTitle: {
     color: Platform.OS === "ios" ? "#4169e1" : "#f0f8ff",
     fontSize: 18,
+    fontFamily: "DMMono-Regular"
   },
   header: {
     alignItems: 'center',
