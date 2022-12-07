@@ -14,6 +14,11 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
+import * as Font from 'expo-font';
+// import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
+
+
 
 // -------------------------------------------------------------------------------------------------------
 
@@ -22,10 +27,21 @@ const initialState = {
   password: ""
 }
 
+
+//! Загрузка шрифтов
+const loadApplication = async () => {
+  await Font.loadAsync({
+    "DMMono-Regular": require("./assets/fonts/DMMono-Regular.ttf")
+  })
+};
+
+
 export default function App() {
   console.log(Platform.OS); //!
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
+  const [iasReady, setIasReady] = useState(false);
+
 
   const keboardHide = () => {
     setIsShowKeyboard(false);
@@ -37,6 +53,17 @@ export default function App() {
     Keyboard.dismiss();
     console.log("state:", state); //!
     setState(initialState);
+  }
+
+  //! Проверка наличия шрифтов
+  if (!iasReady) {
+    return (
+      <AppLoading
+        startAsync={loadApplication}
+        onFinish={() => setIasReady(true)}
+        onError={console.warn}
+      />
+    );
   }
 
   return (
@@ -173,6 +200,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 30,
-    color: "#f0f8ff"
+    color: "#f0f8ff",
+    fontFamily: "DMMono-Regular"
   },
 });
