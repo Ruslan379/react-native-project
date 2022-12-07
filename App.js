@@ -11,6 +11,7 @@ import {
   Platform,
   KeyboardAvoidingView,
   Keyboard,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 
@@ -29,54 +30,60 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.image}
-        source={require("./assets/images/stars-on-night.jpg")}
-      >
-        <KeyboardAvoidingView
-        //! не работает на Android
-        // behavior={Platform.OS === "ios" ? "padding" : "height"}
+    <TouchableWithoutFeedback onPress={keboardHide}>
+      <View style={styles.container}>
+        <ImageBackground
+          style={styles.image}
+          source={require("./assets/images/stars-on-night.jpg")}
         >
-          {/* <View style={styles.form}> */}
-          <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 100 }}>
-            <View>
-              <Text style={styles.inputTitle}>Email</Text>
-              <TextInput
-                style={styles.input}
-                textAlign={"center"}
-                onFocus={() => setIsShowKeyboard(true)}
-              />
-            </View>
-            <View style={{ marginTop: 20 }}>
-              <Text style={styles.inputTitle}>Password</Text>
-              <TextInput
-                style={styles.input}
-                textAlign={"center"}
-                secureTextEntry={true}
-                onFocus={() => setIsShowKeyboard(true)}
-              />
-            </View>
+          <KeyboardAvoidingView
+          //! не работает на Android
+          // behavior={Platform.OS === "ios" ? "padding" : "height"}
+          >
+            {/* <View style={styles.form}> */}
+            <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 20 : 100 }}>
+              <View style={styles.header}>
+                <Text style={styles.headerTitle}>Hello again</Text>
+                <Text style={styles.headerTitle}>Welcome back</Text>
+              </View>
+              <View>
+                <Text style={styles.inputTitle}>Email</Text>
+                <TextInput
+                  style={styles.input}
+                  textAlign={"center"}
+                  onFocus={() => setIsShowKeyboard(true)}
+                />
+              </View>
+              <View style={{ marginTop: 20 }}>
+                <Text style={styles.inputTitle}>Password</Text>
+                <TextInput
+                  style={styles.input}
+                  textAlign={"center"}
+                  secureTextEntry={true}
+                  onFocus={() => setIsShowKeyboard(true)}
+                />
+              </View>
 
-            {/* <Button
-            // onPress={onPressLearnMore}
-            // title="SIGN IN"/
-          // color="#841584"
-          // accessibilityLabel="Learn more about this purple button"
-          /> */}
+              {/* <Button
+              // onPress={onPressLearnMore}
+              // title="SIGN IN"/
+            // color="#841584"
+            // accessibilityLabel="Learn more about this purple button"
+            /> */}
 
-            {/* //! Кнопка "SIGN IN" */}
-            <TouchableOpacity
-              activeOpacity={0.8}
-              style={styles.btn}
-              onPress={keboardHide}
-            >
-              <Text style={styles.btnTitle}>SIGN IN</Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
-      </ImageBackground>
-    </View>
+              {/* //! Кнопка "SIGN IN" */}
+              <TouchableOpacity
+                activeOpacity={0.8}
+                style={styles.btn}
+                onPress={keboardHide}
+              >
+                <Text style={styles.btnTitle}>SIGN IN</Text>
+              </TouchableOpacity>
+            </View>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -145,5 +152,13 @@ const styles = StyleSheet.create({
   btnTitle: {
     color: Platform.OS === "ios" ? "#4169e1" : "#f0f8ff",
     fontSize: 18,
+  },
+  header: {
+    alignItems: 'center',
+    marginBottom: 100,
+  },
+  headerTitle: {
+    fontSize: 30,
+    color: "#f0f8ff"
   },
 });
