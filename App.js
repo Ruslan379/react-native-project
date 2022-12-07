@@ -6,6 +6,7 @@ import {
   View,
   ImageBackground,
   TextInput,
+  Button,
 } from 'react-native';
 
 
@@ -17,10 +18,28 @@ export default function App() {
         style={styles.image}
         source={require("./assets/images/stars-on-night.jpg")}
       >
+        <View style={styles.form}>
 
-        {/* <View style={styles.innerBoxFirst}> */}
-        <TextInput style={styles.input} textAlign={"center"} />
-        {/* </View> */}
+          <View>
+            <Text style={styles.inputTitle}>Email Address</Text>
+            <TextInput style={styles.input} textAlign={"center"} />
+          </View>
+
+          <View style={{ marginTop: 20 }}>
+            <Text style={styles.inputTitle}>Password</Text>
+            <TextInput
+              style={styles.input}
+              textAlign={"center"}
+              secureTextEntry={true}
+            />
+          </View>
+          <Button
+            // onPress={onPressLearnMore}
+            title="SIGN IN"
+          // color="#841584"
+          // accessibilityLabel="Learn more about this purple button"
+          />
+        </View>
 
       </ImageBackground>
     </View>
@@ -48,7 +67,15 @@ const styles = StyleSheet.create({
     borderColor: "#f0f8ff",
     height: 40,
     borderRadius: 10,
-    marginHorizontal: 40,
+    // marginHorizontal: 40,
     color: "#f0f8ff",
+  },
+  form: {
+    marginHorizontal: 40,
+  },
+  inputTitle: {
+    color: "#f0f8ff",
+    marginBottom: 10,
+    fontSize: 18,
   },
 });
