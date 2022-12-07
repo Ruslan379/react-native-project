@@ -22,7 +22,7 @@ export default function App() {
         <View style={styles.form}>
 
           <View>
-            <Text style={styles.inputTitle}>Email Address</Text>
+            <Text style={styles.inputTitle}>Email</Text>
             <TextInput style={styles.input} textAlign={"center"} />
           </View>
 
@@ -34,6 +34,7 @@ export default function App() {
               secureTextEntry={true}
             />
           </View>
+
           {/* <Button
             // onPress={onPressLearnMore}
             // title="SIGN IN"/
@@ -44,8 +45,7 @@ export default function App() {
           <TouchableOpacity
             style={styles.btn}
           >
-
-
+            <Text style={styles.btnTitle}>SIGN IN</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
@@ -87,5 +87,14 @@ const styles = StyleSheet.create({
   },
   btn: {
     backgroundColor: '#ffb6c1',
+    height: 40,
+    borderRadius: 10,
+    marginTop: 40,
+    color: "#f0f8ff",
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  btnTitle: {
+    color: "#f0f8ff",
   },
 });
