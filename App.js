@@ -43,6 +43,7 @@ export default function App() {
           /> */}
 
           <TouchableOpacity
+            activeOpacity={0.8}
             style={styles.btn}
           >
             <Text style={styles.btnTitle}>SIGN IN</Text>
@@ -67,7 +68,8 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     // alignItems: 'center',
-    justifyContent: "center"
+    // justifyContent: "center",
+    justifyContent: "flex-end",
   },
   input: {
     borderWidth: 1,
@@ -90,11 +92,13 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 10,
     marginTop: 40,
+    marginHorizontal: 20,
     color: "#f0f8ff",
     alignItems: 'center',
     justifyContent: 'center',
   },
   btnTitle: {
     color: "#f0f8ff",
+    fontSize: 18,
   },
 });
