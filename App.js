@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 
 import * as Font from 'expo-font';
-// import { AppLoading } from 'expo'; //! уже устарело!!!
+// import { AppLoading } from 'expo'; //! уже устарело и так не работает!!!
 import AppLoading from 'expo-app-loading';
 
 
@@ -44,22 +44,22 @@ export default function App() {
   const [iasReady, setIasReady] = useState(false);
 
   //? ----------  2.14 -----------------
-  const [dimensions, setdimensions] = useState(
-    Dimensions.get("window").width - 20 * 2
-  );
+  // const [dimensions, setdimensions] = useState(
+  //   Dimensions.get("window").width - 20 * 2
+  // );
 
   //? ----------  2.14 -----------------
-  useEffect(() => {
-    const onChange = () => {
-      const width = Dimensions.get("window").width - 20 * 2;
-      console.log("width:", width); //!
-      setdimensions(width);
-    };
-    Dimensions.addEventListener("change", onChange);
-    return () => {
-      Dimensions.removeEventListener("change", onChange);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const onChange = () => {
+  //     const width = Dimensions.get("window").width - 20 * 2;
+  //     console.log("width:", width); //!
+  //     setdimensions(width);
+  //   };
+  //   Dimensions.addEventListener("change", onChange);
+  //   return () => {
+  //     Dimensions.removeEventListener("change", onChange);
+  //   };
+  // }, []);
   //? ----------------------------------
 
   const keboardHide = () => {
@@ -100,9 +100,13 @@ export default function App() {
             <View style={{
               ...styles.form,
               marginBottom: isShowKeyboard ? 20 : 100,
-              width: dimensions //? 2.14
+              // width: dimensions //? 2.14
             }}>
-              <View style={styles.header}>
+              {/* <View style={styles.header}> */}
+              <View style={{
+                ...styles.header,
+                marginBottom: isShowKeyboard ? 80 : 250,
+              }}>
                 <Text style={styles.headerTitle}>Hello again</Text>
                 <Text style={styles.headerTitle}>Welcome back</Text>
               </View>
@@ -164,7 +168,7 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
-    alignItems: 'center', //? 2.14
+    // alignItems: 'center', //? 2.14
     // justifyContent: "center",
     justifyContent: "flex-end",
   },
@@ -177,7 +181,7 @@ const styles = StyleSheet.create({
     color: "#f0f8ff",
   },
   form: {
-    // marginHorizontal: 40, //? 2.14
+    marginHorizontal: 40, //? 2.14
     // marginBottom: 100,
   },
   inputTitle: {
@@ -221,7 +225,8 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
-    marginBottom: 100,
+    // marginBottom: 100,
+
   },
   headerTitle: {
     fontSize: 30,
