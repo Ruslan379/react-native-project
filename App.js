@@ -93,7 +93,7 @@ export default function App() {
   //   }
   // }, [fontsLoaded]);
 
-  console.log("fontsLoaded:", fontsLoaded);
+  // console.log("fontsLoaded:", fontsLoaded); //!
   if (!fontsLoaded) {
     return null;
   };
@@ -108,8 +108,8 @@ export default function App() {
           source={require("./assets/images/Photo_BG.png")}
         >
           <KeyboardAvoidingView
-          //! не работает на Android
-          // behavior={Platform.OS === "ios" ? "padding" : "height"}
+            //! не работает на Android
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
             {/* <View style={styles.form}> */}
             <View style={{
@@ -120,10 +120,27 @@ export default function App() {
               {/* <View style={styles.header}> */}
               <View style={{
                 ...styles.header,
-                marginBottom: isShowKeyboard ? 80 : 250,
-              }}>
-                <Text style={styles.headerTitle}>Hello again</Text>
-                <Text style={styles.headerTitle}>Welcome back</Text>
+                marginBottom: isShowKeyboard ? 15 : 250,
+                color: "#f0f8ff",
+                // color: isShowKeyboard ? "#f0f8ff" : "#ffb6c1",
+              }}
+              >
+                <Text style={{
+                  ...styles.headerTitle,
+                  // color: "#f0f8ff",
+                  color: isShowKeyboard ? "#ffb6c1" : "#000000",
+                }}
+                >Hello again
+                </Text>
+
+                <Text style={{
+                  ...styles.headerTitle,
+                  // color: "#f0f8ff",
+                  color: isShowKeyboard ? "#ffb6c1" : "#000000",
+                }}
+                >Welcome back
+                </Text>
+
               </View>
               <View>
                 <Text style={styles.inputTitle}>Email</Text>
@@ -242,11 +259,10 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     // marginBottom: 100,
-
   },
   headerTitle: {
-    fontSize: 30,
-    color: "#f0f8ff",
+    fontSize: 24,
+    // color: "#f0f8ff",
     // fontFamily: "DMMono-Regular"
     fontFamily: "Roboto-Bold"
   },
