@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 
 import {
   StyleSheet,
@@ -15,52 +16,53 @@ import {
   Dimensions, //? 2.14
 } from 'react-native';
 
-import * as Font from 'expo-font';
-// import { AppLoading } from 'expo'; //! уже устарело и так не работает!!!
-import AppLoading from 'expo-app-loading';
 
+//! Для загрузки шрифтов_OLD
+// import * as Font from 'expo-font';
+// // import { AppLoading } from 'expo'; //! уже устарело и так не работает!!!
+// import AppLoading from 'expo-app-loading';
+
+//! Для загрузки шрифтов_NEW
+// // import { useCallback } from 'react';
+import { useFonts } from "expo-font";
+// import * as SplashScreen from 'expo-splash-screen';
+// SplashScreen.preventAutoHideAsync();
 
 
 // -------------------------------------------------------------------------------------------------------
-
 const initialState = {
+  nickname: "",
   email: "",
   password: ""
 }
 
+//! Загрузка шрифтов_OLD
+// const loadApplication = async () => {
+//   await Font.loadAsync({
+//     "DMMono-Regular": require("./assets/fonts/DMMono-Regular.ttf"),
+//     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+//     "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+//     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+//   })
+// };
 
-//! Загрузка шрифтов
-const loadApplication = async () => {
-  await Font.loadAsync({
-    "DMMono-Regular": require("./assets/fonts/DMMono-Regular.ttf")
-  })
-};
-
-
+// SplashScreen.preventAutoHideAsync(); //! Загрузка шрифтов_NEW
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 export default function App() {
+  //! Загрузка шрифтов_NEW
+  const [fontsLoaded] = useFonts({
+    "DMMono-Regular": require("./assets/fonts/DMMono-Regular.ttf"),
+    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+    "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+  });
+
   console.log(Platform.OS); //!
+  //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
-  const [iasReady, setIasReady] = useState(false);
+  // const [isReady, setIsReady] = useState(false); //! Загрузка шрифтов_OLD
 
-  //? ----------  2.14 -----------------
-  // const [dimensions, setdimensions] = useState(
-  //   Dimensions.get("window").width - 20 * 2
-  // );
-
-  //? ----------  2.14 -----------------
-  // useEffect(() => {
-  //   const onChange = () => {
-  //     const width = Dimensions.get("window").width - 20 * 2;
-  //     console.log("width:", width); //!
-  //     setdimensions(width);
-  //   };
-  //   Dimensions.addEventListener("change", onChange);
-  //   return () => {
-  //     Dimensions.removeEventListener("change", onChange);
-  //   };
-  // }, []);
-  //? ----------------------------------
 
   const keboardHide = () => {
     setIsShowKeyboard(false);
@@ -74,23 +76,36 @@ export default function App() {
     setState(initialState);
   }
 
-  //! Проверка наличия шрифтов
-  if (!iasReady) {
-    return (
-      <AppLoading
-        startAsync={loadApplication}
-        onFinish={() => setIasReady(true)}
-        onError={console.warn}
-      />
-    );
-  }
+  //! Проверка наличия шрифтов_OLD
+  // if (!isReady) {
+  //   return (
+  //     <AppLoading
+  //       startAsync={loadApplication}
+  //       onFinish={() => setIsReady(true)}
+  //       onError={console.warn}
+  //     />
+  //   );
+  // };
+  //! Проверка наличия шрифтов_NEW
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (fontsLoaded) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [fontsLoaded]);
+
+  console.log("fontsLoaded:", fontsLoaded);
+  if (!fontsLoaded) {
+    return null;
+  };
+
 
   return (
     <TouchableWithoutFeedback onPress={keboardHide}>
       <View style={styles.container}>
         <ImageBackground
           style={styles.image}
-          source={require("./assets/images/stars-on-night.jpg")}
+          // source={require("./assets/images/stars-on-night.jpg")}
+          source={require("./assets/images/Photo_BG.png")}
         >
           <KeyboardAvoidingView
           //! не работает на Android
@@ -189,6 +204,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 18,
     fontFamily: "DMMono-Regular"
+    // fontFamily: "Roboto-Bold"
   },
   btn: {
     height: 40,
@@ -231,6 +247,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 30,
     color: "#f0f8ff",
-    fontFamily: "DMMono-Regular"
+    // fontFamily: "DMMono-Regular"
+    fontFamily: "Roboto-Bold"
   },
 });
