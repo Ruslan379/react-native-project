@@ -108,14 +108,14 @@ export default function App() {
           source={require("./assets/images/Photo_BG.png")}
         >
           <KeyboardAvoidingView
-          //? не корректно работает на Android
+          //! не корректно работает на Android
           // behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
             {/* //! ------------------ Белый контейнер---------------------- */}
             <View
               style={{
                 ...styles.whiteContainer,
-                marginBottom: isShowKeyboard ? -100 : 0,
+                marginBottom: isShowKeyboard ? -130 : 0,
               }}
             >
               {/* //! ------------- контейнер: photoFrame ------------ */}
@@ -123,26 +123,16 @@ export default function App() {
               {/* //! _____________ контейнер: photoFrame _____________ */}
 
 
-              {/* //! ------------------ form ---------------------- */}
+              {/* //! ---------------- контейнер: form ---------------- */}
               <View
                 style={{
                   ...styles.form,
                   marginBottom: isShowKeyboard ? 20 : 100,
                 }}
               >
-                {/* //! ------------- контейнер: Регистрация ------------ */}
-                <View style={{
-                  ...styles.header,
-                  marginBottom: isShowKeyboard ? 33 : 33,
-                  // color: "#f0f8ff",
-                  // color: isShowKeyboard ? "#f0f8ff" : "#ffb6c1",
-                }}
-                >
-                  {/* //! ------------- текст: Регистрация ------------ */}
-                  <Text style={styles.headerTitle}>Регистрация</Text>
-                  {/* //! ______________ текст: Регистрация _____________ */}
-                </View>
-                {/* //! ____________ контейнер: Регистрация ____________ */}
+                {/* //! ------------- текст: Регистрация ------------ */}
+                <Text style={styles.headerTitle}>Регистрация</Text>
+                {/* //! ______________ текст: Регистрация _____________ */}
 
                 <View>
                   <Text style={styles.inputTitle}>Email</Text>
@@ -182,7 +172,7 @@ export default function App() {
                   <Text style={styles.btnTitle}>SIGN IN</Text>
                 </TouchableOpacity>
               </View>
-              {/* //! ____________________ form ____________________ */}
+              {/* //! ________________ контейнер: form ________________ */}
             </View>
             {/* //! __________________ Белый контейнер __________________ */}
           </KeyboardAvoidingView>
@@ -224,6 +214,10 @@ const styles = StyleSheet.create({
     marginTop: -60,
     borderRadius: 16,
   },
+  form: {
+    marginHorizontal: 40, //? 2.14
+    // marginBottom: 100,
+  },
   header: {
     alignItems: 'center',
     // marginBottom: 100,
@@ -241,10 +235,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     // marginHorizontal: 40,
     color: "#000000",
-  },
-  form: {
-    marginHorizontal: 40, //? 2.14
-    // marginBottom: 100,
   },
   inputTitle: {
     color: "#000000",
