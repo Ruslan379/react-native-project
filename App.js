@@ -84,6 +84,10 @@ export default function App() {
     setState(initialState);
   }
 
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+
+
   //! Проверка наличия шрифтов_OLD
   // if (!isReady) {
   //   return (
@@ -113,6 +117,7 @@ export default function App() {
       <View style={styles.container}>
         {/* //! ------------------ Фоновый image --------------------- */}
 
+        <Image source={require("./assets/images/Photo_BG.png")} style={{ width: windowWidth, height: windowHeight, position: 'absolute', top: 0, left: 0 }} />
 
 
         <ImageBackground
