@@ -108,16 +108,16 @@ export default function App() {
           source={require("./assets/images/Photo_BG.png")}
         >
           <KeyboardAvoidingView
-            //! не работает на Android
+            //! не корректно работает на Android
             behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
-            {/* <View style={styles.form}> */}
-            <View style={{
-              ...styles.form,
-              marginBottom: isShowKeyboard ? 20 : 100,
-              // width: dimensions //? 2.14
-            }}>
-              {/* <View style={styles.header}> */}
+            {/* //! ------------------ form ---------------------- */}
+            <View
+              style={{
+                ...styles.form,
+                marginBottom: isShowKeyboard ? 20 : 100,
+              }}
+            >
               <View style={{
                 ...styles.header,
                 marginBottom: isShowKeyboard ? 15 : 250,
@@ -125,21 +125,15 @@ export default function App() {
                 // color: isShowKeyboard ? "#f0f8ff" : "#ffb6c1",
               }}
               >
+                {/* //! ------------- текст: Регистрация ------------ */}
                 <Text style={{
                   ...styles.headerTitle,
                   // color: "#f0f8ff",
                   color: isShowKeyboard ? "#ffb6c1" : "#000000",
                 }}
-                >Hello again
+                >Регистрация
                 </Text>
-
-                <Text style={{
-                  ...styles.headerTitle,
-                  // color: "#f0f8ff",
-                  color: isShowKeyboard ? "#ffb6c1" : "#000000",
-                }}
-                >Welcome back
-                </Text>
+                {/* //! ______________ текст: Регистрация ______________ */}
 
               </View>
               <View>
@@ -180,6 +174,7 @@ export default function App() {
                 <Text style={styles.btnTitle}>SIGN IN</Text>
               </TouchableOpacity>
             </View>
+            {/* //! ___________________ form ___________________ */}
           </KeyboardAvoidingView>
         </ImageBackground>
       </View>
