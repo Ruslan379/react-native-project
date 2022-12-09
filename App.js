@@ -108,75 +108,78 @@ export default function App() {
           source={require("./assets/images/Photo_BG.png")}
         >
           <KeyboardAvoidingView
-            //! не корректно работает на Android
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
+          //? не корректно работает на Android
+          // behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
-            {/* //! ------------------ form ---------------------- */}
+            {/* //! ------------------ Белый контейнер---------------------- */}
             <View
               style={{
-                ...styles.form,
-                marginBottom: isShowKeyboard ? 20 : 100,
+                ...styles.whiteContainer,
+                marginBottom: isShowKeyboard ? -150 : 0,
               }}
             >
-              {/* //! ------------- контейнер: Регистрация ------------ */}
-              <View style={{
-                ...styles.header,
-                marginBottom: isShowKeyboard ? 15 : 250,
-                // color: "#f0f8ff",
-                // color: isShowKeyboard ? "#f0f8ff" : "#ffb6c1",
-              }}
-              >
-                {/* //! ------------- текст: Регистрация ------------ */}
-                <Text style={{
-                  ...styles.headerTitle,
-                  // color: "#f0f8ff",
-                  color: isShowKeyboard ? "#ffb6c1" : "#000000",
+              {/* //! ------------------ form ---------------------- */}
+              <View
+                style={{
+                  ...styles.form,
+                  marginBottom: isShowKeyboard ? 20 : 100,
                 }}
-                >Регистрация
-                </Text>
-                {/* //! ______________ текст: Регистрация _____________ */}
-              </View>
-              {/* //! ____________ контейнер: Регистрация ____________ */}
-
-              <View>
-                <Text style={styles.inputTitle}>Email</Text>
-                <TextInput
-                  style={styles.input}
-                  textAlign={"center"}
-                  onFocus={() => setIsShowKeyboard(true)}
-                  value={state.email}
-                  onChangeText={(value) => setState((prevState) => ({ ...prevState, email: value }))}
-                />
-              </View>
-              <View style={{ marginTop: 20 }}>
-                <Text style={styles.inputTitle}>Password</Text>
-                <TextInput
-                  style={styles.input}
-                  textAlign={"center"}
-                  secureTextEntry={true}
-                  onFocus={() => setIsShowKeyboard(true)}
-                  value={state.password}
-                  onChangeText={(value) => setState((prevState) => ({ ...prevState, password: value }))}
-                />
-              </View>
-
-              {/* <Button
-              // onPress={onPressLearnMore}
-              // title="SIGN IN"/
-            // color="#841584"
-            // accessibilityLabel="Learn more about this purple button"
-            /> */}
-
-              {/* //! Кнопка "SIGN IN" */}
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.btn}
-                onPress={keboardHideAndSubmit}
               >
-                <Text style={styles.btnTitle}>SIGN IN</Text>
-              </TouchableOpacity>
+                {/* //! ------------- контейнер: Регистрация ------------ */}
+                <View style={{
+                  ...styles.header,
+                  marginBottom: isShowKeyboard ? 33 : 33,
+                  // color: "#f0f8ff",
+                  // color: isShowKeyboard ? "#f0f8ff" : "#ffb6c1",
+                }}
+                >
+                  {/* //! ------------- текст: Регистрация ------------ */}
+                  <Text style={styles.headerTitle}>Регистрация</Text>
+                  {/* //! ______________ текст: Регистрация _____________ */}
+                </View>
+                {/* //! ____________ контейнер: Регистрация ____________ */}
+
+                <View>
+                  <Text style={styles.inputTitle}>Email</Text>
+                  <TextInput
+                    style={styles.input}
+                    textAlign={"center"}
+                    onFocus={() => setIsShowKeyboard(true)}
+                    value={state.email}
+                    onChangeText={(value) => setState((prevState) => ({ ...prevState, email: value }))}
+                  />
+                </View>
+                <View style={{ marginTop: 20 }}>
+                  <Text style={styles.inputTitle}>Password</Text>
+                  <TextInput
+                    style={styles.input}
+                    textAlign={"center"}
+                    secureTextEntry={true}
+                    onFocus={() => setIsShowKeyboard(true)}
+                    value={state.password}
+                    onChangeText={(value) => setState((prevState) => ({ ...prevState, password: value }))}
+                  />
+                </View>
+
+                {/* <Button
+                // onPress={onPressLearnMore}
+                // title="SIGN IN"/
+              // color="#841584"
+              // accessibilityLabel="Learn more about this purple button"
+              /> */}
+
+                {/* //! Кнопка "SIGN IN" */}
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  style={styles.btn}
+                  onPress={keboardHideAndSubmit}
+                >
+                  <Text style={styles.btnTitle}>SIGN IN</Text>
+                </TouchableOpacity>
+              </View>
+              {/* //! ____________________ form ____________________ */}
             </View>
-            {/* //! ____________________ form ____________________ */}
+            {/* //! __________________ Белый контейнер __________________ */}
           </KeyboardAvoidingView>
         </ImageBackground>
       </View>
@@ -200,6 +203,14 @@ const styles = StyleSheet.create({
     // alignItems: 'center', //? 2.14
     // justifyContent: "center",
     justifyContent: "flex-end",
+  },
+  whiteContainer: {
+    backgroundColor: "#ffffff",
+    height: 550,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    alignItems: "center",
+    marginBottom: 0,
   },
   input: {
     borderWidth: 1,
@@ -258,9 +269,9 @@ const styles = StyleSheet.create({
     // marginBottom: 100,
   },
   headerTitle: {
-    fontSize: 24,
-    // color: "#f0f8ff",
-    // fontFamily: "DMMono-Regular"
-    fontFamily: "Roboto-Bold"
+    color: "#000000",
+    fontSize: 30,
+    marginTop: 92,
+    fontFamily: "Roboto-Medium",
   },
 });
