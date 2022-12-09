@@ -215,9 +215,10 @@ export default function App() {
                   style={styles.btnSubmit}
                   onPress={keboardHideAndSubmit}
                 >
-                  <Text style={styles.btnTitle}>Зарегистрироваться</Text>
+                  <Text style={styles.btnSubmitTitle}>Зарегистрироваться</Text>
                 </TouchableOpacity>
                 {/* //! ____________ Кнопка "Зарегистрироваться" ______________ */}
+
 
 
 
@@ -302,9 +303,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 100,
   },
-  btnSubmitText: {
+  btnSubmitTitle: {
     fontSize: 16,
-    color: "#ffffff",
+    color: "#FFFFFF",
     fontFamily: "Roboto-Regular",
   },
 });
