@@ -28,6 +28,8 @@ import { useFonts } from "expo-font";
 // import * as SplashScreen from 'expo-splash-screen';
 // SplashScreen.preventAutoHideAsync();
 
+//! _react-native-strakhura - НЕ РАБОТАЕТ
+// import image from "./assets/images/Photo_BG.png";
 
 // -------------------------------------------------------------------------------------------------------
 const initialState = {
@@ -84,8 +86,13 @@ export default function App() {
     setState(initialState);
   }
 
+  //! _react-native-strakhura - НЕ РАБОТАЕТ
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
+
+  //! _react-native-strakhura - НЕ РАБОТАЕТ
+  // const image = { uri: "https://reactjs.org/logo-og.png" };
+  // const image = require("./assets/images/Photo_BG.png")
 
 
   //! Проверка наличия шрифтов_OLD
@@ -117,8 +124,18 @@ export default function App() {
       <View style={styles.container}>
         {/* //! ------------------ Фоновый image --------------------- */}
 
-        <Image source={require("./assets/images/Photo_BG.png")} style={{ width: windowWidth, height: windowHeight, position: 'absolute', top: 0, left: 0 }} />
-
+        {/* //! _react-native-strakhura - НЕ РАБОТАЕТ */}
+        {/* <Image
+          // source={require("./assets/images/Photo_BG.png")}
+          source={image}
+          style={{
+            width: windowWidth,
+            height: windowHeight,
+            position: 'absolute',
+            top: 0,
+            left: 0
+          }}
+        /> */}
 
         <ImageBackground
           style={styles.image}
@@ -260,14 +277,14 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
 
-    // resizeMode: "cover",
-    // // alignItems: 'center', //? 2.14
-    // // justifyContent: "center",
-    // justifyContent: "flex-end",
+    resizeMode: "cover",
+    // alignItems: 'center', //? 2.14
+    // justifyContent: "center",
+    justifyContent: "flex-end",
 
     //! _react-native-strakhura
-    width: '100%',
-    height: '100%',
+    // width: '100%',
+    // height: '100%',
   },
   //! Белый контейнер
   whiteContainer: {
