@@ -68,11 +68,15 @@ export default function App() {
 
   const keboardHide = () => {
     setIsShowKeyboard(false);
+    setIsFocusedLogin(false);
+
     Keyboard.dismiss();
   };
 
   const keboardHideAndSubmit = () => {
     setIsShowKeyboard(false);
+    setIsFocusedLogin(false);
+
     Keyboard.dismiss();
     console.log("state:", state); //!
     setState(initialState);
@@ -134,23 +138,53 @@ export default function App() {
 
                 {/* //! ------------- Input: Логин ------------ */}
                 <TextInput
-                  style={styles.input}
-                  textAlign={"center"}
-                  onFocus={() => setIsShowKeyboard(true)}
-                  value={state.email}
-                  onChangeText={(value) => setState((prevState) => ({ ...prevState, email: value }))}
-                />
-                {/* //! ______________ Input: Логин ______________ */}
-
-                {/* <View style={{ marginTop: 20 }}> */}
-                {/* <Text style={styles.inputTitle}>Password</Text> */}
-                <TextInput
                   style={{
                     ...styles.input,
-                    backgroundColor: isFocusedLogin ? "#ffffff" : "#f6f6f6",
+                    backgroundColor: isFocusedLogin ? "#FFFFFF" : "#F6F6F6",
                     color: isFocusedLogin ? "#212121" : "#BDBDBD",
                     borderColor: isFocusedLogin ? "#ff6c00" : "#e8e8e8",
                     marginTop: 32,
+                    marginBottom: 16,
+                  }}
+                  // textAlign={"center"}
+                  placeholder="Логин"
+                  onFocus={() => {
+                    setIsShowKeyboard(true);
+                    setIsFocusedLogin(true);
+                  }}
+                  onBlur={() => {
+                    setIsFocusedLogin(false);
+                  }}
+                  value={state.loginName}
+                  onChangeText={(value) => setState((prevState) => ({ ...prevState, loginName: value }))}
+                />
+                {/* //! ______________ Input: Логин ______________ */}
+
+
+                {/* //! ------ Input: Адрес электронной почты ----- */}
+                <TextInput
+                  style={{
+                    ...styles.input,
+                    backgroundColor: isFocusedMail ? "#ffffff" : "#f6f6f6",
+                    color: isFocusedMail ? "#212121" : "#BDBDBD",
+                    borderColor: isFocusedMail ? "#ff6c00" : "#e8e8e8",
+                    marginBottom: 16,
+                  }}
+                  textAlign={"center"}
+                  onFocus={() => setIsShowKeyboard(true)}
+                  value={state.password}
+                  onChangeText={(value) => setState((prevState) => ({ ...prevState, password: value }))}
+                />
+                {/* //! _____ Input: Адрес электронной почты _____ */}
+
+
+                {/* //! ------------- Input: Пароль ------------ */}
+                <TextInput
+                  style={{
+                    ...styles.input,
+                    backgroundColor: isFocusedMail ? "#ffffff" : "#f6f6f6",
+                    color: isFocusedMail ? "#212121" : "#BDBDBD",
+                    borderColor: isFocusedMail ? "#ff6c00" : "#e8e8e8",
                     marginBottom: 16,
                   }}
                   textAlign={"center"}
@@ -159,23 +193,22 @@ export default function App() {
                   value={state.password}
                   onChangeText={(value) => setState((prevState) => ({ ...prevState, password: value }))}
                 />
-                {/* </View> */}
+                {/* //! ------------- Input: Адрес электронной почты ------------ */}
 
-                {/* <Button
-                // onPress={onPressLearnMore}
-                // title="SIGN IN"/
-              // color="#841584"
-              // accessibilityLabel="Learn more about this purple button"
-              /> */}
 
-                {/* //! Кнопка "SIGN IN" */}
+
+
+                {/* //! ------------- Кнопка: Зарегистрироваться ------------- */}
+
+
                 <TouchableOpacity
                   activeOpacity={0.8}
                   style={styles.btn}
                   onPress={keboardHideAndSubmit}
                 >
-                  <Text style={styles.btnTitle}>SIGN IN</Text>
+                  <Text style={styles.btnTitle}>Зарегистрироваться</Text>
                 </TouchableOpacity>
+                {/* //! ______________ Кнопка "Зарегистрироваться" ______________ */}
               </View>
               {/* //! ________________ контейнер: form ________________ */}
             </View>
