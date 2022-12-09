@@ -115,7 +115,7 @@ export default function App() {
             <View
               style={{
                 ...styles.whiteContainer,
-                marginBottom: isShowKeyboard ? -150 : 0,
+                marginBottom: isShowKeyboard ? -100 : 0,
               }}
             >
               {/* //! ------------- контейнер: photoFrame ------------ */}
@@ -220,9 +220,19 @@ const styles = StyleSheet.create({
   photoFrame: {
     width: 120,
     height: 120,
-    backgroundColor: "#000000",
-    marginTop: -50,
-    borderRadius: 10,
+    backgroundColor: "#F6F6F6",
+    marginTop: -60,
+    borderRadius: 16,
+  },
+  header: {
+    alignItems: 'center',
+    // marginBottom: 100,
+  },
+  headerTitle: {
+    color: "#000000",
+    fontSize: 30,
+    marginTop: 32,
+    fontFamily: "Roboto-Medium",
   },
   input: {
     borderWidth: 1,
@@ -275,15 +285,5 @@ const styles = StyleSheet.create({
     color: Platform.OS === "ios" ? "#4169e1" : "#f0f8ff",
     fontSize: 18,
     fontFamily: "DMMono-Regular"
-  },
-  header: {
-    alignItems: 'center',
-    // marginBottom: 100,
-  },
-  headerTitle: {
-    color: "#000000",
-    fontSize: 30,
-    marginTop: 92,
-    fontFamily: "Roboto-Medium",
   },
 });
