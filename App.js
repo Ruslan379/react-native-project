@@ -51,7 +51,7 @@ const initialState = {
 export default function App() {
   //! Загрузка шрифтов_NEW
   const [fontsLoaded] = useFonts({
-    "DMMono-Regular": require("./assets/fonts/DMMono-Regular.ttf"),
+    // "DMMono-Regular": require("./assets/fonts/DMMono-Regular.ttf"),
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
     "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
@@ -62,7 +62,9 @@ export default function App() {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
   // const [isReady, setIsReady] = useState(false); //! Загрузка шрифтов_OLD
-
+  const [isFocusedLogin, setIsFocusedLogin] = useState(false);
+  const [isFocusedMail, setIsFocusedMail] = useState(false);
+  const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
   const keboardHide = () => {
     setIsShowKeyboard(false);
@@ -115,7 +117,7 @@ export default function App() {
             <View
               style={{
                 ...styles.whiteContainer,
-                marginBottom: isShowKeyboard ? -200 : 0,
+                marginBottom: isShowKeyboard ? -150 : 0,
               }}
             >
               {/* //! ------------- контейнер: photoFrame ------------ */}
@@ -143,7 +145,14 @@ export default function App() {
                 {/* <View style={{ marginTop: 20 }}> */}
                 {/* <Text style={styles.inputTitle}>Password</Text> */}
                 <TextInput
-                  style={styles.input}
+                  style={{
+                    ...styles.input,
+                    backgroundColor: isFocusedLogin ? "#ffffff" : "#f6f6f6",
+                    color: isFocusedLogin ? "#212121" : "#BDBDBD",
+                    borderColor: isFocusedLogin ? "#ff6c00" : "#e8e8e8",
+                    marginTop: 32,
+                    marginBottom: 16,
+                  }}
                   textAlign={"center"}
                   secureTextEntry={true}
                   onFocus={() => setIsShowKeyboard(true)}
