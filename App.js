@@ -115,7 +115,7 @@ export default function App() {
             <View
               style={{
                 ...styles.whiteContainer,
-                marginBottom: isShowKeyboard ? -130 : 0,
+                marginBottom: isShowKeyboard ? -200 : 0,
               }}
             >
               {/* //! ------------- контейнер: photoFrame ------------ */}
@@ -124,17 +124,16 @@ export default function App() {
 
 
               {/* //! ---------------- контейнер: form ---------------- */}
-              <View
+              <View style={styles.form}>
+                {/* <View
                 style={{
                   ...styles.form,
                   marginBottom: isShowKeyboard ? 10 : 100,
                 }}
-              >
-                <View style={styles.header}>
-                  {/* //! ------------- текст: Регистрация ------------ */}
-                  <Text style={styles.headerTitle}>Регистрация</Text>
-                  {/* //! ______________ текст: Регистрация _____________ */}
-                </View>
+              > */}
+                {/* //! ------------- текст: Регистрация ------------ */}
+                <Text style={styles.headerTitle}>Регистрация</Text>
+                {/* //! ______________ текст: Регистрация _____________ */}
 
                 <View>
                   {/* <Text style={styles.inputTitle}>Email</Text> */}
@@ -180,7 +179,7 @@ export default function App() {
           </KeyboardAvoidingView>
         </ImageBackground>
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableWithoutFeedback >
   );
 }
 
@@ -224,10 +223,10 @@ const styles = StyleSheet.create({
     // marginHorizontal: 50, //? 2.14
     // marginBottom: 100,
   },
-  header: {
-    alignItems: 'center',
-    // marginBottom: 100,
-  },
+  // header: {
+  //   alignItems: 'center',
+  //   // marginBottom: 100,
+  // },
   headerTitle: {
     color: "#000000",
     fontSize: 30,
