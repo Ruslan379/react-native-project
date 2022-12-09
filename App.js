@@ -127,15 +127,17 @@ export default function App() {
               <View
                 style={{
                   ...styles.form,
-                  marginBottom: isShowKeyboard ? 20 : 100,
+                  marginBottom: isShowKeyboard ? 10 : 100,
                 }}
               >
-                {/* //! ------------- текст: Регистрация ------------ */}
-                <Text style={styles.headerTitle}>Регистрация</Text>
-                {/* //! ______________ текст: Регистрация _____________ */}
+                <View style={styles.header}>
+                  {/* //! ------------- текст: Регистрация ------------ */}
+                  <Text style={styles.headerTitle}>Регистрация</Text>
+                  {/* //! ______________ текст: Регистрация _____________ */}
+                </View>
 
                 <View>
-                  <Text style={styles.inputTitle}>Email</Text>
+                  {/* <Text style={styles.inputTitle}>Email</Text> */}
                   <TextInput
                     style={styles.input}
                     textAlign={"center"}
@@ -145,7 +147,7 @@ export default function App() {
                   />
                 </View>
                 <View style={{ marginTop: 20 }}>
-                  <Text style={styles.inputTitle}>Password</Text>
+                  {/* <Text style={styles.inputTitle}>Password</Text> */}
                   <TextInput
                     style={styles.input}
                     textAlign={"center"}
@@ -219,11 +221,11 @@ const styles = StyleSheet.create({
   //! Контейнер: form
   form: {
     // alignItems: 'center',
-    // marginHorizontal: 10, //? 2.14
+    // marginHorizontal: 50, //? 2.14
     // marginBottom: 100,
   },
   header: {
-    // alignItems: 'center',
+    alignItems: 'center',
     // marginBottom: 100,
   },
   headerTitle: {
@@ -237,7 +239,7 @@ const styles = StyleSheet.create({
     borderColor: "#000000",
     height: 40,
     borderRadius: 10,
-    // marginHorizontal: 40,
+    // marginHorizontal: 0,
     color: "#000000",
   },
   inputTitle: {
