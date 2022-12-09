@@ -214,18 +214,18 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: "#f0f8ff",
+    borderColor: "#000000",
     height: 40,
     borderRadius: 10,
     // marginHorizontal: 40,
-    color: "#f0f8ff",
+    color: "#000000",
   },
   form: {
     marginHorizontal: 40, //? 2.14
     // marginBottom: 100,
   },
   inputTitle: {
-    color: "#f0f8ff",
+    color: "#000000",
     marginBottom: 10,
     fontSize: 18,
     fontFamily: "DMMono-Regular"
