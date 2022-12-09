@@ -192,7 +192,6 @@ export default function App() {
                     backgroundColor: isFocusedPassword ? "#FFFFFF" : "#F6F6F6",
                     color: isFocusedPassword ? "#212121" : "#BDBDBD",
                     borderColor: isFocusedPassword ? "#FF6C00" : "#E8E8E8",
-                    marginBottom: 16,
                   }}
                   // textAlign={"center"}
                   placeholder="Пароль"
@@ -213,7 +212,7 @@ export default function App() {
                 {/* //! ------------- Кнопка: Зарегистрироваться ------------- */}
                 <TouchableOpacity
                   activeOpacity={0.8}
-                  style={styles.btn}
+                  style={styles.btnSubmit}
                   onPress={keboardHideAndSubmit}
                 >
                   <Text style={styles.btnTitle}>Зарегистрироваться</Text>
@@ -280,7 +279,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
     fontFamily: "Roboto-Medium",
   },
-  //! Input: Логин
+  //! Input: Логин + Email + Пароль
   input: {
     marginHorizontal: 16,
     paddingLeft: 16,
@@ -293,44 +292,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
     fontFamily: "Roboto-Regular",
   },
-  inputTitle: {
-    color: "#000000",
-    marginBottom: 10,
-    fontSize: 18,
-    fontFamily: "DMMono-Regular"
-    // fontFamily: "Roboto-Bold"
+  //! Кнопка: Зарегистрироваться
+  btnSubmit: {
+    marginTop: 43,
+    height: 51,
+    width: 343,
+    backgroundColor: "#FF6C00",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 100,
   },
-  btn: {
-    height: 40,
-    borderRadius: 10,
-    borderWidth: 1,
-    marginTop: 40,
-    marginHorizontal: 20,
-    color: "#f0f8ff",
-    alignItems: 'center',
-    justifyContent: 'center',
-
-    ...Platform.select({
-      ios: {
-        backgroundColor: "transparent",
-        borderColor: "#ffb6c1",
-      },
-      android: {
-        backgroundColor: "#ffb6c1",
-        borderColor: "transparent",
-      },
-      default: {
-        // other platforms, web for example
-        backgroundColor: "#4169e1"
-      }
-    })
-
-    // backgroundColor: Platform.OS === "ios" ? "transparent" : "#4169e1",
-    // borderColor: Platform.OS === "ios" ? "#ffb6c1" : "transparent",
-  },
-  btnTitle: {
-    color: Platform.OS === "ios" ? "#4169e1" : "#f0f8ff",
-    fontSize: 18,
-    fontFamily: "DMMono-Regular"
+  btnSubmitText: {
+    fontSize: 16,
+    color: "#ffffff",
+    fontFamily: "Roboto-Regular",
   },
 });
