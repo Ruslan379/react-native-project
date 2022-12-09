@@ -250,6 +250,17 @@ export default function App() {
                 {/* //! ____________ Кнопка "Зарегистрироваться" ______________ */}
 
 
+                {/* //! ---------- Кнопка: Уже есть аккаунт? Войти ------------ */}
+                <TouchableOpacity
+                  // onPress={() => navigation.navigate("Login")}
+                  activeOpacity={0.8}
+                  style={styles.goToLoginPage}
+                >
+                  <Text style={styles.goToLoginPageText}>
+                    Уже есть аккаунт? Войти
+                  </Text>
+                </TouchableOpacity>
+                {/* //! ___________ Кнопка: Уже есть аккаунт? Войти __________ */}
 
 
               </View>
@@ -339,9 +350,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 100,
   },
+  //! Текст кнопки: Зарегистрироваться
   btnSubmitTitle: {
     fontSize: 16,
     color: "#FFFFFF",
+    fontFamily: "Roboto-Regular",
+  },
+  //! Кнопка: Уже есть аккаунт? Войти
+  goToLoginPage: {
+    alignItems: "center",
+    marginTop: 16,
+  },
+  //! Текст кнопки: Уже есть аккаунт? Войти
+  goToLoginPageText: {
+    color: "#000000",
     fontFamily: "Roboto-Regular",
   },
 });
