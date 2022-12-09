@@ -31,7 +31,7 @@ import { useFonts } from "expo-font";
 
 // -------------------------------------------------------------------------------------------------------
 const initialState = {
-  nickname: "",
+  loginName: "",
   email: "",
   password: ""
 }
@@ -125,37 +125,32 @@ export default function App() {
 
               {/* //! ---------------- контейнер: form ---------------- */}
               <View style={styles.form}>
-                {/* <View
-                style={{
-                  ...styles.form,
-                  marginBottom: isShowKeyboard ? 10 : 100,
-                }}
-              > */}
+
                 {/* //! ------------- текст: Регистрация ------------ */}
                 <Text style={styles.headerTitle}>Регистрация</Text>
                 {/* //! ______________ текст: Регистрация _____________ */}
 
-                <View>
-                  {/* <Text style={styles.inputTitle}>Email</Text> */}
-                  <TextInput
-                    style={styles.input}
-                    textAlign={"center"}
-                    onFocus={() => setIsShowKeyboard(true)}
-                    value={state.email}
-                    onChangeText={(value) => setState((prevState) => ({ ...prevState, email: value }))}
-                  />
-                </View>
-                <View style={{ marginTop: 20 }}>
-                  {/* <Text style={styles.inputTitle}>Password</Text> */}
-                  <TextInput
-                    style={styles.input}
-                    textAlign={"center"}
-                    secureTextEntry={true}
-                    onFocus={() => setIsShowKeyboard(true)}
-                    value={state.password}
-                    onChangeText={(value) => setState((prevState) => ({ ...prevState, password: value }))}
-                  />
-                </View>
+                {/* //! ------------- Input: Логин ------------ */}
+                <TextInput
+                  style={styles.input}
+                  textAlign={"center"}
+                  onFocus={() => setIsShowKeyboard(true)}
+                  value={state.email}
+                  onChangeText={(value) => setState((prevState) => ({ ...prevState, email: value }))}
+                />
+                {/* //! ______________ Input: Логин ______________ */}
+
+                {/* <View style={{ marginTop: 20 }}> */}
+                {/* <Text style={styles.inputTitle}>Password</Text> */}
+                <TextInput
+                  style={styles.input}
+                  textAlign={"center"}
+                  secureTextEntry={true}
+                  onFocus={() => setIsShowKeyboard(true)}
+                  value={state.password}
+                  onChangeText={(value) => setState((prevState) => ({ ...prevState, password: value }))}
+                />
+                {/* </View> */}
 
                 {/* <Button
                 // onPress={onPressLearnMore}
@@ -219,27 +214,29 @@ const styles = StyleSheet.create({
   },
   //! Контейнер: form
   form: {
-    // alignItems: 'center',
+    alignItems: 'center',
     // marginHorizontal: 50, //? 2.14
     // marginBottom: 100,
   },
-  // header: {
-  //   alignItems: 'center',
-  //   // marginBottom: 100,
-  // },
+  //! текст: Регистрация
   headerTitle: {
     color: "#000000",
     fontSize: 30,
     marginTop: 32,
     fontFamily: "Roboto-Medium",
   },
+  //! Input: Логин
   input: {
+    marginHorizontal: 16,
+    paddingLeft: 16,
+    width: 343,
+    height: 50,
+    borderColor: "#E8E8E8",
     borderWidth: 1,
-    borderColor: "#000000",
-    height: 40,
-    borderRadius: 10,
-    // marginHorizontal: 0,
-    color: "#000000",
+    borderRadius: 8,
+    placeholderTextColor: "#BDBDBD",
+    backgroundColor: "#F6F6F6",
+    fontFamily: "Roboto-Regular",
   },
   inputTitle: {
     color: "#000000",
