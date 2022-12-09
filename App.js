@@ -253,6 +253,7 @@ export default function App() {
                 {/* //! ---------- Кнопка: Уже есть аккаунт? Войти ------------ */}
                 <TouchableOpacity
                   // onPress={() => navigation.navigate("Login")}
+                  onPress={() => console.log("Переход на страницу Login")}
                   activeOpacity={0.8}
                   style={styles.goToLoginPage}
                 >
