@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     justifyContent: "flex-end",
   },
+  //! Белый контейнер
   whiteContainer: {
     backgroundColor: "#ffffff",
     height: 550,
@@ -207,6 +208,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 0,
   },
+  //! photoFrame
   photoFrame: {
     width: 120,
     height: 120,
@@ -214,12 +216,14 @@ const styles = StyleSheet.create({
     marginTop: -60,
     borderRadius: 16,
   },
+  //! Контейнер: form
   form: {
-    marginHorizontal: 40, //? 2.14
+    // alignItems: 'center',
+    // marginHorizontal: 10, //? 2.14
     // marginBottom: 100,
   },
   header: {
-    alignItems: 'center',
+    // alignItems: 'center',
     // marginBottom: 100,
   },
   headerTitle: {
