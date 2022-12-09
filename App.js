@@ -146,7 +146,7 @@ export default function App() {
                     ...styles.input,
                     backgroundColor: isFocusedLogin ? "#FFFFFF" : "#F6F6F6",
                     color: isFocusedLogin ? "#212121" : "#BDBDBD",
-                    borderColor: isFocusedLogin ? "#ff6c00" : "#e8e8e8",
+                    borderColor: isFocusedLogin ? "#FF6C00" : "#E8E8E8",
                     marginTop: 32,
                     marginBottom: 16,
                   }}
@@ -156,9 +156,7 @@ export default function App() {
                     setIsShowKeyboard(true);
                     setIsFocusedLogin(true);
                   }}
-                  onBlur={() => {
-                    setIsFocusedLogin(false);
-                  }}
+                  onBlur={() => setIsFocusedLogin(false)}
                   value={state.loginName}
                   onChangeText={(value) => setState((prevState) => ({ ...prevState, loginName: value }))}
                 />
@@ -171,7 +169,7 @@ export default function App() {
                     ...styles.input,
                     backgroundColor: isFocusedMail ? "#FFFFFF" : "#F6F6F6",
                     color: isFocusedMail ? "#212121" : "#BDBDBD",
-                    borderColor: isFocusedMail ? "#ff6c00" : "#e8e8e8",
+                    borderColor: isFocusedMail ? "#FF6C00" : "#E8E8E8",
                     marginBottom: 16,
                   }}
                   // textAlign={"center"}
@@ -180,6 +178,7 @@ export default function App() {
                     setIsShowKeyboard(true)
                     setIsFocusedMail(true);
                   }}
+                  onBlur={() => setIsFocusedMail(false)}
                   value={state.email}
                   onChangeText={(value) => setState((prevState) => ({ ...prevState, email: value }))}
                 />
@@ -190,25 +189,28 @@ export default function App() {
                 <TextInput
                   style={{
                     ...styles.input,
-                    backgroundColor: isFocusedMail ? "#ffffff" : "#f6f6f6",
-                    color: isFocusedMail ? "#212121" : "#BDBDBD",
-                    borderColor: isFocusedMail ? "#ff6c00" : "#e8e8e8",
+                    backgroundColor: isFocusedPassword ? "#FFFFFF" : "#F6F6F6",
+                    color: isFocusedPassword ? "#212121" : "#BDBDBD",
+                    borderColor: isFocusedPassword ? "#FF6C00" : "#E8E8E8",
                     marginBottom: 16,
                   }}
-                  textAlign={"center"}
+                  // textAlign={"center"}
+                  placeholder="Пароль"
                   secureTextEntry={true}
-                  onFocus={() => setIsShowKeyboard(true)}
+                  onFocus={() => {
+                    setIsShowKeyboard(true)
+                    setIsFocusedPassword(true);
+                  }}
+                  onBlur={() => setIsFocusedPassword(false)}
                   value={state.password}
                   onChangeText={(value) => setState((prevState) => ({ ...prevState, password: value }))}
                 />
-                {/* //! ------------- Input: Адрес электронной почты ------------ */}
+                {/* //! ______________ Input: Пароль ______________ */}
 
 
 
 
                 {/* //! ------------- Кнопка: Зарегистрироваться ------------- */}
-
-
                 <TouchableOpacity
                   activeOpacity={0.8}
                   style={styles.btn}
@@ -216,7 +218,10 @@ export default function App() {
                 >
                   <Text style={styles.btnTitle}>Зарегистрироваться</Text>
                 </TouchableOpacity>
-                {/* //! ______________ Кнопка "Зарегистрироваться" ______________ */}
+                {/* //! ____________ Кнопка "Зарегистрироваться" ______________ */}
+
+
+
               </View>
               {/* //! ________________ контейнер: form ________________ */}
             </View>
