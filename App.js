@@ -109,7 +109,12 @@ export default function App() {
 
   return (
     <TouchableWithoutFeedback onPress={keboardHide}>
+
       <View style={styles.container}>
+        {/* //! ------------------ Фоновый image --------------------- */}
+
+
+
         <ImageBackground
           style={styles.image}
           // source={require("./assets/images/stars-on-night.jpg")}
@@ -152,6 +157,7 @@ export default function App() {
                   }}
                   // textAlign={"center"}
                   placeholder="Логин"
+                  placeholderTextColor="#BDBDBD"
                   onFocus={() => {
                     setIsShowKeyboard(true);
                     setIsFocusedLogin(true);
@@ -174,6 +180,7 @@ export default function App() {
                   }}
                   // textAlign={"center"}
                   placeholder="Адрес электронной почты"
+                  placeholderTextColor="#BDBDBD"
                   onFocus={() => {
                     setIsShowKeyboard(true)
                     setIsFocusedMail(true);
@@ -195,6 +202,7 @@ export default function App() {
                   }}
                   // textAlign={"center"}
                   placeholder="Пароль"
+                  placeholderTextColor="#BDBDBD"
                   secureTextEntry={true}
                   onFocus={() => {
                     setIsShowKeyboard(true)
@@ -228,6 +236,7 @@ export default function App() {
             {/* //! __________________ Белый контейнер __________________ */}
           </KeyboardAvoidingView>
         </ImageBackground>
+        {/* //! __________________________ Фоновый image __________________________ */}
       </View>
     </TouchableWithoutFeedback >
   );
@@ -245,10 +254,15 @@ const styles = StyleSheet.create({
   //! ImageBackground
   image: {
     flex: 1,
-    resizeMode: "cover",
-    // alignItems: 'center', //? 2.14
-    // justifyContent: "center",
-    justifyContent: "flex-end",
+
+    // resizeMode: "cover",
+    // // alignItems: 'center', //? 2.14
+    // // justifyContent: "center",
+    // justifyContent: "flex-end",
+
+    //! _react-native-strakhura
+    width: '100%',
+    height: '100%',
   },
   //! Белый контейнер
   whiteContainer: {
