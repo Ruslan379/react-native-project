@@ -118,6 +118,11 @@ export default function App() {
                 marginBottom: isShowKeyboard ? -150 : 0,
               }}
             >
+              {/* //! ------------- контейнер: photoFrame ------------ */}
+              <View style={styles.photoFrame}></View>
+              {/* //! _____________ контейнер: photoFrame _____________ */}
+
+
               {/* //! ------------------ form ---------------------- */}
               <View
                 style={{
@@ -211,6 +216,13 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     alignItems: "center",
     marginBottom: 0,
+  },
+  photoFrame: {
+    width: 120,
+    height: 120,
+    backgroundColor: "#000000",
+    marginTop: -50,
+    borderRadius: 10,
   },
   input: {
     borderWidth: 1,
