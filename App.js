@@ -69,14 +69,16 @@ export default function App() {
   const keboardHide = () => {
     setIsShowKeyboard(false);
     setIsFocusedLogin(false);
-
+    setIsFocusedMail(false);
+    setIsFocusedPassword(false);
     Keyboard.dismiss();
   };
 
   const keboardHideAndSubmit = () => {
     setIsShowKeyboard(false);
     setIsFocusedLogin(false);
-
+    setIsFocusedMail(false);
+    setIsFocusedPassword(false);
     Keyboard.dismiss();
     console.log("state:", state); //!
     setState(initialState);
@@ -132,9 +134,11 @@ export default function App() {
               {/* //! ---------------- контейнер: form ---------------- */}
               <View style={styles.form}>
 
+
                 {/* //! ------------- текст: Регистрация ------------ */}
                 <Text style={styles.headerTitle}>Регистрация</Text>
                 {/* //! ______________ текст: Регистрация _____________ */}
+
 
                 {/* //! ------------- Input: Логин ------------ */}
                 <TextInput
@@ -165,15 +169,19 @@ export default function App() {
                 <TextInput
                   style={{
                     ...styles.input,
-                    backgroundColor: isFocusedMail ? "#ffffff" : "#f6f6f6",
+                    backgroundColor: isFocusedMail ? "#FFFFFF" : "#F6F6F6",
                     color: isFocusedMail ? "#212121" : "#BDBDBD",
                     borderColor: isFocusedMail ? "#ff6c00" : "#e8e8e8",
                     marginBottom: 16,
                   }}
-                  textAlign={"center"}
-                  onFocus={() => setIsShowKeyboard(true)}
-                  value={state.password}
-                  onChangeText={(value) => setState((prevState) => ({ ...prevState, password: value }))}
+                  // textAlign={"center"}
+                  placeholder="Адрес электронной почты"
+                  onFocus={() => {
+                    setIsShowKeyboard(true)
+                    setIsFocusedMail(true);
+                  }}
+                  value={state.email}
+                  onChangeText={(value) => setState((prevState) => ({ ...prevState, email: value }))}
                 />
                 {/* //! _____ Input: Адрес электронной почты _____ */}
 
