@@ -118,10 +118,11 @@ export default function App() {
                 marginBottom: isShowKeyboard ? 20 : 100,
               }}
             >
+              {/* //! ------------- контейнер: Регистрация ------------ */}
               <View style={{
                 ...styles.header,
                 marginBottom: isShowKeyboard ? 15 : 250,
-                color: "#f0f8ff",
+                // color: "#f0f8ff",
                 // color: isShowKeyboard ? "#f0f8ff" : "#ffb6c1",
               }}
               >
@@ -133,9 +134,10 @@ export default function App() {
                 }}
                 >Регистрация
                 </Text>
-                {/* //! ______________ текст: Регистрация ______________ */}
-
+                {/* //! ______________ текст: Регистрация _____________ */}
               </View>
+              {/* //! ____________ контейнер: Регистрация ____________ */}
+
               <View>
                 <Text style={styles.inputTitle}>Email</Text>
                 <TextInput
@@ -174,7 +176,7 @@ export default function App() {
                 <Text style={styles.btnTitle}>SIGN IN</Text>
               </TouchableOpacity>
             </View>
-            {/* //! ___________________ form ___________________ */}
+            {/* //! ____________________ form ____________________ */}
           </KeyboardAvoidingView>
         </ImageBackground>
       </View>
