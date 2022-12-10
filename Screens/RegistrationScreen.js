@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 
 import {
   StyleSheet,
@@ -15,143 +16,273 @@ import {
   Dimensions, //? 2.14
 } from 'react-native';
 
-import * as Font from 'expo-font';
-// import { AppLoading } from 'expo'; //! уже устарело и так не работает!!!
-import AppLoading from 'expo-app-loading';
 
+//! Для загрузки шрифтов_OLD
+// import * as Font from 'expo-font';
+// // import { AppLoading } from 'expo'; //! уже устарело и так не работает!!!
+// import AppLoading from 'expo-app-loading';
 
+//! Для загрузки шрифтов_NEW
+// // import { useCallback } from 'react';
+// import { useFonts } from "expo-font"; //?
+// import * as SplashScreen from 'expo-splash-screen';
+// SplashScreen.preventAutoHideAsync();
+
+//! _react-native-strakhura - НЕ РАБОТАЕТ
+// import image from "./assets/images/Photo_BG.png";
 
 // -------------------------------------------------------------------------------------------------------
-
 const initialState = {
+  loginName: "",
   email: "",
   password: ""
 }
 
+//! Загрузка шрифтов_OLD
+// const loadApplication = async () => {
+//   await Font.loadAsync({
+//     "DMMono-Regular": require("./assets/fonts/DMMono-Regular.ttf"),
+//     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+//     "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+//     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+//   })
+// };
 
-//! Загрузка шрифтов
-const loadApplication = async () => {
-  await Font.loadAsync({
-    "DMMono-Regular": require("./assets/fonts/DMMono-Regular.ttf")
-  })
-};
-
-
+// SplashScreen.preventAutoHideAsync(); //! Загрузка шрифтов_NEW
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 export default function RegistrationScreen() {
+  //?
+  //! Загрузка шрифтов_NEW
+  // const [fontsLoaded] = useFonts({
+  //   // "DMMono-Regular": require("./assets/fonts/DMMono-Regular.ttf"),
+  //   "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+  //   "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+  //   "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+  // });
+
   console.log(Platform.OS); //!
+  //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
-  const [iasReady, setIasReady] = useState(false);
-
-  //? ----------  2.14 -----------------
-  // const [dimensions, setdimensions] = useState(
-  //   Dimensions.get("window").width - 20 * 2
-  // );
-
-  //? ----------  2.14 -----------------
-  // useEffect(() => {
-  //   const onChange = () => {
-  //     const width = Dimensions.get("window").width - 20 * 2;
-  //     console.log("width:", width); //!
-  //     setdimensions(width);
-  //   };
-  //   Dimensions.addEventListener("change", onChange);
-  //   return () => {
-  //     Dimensions.removeEventListener("change", onChange);
-  //   };
-  // }, []);
-  //? ----------------------------------
+  // const [isReady, setIsReady] = useState(false); //! Загрузка шрифтов_OLD
+  const [isFocusedLogin, setIsFocusedLogin] = useState(false);
+  const [isFocusedMail, setIsFocusedMail] = useState(false);
+  const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
   const keboardHide = () => {
     setIsShowKeyboard(false);
+    setIsFocusedLogin(false);
+    setIsFocusedMail(false);
+    setIsFocusedPassword(false);
     Keyboard.dismiss();
   };
 
   const keboardHideAndSubmit = () => {
     setIsShowKeyboard(false);
+    setIsFocusedLogin(false);
+    setIsFocusedMail(false);
+    setIsFocusedPassword(false);
     Keyboard.dismiss();
     console.log("state:", state); //!
     setState(initialState);
   }
 
-  //! Проверка наличия шрифтов
-  if (!iasReady) {
-    return (
-      <AppLoading
-        startAsync={loadApplication}
-        onFinish={() => setIasReady(true)}
-        onError={console.warn}
-      />
-    );
-  }
+  //! _react-native-strakhura - НЕ РАБОТАЕТ
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+
+  //! _react-native-strakhura - НЕ РАБОТАЕТ
+  // const image = { uri: "https://reactjs.org/logo-og.png" };
+  // const image = require("./assets/images/Photo_BG.png")
+
+
+  //! Проверка наличия шрифтов_OLD
+  // if (!isReady) {
+  //   return (
+  //     <AppLoading
+  //       startAsync={loadApplication}
+  //       onFinish={() => setIsReady(true)}
+  //       onError={console.warn}
+  //     />
+  //   );
+  // };
+  //! Проверка наличия шрифтов_NEW
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (fontsLoaded) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [fontsLoaded]);
+
+  // console.log("fontsLoaded:", fontsLoaded); //!
+  //?
+  // if (!fontsLoaded) {
+  //   return null;
+  // };
+
 
   return (
     <TouchableWithoutFeedback onPress={keboardHide}>
+
       <View style={styles.container}>
+        {/* //! ------------------ Фоновый image --------------------- */}
+
+        {/* //! _react-native-strakhura - НЕ РАБОТАЕТ */}
+        {/* <Image
+          // source={require("./assets/images/Photo_BG.png")}
+          source={image}
+          style={{
+            width: windowWidth,
+            height: windowHeight,
+            position: 'absolute',
+            top: 0,
+            left: 0
+          }}
+        /> */}
+
         <ImageBackground
-          style={styles.image}
-          source={require("./assets/images/stars-on-night.jpg")}
+          // style={styles.image}
+          style={{
+            ...styles.image,
+            width: windowWidth,
+            height: windowHeight,
+            position: 'absolute',
+            top: 0,
+            left: 0
+          }}
+          // source={require("./assets/images/stars-on-night.jpg")}
+          source={require("./assets/images/Photo_BG.png")}
         >
           <KeyboardAvoidingView
-          //! не работает на Android
+          //! не корректно работает на Android
           // behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
-            {/* <View style={styles.form}> */}
-            <View style={{
-              ...styles.form,
-              marginBottom: isShowKeyboard ? 20 : 100,
-              // width: dimensions //? 2.14
-            }}>
-              {/* <View style={styles.header}> */}
-              <View style={{
-                ...styles.header,
-                marginBottom: isShowKeyboard ? 80 : 250,
-              }}>
-                <Text style={styles.headerTitle}>Hello again</Text>
-                <Text style={styles.headerTitle}>Welcome back</Text>
-              </View>
-              <View>
-                <Text style={styles.inputTitle}>Email</Text>
+            {/* //! ------------------ Белый контейнер---------------------- */}
+            <View
+              style={{
+                ...styles.whiteContainer,
+                marginBottom: isShowKeyboard ? 150 : 0,
+              }}
+            >
+              {/* //! ------------- контейнер: photoFrame ------------ */}
+              <View style={styles.photoFrame}></View>
+              {/* //! _____________ контейнер: photoFrame _____________ */}
+
+
+              {/* //! ---------------- контейнер: form ---------------- */}
+              <View style={styles.form}>
+
+
+                {/* //! ------------- текст: Регистрация ------------ */}
+                <Text style={styles.headerTitle}>Регистрация</Text>
+                {/* //! ______________ текст: Регистрация _____________ */}
+
+
+                {/* //! ------------- Input: Логин ------------ */}
                 <TextInput
-                  style={styles.input}
-                  textAlign={"center"}
-                  onFocus={() => setIsShowKeyboard(true)}
+                  style={{
+                    ...styles.input,
+                    backgroundColor: isFocusedLogin ? "#FFFFFF" : "#F6F6F6",
+                    color: isFocusedLogin ? "#212121" : "#BDBDBD",
+                    borderColor: isFocusedLogin ? "#FF6C00" : "#E8E8E8",
+                    marginTop: 32,
+                    marginBottom: 16,
+                  }}
+                  // textAlign={"center"}
+                  placeholder="Логин"
+                  placeholderTextColor="#BDBDBD"
+                  onFocus={() => {
+                    setIsShowKeyboard(true);
+                    setIsFocusedLogin(true);
+                  }}
+                  onBlur={() => setIsFocusedLogin(false)}
+                  value={state.loginName}
+                  onChangeText={(value) => setState((prevState) => ({ ...prevState, loginName: value }))}
+                />
+                {/* //! ______________ Input: Логин ______________ */}
+
+
+                {/* //! ------ Input: Адрес электронной почты ----- */}
+                <TextInput
+                  style={{
+                    ...styles.input,
+                    backgroundColor: isFocusedMail ? "#FFFFFF" : "#F6F6F6",
+                    color: isFocusedMail ? "#212121" : "#BDBDBD",
+                    borderColor: isFocusedMail ? "#FF6C00" : "#E8E8E8",
+                    marginBottom: 16,
+                  }}
+                  // textAlign={"center"}
+                  placeholder="Адрес электронной почты"
+                  placeholderTextColor="#BDBDBD"
+                  onFocus={() => {
+                    setIsShowKeyboard(true)
+                    setIsFocusedMail(true);
+                  }}
+                  onBlur={() => setIsFocusedMail(false)}
                   value={state.email}
                   onChangeText={(value) => setState((prevState) => ({ ...prevState, email: value }))}
                 />
-              </View>
-              <View style={{ marginTop: 20 }}>
-                <Text style={styles.inputTitle}>Password</Text>
+                {/* //! _____ Input: Адрес электронной почты _____ */}
+
+
+                {/* //! ------------- Input: Пароль ------------ */}
                 <TextInput
-                  style={styles.input}
-                  textAlign={"center"}
+                  style={{
+                    ...styles.input,
+                    backgroundColor: isFocusedPassword ? "#FFFFFF" : "#F6F6F6",
+                    color: isFocusedPassword ? "#212121" : "#BDBDBD",
+                    borderColor: isFocusedPassword ? "#FF6C00" : "#E8E8E8",
+                  }}
+                  // textAlign={"center"}
+                  placeholder="Пароль"
+                  placeholderTextColor="#BDBDBD"
                   secureTextEntry={true}
-                  onFocus={() => setIsShowKeyboard(true)}
+                  onFocus={() => {
+                    setIsShowKeyboard(true)
+                    setIsFocusedPassword(true);
+                  }}
+                  onBlur={() => setIsFocusedPassword(false)}
                   value={state.password}
                   onChangeText={(value) => setState((prevState) => ({ ...prevState, password: value }))}
                 />
+                {/* //! ______________ Input: Пароль ______________ */}
+
+
+
+
+                {/* //! ------------- Кнопка: Зарегистрироваться ------------- */}
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  style={styles.btnSubmit}
+                  onPress={keboardHideAndSubmit}
+                >
+                  <Text style={styles.btnSubmitTitle}>Зарегистрироваться</Text>
+                </TouchableOpacity>
+                {/* //! ____________ Кнопка "Зарегистрироваться" ______________ */}
+
+
+                {/* //! ---------- Кнопка: Уже есть аккаунт? Войти ------------ */}
+                <TouchableOpacity
+                  // onPress={() => navigation.navigate("Login")}
+                  onPress={() => console.log("Переход на страницу Login")}
+                  activeOpacity={0.8}
+                  style={styles.goToLoginPage}
+                >
+                  <Text style={styles.goToLoginPageText}>
+                    Уже есть аккаунт? Войти
+                  </Text>
+                </TouchableOpacity>
+                {/* //! ___________ Кнопка: Уже есть аккаунт? Войти __________ */}
+
+
               </View>
-
-              {/* <Button
-              // onPress={onPressLearnMore}
-              // title="SIGN IN"/
-            // color="#841584"
-            // accessibilityLabel="Learn more about this purple button"
-            /> */}
-
-              {/* //! Кнопка "SIGN IN" */}
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.btn}
-                onPress={keboardHideAndSubmit}
-              >
-                <Text style={styles.btnTitle}>SIGN IN</Text>
-              </TouchableOpacity>
+              {/* //! ________________ контейнер: form ________________ */}
             </View>
+            {/* //! __________________ Белый контейнер __________________ */}
           </KeyboardAvoidingView>
         </ImageBackground>
+        {/* //! __________________________ Фоновый image __________________________ */}
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableWithoutFeedback >
   );
 }
 
@@ -167,70 +298,81 @@ const styles = StyleSheet.create({
   //! ImageBackground
   image: {
     flex: 1,
-    resizeMode: "cover",
-    // alignItems: 'center', //? 2.14
-    // justifyContent: "center",
+    //? Конспект
+    // resizeMode: "cover",
+    // // alignItems: 'center', //? 2.14
+    // // justifyContent: "center",
     justifyContent: "flex-end",
+    //? _react-native-strakhura
+    width: '100%',
+    height: '100%',
   },
-  input: {
-    borderWidth: 1,
-    borderColor: "#f0f8ff",
-    height: 40,
-    borderRadius: 10,
-    // marginHorizontal: 40,
-    color: "#f0f8ff",
+  //! Белый контейнер
+  whiteContainer: {
+    backgroundColor: "#ffffff",
+    height: 550,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    alignItems: "center",
+    marginBottom: 0,
   },
+  //! photoFrame
+  photoFrame: {
+    width: 120,
+    height: 120,
+    backgroundColor: "#F6F6F6",
+    marginTop: -60,
+    borderRadius: 16,
+  },
+  //! Контейнер: form
   form: {
-    marginHorizontal: 40, //? 2.14
-    // marginBottom: 100,
-  },
-  inputTitle: {
-    color: "#f0f8ff",
-    marginBottom: 10,
-    fontSize: 18,
-    fontFamily: "DMMono-Regular"
-  },
-  btn: {
-    height: 40,
-    borderRadius: 10,
-    borderWidth: 1,
-    marginTop: 40,
-    marginHorizontal: 20,
-    color: "#f0f8ff",
     alignItems: 'center',
-    justifyContent: 'center',
-
-    ...Platform.select({
-      ios: {
-        backgroundColor: "transparent",
-        borderColor: "#ffb6c1",
-      },
-      android: {
-        backgroundColor: "#ffb6c1",
-        borderColor: "transparent",
-      },
-      default: {
-        // other platforms, web for example
-        backgroundColor: "#4169e1"
-      }
-    })
-
-    // backgroundColor: Platform.OS === "ios" ? "transparent" : "#4169e1",
-    // borderColor: Platform.OS === "ios" ? "#ffb6c1" : "transparent",
   },
-  btnTitle: {
-    color: Platform.OS === "ios" ? "#4169e1" : "#f0f8ff",
-    fontSize: 18,
-    fontFamily: "DMMono-Regular"
-  },
-  header: {
-    alignItems: 'center',
-    // marginBottom: 100,
-
-  },
+  //! текст: Регистрация
   headerTitle: {
+    color: "#000000",
     fontSize: 30,
-    color: "#f0f8ff",
-    fontFamily: "DMMono-Regular"
+    marginTop: 32,
+    fontFamily: "Roboto-Medium",
+  },
+  //! Input: Логин + Email + Пароль
+  input: {
+    marginHorizontal: 16,
+    paddingLeft: 16,
+    width: 343,
+    // width: '100%',
+    height: 50,
+    borderColor: "#E8E8E8",
+    borderWidth: 1,
+    borderRadius: 8,
+    placeholderTextColor: "#BDBDBD",
+    backgroundColor: "#F6F6F6",
+    fontFamily: "Roboto-Regular",
+  },
+  //! Кнопка: Зарегистрироваться
+  btnSubmit: {
+    marginTop: 43,
+    height: 51,
+    width: 343,
+    backgroundColor: "#FF6C00",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 100,
+  },
+  //! Текст кнопки: Зарегистрироваться
+  btnSubmitTitle: {
+    fontSize: 16,
+    color: "#FFFFFF",
+    fontFamily: "Roboto-Regular",
+  },
+  //! Кнопка: Уже есть аккаунт? Войти
+  goToLoginPage: {
+    alignItems: "center",
+    marginTop: 16,
+  },
+  //! Текст кнопки: Уже есть аккаунт? Войти
+  goToLoginPageText: {
+    color: "#000000",
+    fontFamily: "Roboto-Regular",
   },
 });
