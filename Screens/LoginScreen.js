@@ -37,7 +37,6 @@ export default function LoginScreen() {
 
   const keboardHide = () => {
     setIsShowKeyboard(false);
-    setIsFocusedLogin(false);
     setIsFocusedMail(false);
     setIsFocusedPassword(false);
     Keyboard.dismiss();
@@ -45,7 +44,6 @@ export default function LoginScreen() {
 
   const keboardHideAndSubmit = () => {
     setIsShowKeyboard(false);
-    setIsFocusedLogin(false);
     setIsFocusedMail(false);
     setIsFocusedPassword(false);
     Keyboard.dismiss();
