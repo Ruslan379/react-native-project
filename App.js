@@ -1,7 +1,7 @@
 // import React, { useState, useEffect, useCallback } from "react";
 import React, { useState } from "react";
 import { useFonts } from "expo-font";
-// import { Provider } from "react-redux";
+
 
 import RegistrationScreen from "./Screens/RegistrationScreen.js";
 import LoginScreen from "./Screens/LoginScreen.js";
@@ -26,10 +26,8 @@ export default function App() {
 
   return (
     <>
-      {/* <Provider store={store}> */}
-      {/* <RegistrationScreen /> */}
-      <LoginScreen />
-      {/* </Provider> */}
+      <RegistrationScreen />
+      {/* <LoginScreen /> */}
     </>
   )
 }

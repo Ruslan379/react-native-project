@@ -17,6 +17,20 @@ import {
 } from 'react-native';
 
 
+//! Для загрузки шрифтов_OLD
+// import * as Font from 'expo-font';
+// // import { AppLoading } from 'expo'; //! уже устарело и так не работает!!!
+// import AppLoading from 'expo-app-loading';
+
+//! Для загрузки шрифтов_NEW
+// // import { useCallback } from 'react';
+// import { useFonts } from "expo-font"; //?
+// import * as SplashScreen from 'expo-splash-screen';
+// SplashScreen.preventAutoHideAsync();
+
+//! _react-native-strakhura - НЕ РАБОТАЕТ
+// import image from "./assets/images/Photo_BG.png";
+
 // -------------------------------------------------------------------------------------------------------
 const initialState = {
   loginName: "",
@@ -24,14 +38,34 @@ const initialState = {
   password: ""
 }
 
+//! Загрузка шрифтов_OLD
+// const loadApplication = async () => {
+//   await Font.loadAsync({
+//     "DMMono-Regular": require("./assets/fonts/DMMono-Regular.ttf"),
+//     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+//     "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+//     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+//   })
+// };
 
+// SplashScreen.preventAutoHideAsync(); //! Загрузка шрифтов_NEW
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 export default function LoginScreen() {
+  //?
+  //! Загрузка шрифтов_NEW
+  // const [fontsLoaded] = useFonts({
+  //   // "DMMono-Regular": require("./assets/fonts/DMMono-Regular.ttf"),
+  //   "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
+  //   "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+  //   "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+  // });
+
   console.log(Platform.OS); //!
   //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
-
+  // const [isReady, setIsReady] = useState(false); //! Загрузка шрифтов_OLD
+  const [isFocusedLogin, setIsFocusedLogin] = useState(false);
   const [isFocusedMail, setIsFocusedMail] = useState(false);
   const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
@@ -53,10 +87,37 @@ export default function LoginScreen() {
     setState(initialState);
   }
 
-  //! _react-native-strakhura
+  //! _react-native-strakhura - НЕ РАБОТАЕТ
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
+  //! _react-native-strakhura - НЕ РАБОТАЕТ
+  // const image = { uri: "https://reactjs.org/logo-og.png" };
+  // const image = require("./assets/images/Photo_BG.png")
+
+
+  //! Проверка наличия шрифтов_OLD
+  // if (!isReady) {
+  //   return (
+  //     <AppLoading
+  //       startAsync={loadApplication}
+  //       onFinish={() => setIsReady(true)}
+  //       onError={console.warn}
+  //     />
+  //   );
+  // };
+  //! Проверка наличия шрифтов_NEW
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (fontsLoaded) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [fontsLoaded]);
+
+  // console.log("fontsLoaded:", fontsLoaded); //!
+  //?
+  // if (!fontsLoaded) {
+  //   return null;
+  // };
 
 
   return (
@@ -64,7 +125,22 @@ export default function LoginScreen() {
 
       <View style={styles.container}>
         {/* //! ------------------ Фоновый image --------------------- */}
+
+        {/* //! _react-native-strakhura - НЕ РАБОТАЕТ */}
+        {/* <Image
+          // source={require("./assets/images/Photo_BG.png")}
+          source={image}
+          style={{
+            width: windowWidth,
+            height: windowHeight,
+            position: 'absolute',
+            top: 0,
+            left: 0
+          }}
+        /> */}
+
         <ImageBackground
+          // style={styles.image}
           style={{
             ...styles.image,
             width: windowWidth,
@@ -73,7 +149,7 @@ export default function LoginScreen() {
             top: 0,
             left: 0
           }}
-          // source={require("../assets/images/stars-on-night.jpg")}
+          // source={require("./assets/images/stars-on-night.jpg")}
           source={require("../assets/images/Photo_BG.png"
           )}
         >
@@ -88,6 +164,9 @@ export default function LoginScreen() {
                 marginBottom: isShowKeyboard ? 150 : 0,
               }}
             >
+              {/* //! ------------- контейнер: photoFrame ------------ */}
+              {/* <View style={styles.photoFrame}></View> */}
+              {/* //! _____________ контейнер: photoFrame _____________ */}
 
 
               {/* //! ---------------- контейнер: form ---------------- */}
@@ -96,7 +175,9 @@ export default function LoginScreen() {
 
                 {/* //! ------------- текст: Войти ------------ */}
                 <Text style={styles.headerTitle}>Войти</Text>
-                {/* //! _____________ текст: Войти ____________ */}
+                {/* //! ______________ текст: Регистрация _____________ */}
+
+
 
 
 
@@ -109,7 +190,9 @@ export default function LoginScreen() {
                     borderColor: isFocusedMail ? "#FF6C00" : "#E8E8E8",
                     marginTop: 32,
                     marginBottom: 16,
+
                   }}
+                  // textAlign={"center"}
                   placeholder="Адрес электронной почты"
                   placeholderTextColor="#BDBDBD"
                   onFocus={() => {
@@ -131,6 +214,7 @@ export default function LoginScreen() {
                     color: isFocusedPassword ? "#212121" : "#BDBDBD",
                     borderColor: isFocusedPassword ? "#FF6C00" : "#E8E8E8",
                   }}
+                  // textAlign={"center"}
                   placeholder="Пароль"
                   placeholderTextColor="#BDBDBD"
                   secureTextEntry={true}
@@ -146,6 +230,7 @@ export default function LoginScreen() {
 
 
 
+
                 {/* //! ------------- Кнопка: Войти ------------- */}
                 <TouchableOpacity
                   activeOpacity={0.8}
@@ -157,9 +242,9 @@ export default function LoginScreen() {
                 {/* //! ____________ Кнопка: Войти ______________ */}
 
 
-
                 {/* //! ---------- Кнопка: Нет аккаунта? Зарегистрироваться ------------ */}
                 <TouchableOpacity
+                  // onPress={() => navigation.navigate("Login")}
                   onPress={() => console.log("Переход на страницу Registration")}
                   activeOpacity={0.8}
                   style={styles.goToLoginPage}
@@ -169,6 +254,8 @@ export default function LoginScreen() {
                   </Text>
                 </TouchableOpacity>
                 {/* //! ___________ Кнопка: Нет аккаунта? Зарегистрироваться __________ */}
+
+
               </View>
               {/* //! ________________ контейнер: form ________________ */}
             </View>
@@ -195,6 +282,8 @@ const styles = StyleSheet.create({
     flex: 1,
     //? Конспект
     // resizeMode: "cover",
+    // // alignItems: 'center', //? 2.14
+    // // justifyContent: "center",
     justifyContent: "flex-end",
     //? _react-native-strakhura
     width: '100%',
@@ -220,7 +309,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
     fontFamily: "Roboto-Medium",
   },
-  //! Input: Email + Пароль
+  //! Input: Логин + Email + Пароль
   input: {
     marginHorizontal: 16,
     paddingLeft: 16,
