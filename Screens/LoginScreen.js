@@ -178,28 +178,7 @@ export default function LoginScreen() {
                 {/* //! ______________ текст: Регистрация _____________ */}
 
 
-                {/* //! ------------- Input: Логин ------------ */}
-                <TextInput
-                  style={{
-                    ...styles.input,
-                    backgroundColor: isFocusedLogin ? "#FFFFFF" : "#F6F6F6",
-                    color: isFocusedLogin ? "#212121" : "#BDBDBD",
-                    borderColor: isFocusedLogin ? "#FF6C00" : "#E8E8E8",
-                    marginTop: 32,
-                    marginBottom: 16,
-                  }}
-                  // textAlign={"center"}
-                  placeholder="Логин"
-                  placeholderTextColor="#BDBDBD"
-                  onFocus={() => {
-                    setIsShowKeyboard(true);
-                    setIsFocusedLogin(true);
-                  }}
-                  onBlur={() => setIsFocusedLogin(false)}
-                  value={state.loginName}
-                  onChangeText={(value) => setState((prevState) => ({ ...prevState, loginName: value }))}
-                />
-                {/* //! ______________ Input: Логин ______________ */}
+
 
 
                 {/* //! ------ Input: Адрес электронной почты ----- */}
@@ -209,7 +188,9 @@ export default function LoginScreen() {
                     backgroundColor: isFocusedMail ? "#FFFFFF" : "#F6F6F6",
                     color: isFocusedMail ? "#212121" : "#BDBDBD",
                     borderColor: isFocusedMail ? "#FF6C00" : "#E8E8E8",
+                    marginTop: 32,
                     marginBottom: 16,
+
                   }}
                   // textAlign={"center"}
                   placeholder="Адрес электронной почты"
@@ -250,29 +231,29 @@ export default function LoginScreen() {
 
 
 
-                {/* //! ------------- Кнопка: Зарегистрироваться ------------- */}
+                {/* //! ------------- Кнопка: Войти ------------- */}
                 <TouchableOpacity
                   activeOpacity={0.8}
                   style={styles.btnSubmit}
                   onPress={keboardHideAndSubmit}
                 >
-                  <Text style={styles.btnSubmitTitle}>Зарегистрироваться</Text>
+                  <Text style={styles.btnSubmitTitle}>Войти</Text>
                 </TouchableOpacity>
-                {/* //! ____________ Кнопка "Зарегистрироваться" ______________ */}
+                {/* //! ____________ Кнопка: Войти ______________ */}
 
 
-                {/* //! ---------- Кнопка: Уже есть аккаунт? Войти ------------ */}
+                {/* //! ---------- Кнопка: Нет аккаунта? Зарегистрироваться ------------ */}
                 <TouchableOpacity
                   // onPress={() => navigation.navigate("Login")}
-                  onPress={() => console.log("Переход на страницу Login")}
+                  onPress={() => console.log("Переход на страницу Registration")}
                   activeOpacity={0.8}
                   style={styles.goToLoginPage}
                 >
                   <Text style={styles.goToLoginPageText}>
-                    Уже есть аккаунт? Войти
+                    Нет аккаунта? Зарегистрироваться
                   </Text>
                 </TouchableOpacity>
-                {/* //! ___________ Кнопка: Уже есть аккаунт? Войти __________ */}
+                {/* //! ___________ Кнопка: Нет аккаунта? Зарегистрироваться __________ */}
 
 
               </View>
@@ -350,7 +331,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
     fontFamily: "Roboto-Regular",
   },
-  //! Кнопка: Зарегистрироваться
+  //! Кнопка: Войти
   btnSubmit: {
     marginTop: 43,
     height: 51,
@@ -360,18 +341,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 100,
   },
-  //! Текст кнопки: Зарегистрироваться
+  //! Текст кнопки: Войти
   btnSubmitTitle: {
     fontSize: 16,
     color: "#FFFFFF",
     fontFamily: "Roboto-Regular",
   },
-  //! Кнопка: Уже есть аккаунт? Войти
+  //! Кнопка: Нет аккаунта? Зарегистрироваться
   goToLoginPage: {
     alignItems: "center",
     marginTop: 16,
   },
-  //! Текст кнопки: Уже есть аккаунт? Войти
+  //! Текст кнопки: Нет аккаунта? Зарегистрироваться
   goToLoginPageText: {
     color: "#000000",
     fontFamily: "Roboto-Regular",
