@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
   //! Белый контейнер
   whiteContainer: {
     backgroundColor: "#ffffff",
-    height: 550,
+    height: 549,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     alignItems: "center",

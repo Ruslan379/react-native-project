@@ -82,7 +82,7 @@ export default function LoginScreen() {
             <View
               style={{
                 ...styles.whiteContainer,
-                marginBottom: isShowKeyboard ? 150 : 0,
+                marginBottom: isShowKeyboard ? 75 : 0,
               }}
             >
 
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
   //! Белый контейнер
   whiteContainer: {
     backgroundColor: "#ffffff",
-    height: 550,
+    height: 489,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     alignItems: "center",
