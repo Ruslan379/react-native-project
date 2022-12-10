@@ -150,7 +150,7 @@ export default function RegistrationScreen() {
             left: 0
           }}
           // source={require("./assets/images/stars-on-night.jpg")}
-          source={require("./assets/images/Photo_BG.png")}
+          source={require("../assets/images/Photo_BG.png")}
         >
           <KeyboardAvoidingView
           //! не корректно работает на Android
