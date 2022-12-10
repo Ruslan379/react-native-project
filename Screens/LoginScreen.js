@@ -165,7 +165,7 @@ export default function LoginScreen() {
               }}
             >
               {/* //! ------------- контейнер: photoFrame ------------ */}
-              <View style={styles.photoFrame}></View>
+              {/* <View style={styles.photoFrame}></View> */}
               {/* //! _____________ контейнер: photoFrame _____________ */}
 
 
@@ -298,14 +298,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 0,
   },
-  //! photoFrame
-  photoFrame: {
-    width: 120,
-    height: 120,
-    backgroundColor: "#F6F6F6",
-    marginTop: -60,
-    borderRadius: 16,
-  },
+  // //! photoFrame
+  // photoFrame: {
+  //   width: 120,
+  //   height: 120,
+  //   backgroundColor: "#F6F6F6",
+  //   marginTop: -60,
+  //   borderRadius: 16,
+  // },
   //! Контейнер: form
   form: {
     alignItems: 'center',
