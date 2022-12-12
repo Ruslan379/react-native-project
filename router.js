@@ -45,16 +45,25 @@ export const useRoute = (isAuth) => {
     <MainTab.Navigator>
       {/* //! PostsScreen */}
       <MainTab.Screen
+        options={{
+          headerShown: false,
+        }}
         name="Posts"
         component={PostsScreen}
       />
       {/* //! CreateScreen */}
       <MainTab.Screen
+        options={{
+          headerShown: false,
+        }}
         name="Create"
         component={CreateScreen}
       />
       {/* //! ProfileScreen */}
       <MainTab.Screen
+        options={{
+          headerShown: false,
+        }}
         name="Profile"
         component={ProfileScreen}
       />
