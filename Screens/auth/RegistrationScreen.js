@@ -19,7 +19,7 @@ import {
 
 // -------------------------------------------------------------------------------------------------------
 const initialState = {
-  loginName: "",
+  nickname: "",
   email: "",
   password: ""
 }
@@ -117,8 +117,8 @@ export default function RegistrationScreen() {
                     setIsFocusedLogin(true);
                   }}
                   onBlur={() => setIsFocusedLogin(false)}
-                  value={state.loginName}
-                  onChangeText={(value) => setState((prevState) => ({ ...prevState, loginName: value }))}
+                  value={state.nickname}
+                  onChangeText={(value) => setState((prevState) => ({ ...prevState, nickname: value }))}
                 />
                 {/* //! ______________ Input: Логин ______________ */}
 
