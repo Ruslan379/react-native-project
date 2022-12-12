@@ -7,16 +7,20 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 
-
-
+//!  auth
 import RegistrationScreen from "./Screens/auth/RegistrationScreen.js";
 import LoginScreen from "./Screens/auth/LoginScreen.js";
-// -------------------------------------------------------------------------------------------------------
+//!  mainScreen
+import PostsScreen from "./Screens/mainScreen/PostsScreen";
+import CreateScreen from "./Screens/mainScreen/CreateScreen";
+import ProfileScreen from "./Screens/mainScreen/ProfileScreen";
 
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// --------------------------------------------------------------------------------------
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
 
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 export default function App() {
   //! Загрузка шрифтов_NEW
   const [fontsLoaded] = useFonts({
@@ -35,8 +39,17 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <AuthStack.Navigator>
-        {/* //! RegistrationScreen */}
+      <MainTab.Navigator>
+        <MainTab.Screen name="Posts" component={PostsScreen} />
+        <MainTab.Screen name="Create" component={CreateScreen} />
+        <MainTab.Screen name="Profile" component={ProfileScreen} />
+      </MainTab.Navigator>
+
+
+
+
+      {/* <AuthStack.Navigator>
+        //! RegistrationScreen
         <AuthStack.Screen
           options={{
             headerShown: false,
@@ -44,15 +57,57 @@ export default function App() {
           name="Register"
           component={RegistrationScreen}
         />
-        {/* //! LoginScreen */}
+        //! LoginScreen
         <AuthStack.Screen options={{
           headerShown: false,
         }}
           name="Login"
           component={LoginScreen}
         />
-      </AuthStack.Navigator>
+      </AuthStack.Navigator> */}
 
     </NavigationContainer>
   )
 }
+
+
+
+
+// auth
+
+// <AuthStack.Navigator>
+// <AuthStack.Screen
+//   options={{
+//     headerShown: false,
+//   }}
+//   name="Login"
+//   component={LoginScreen}
+// />
+// <AuthStack.Screen
+//   options={{
+//     headerShown: false,
+//   }}
+//   name="Register"
+//   component={RegisterScreen}
+// />
+// </AuthStack.Navigator>
+
+
+
+{/* <AuthStack.Navigator>
+        //! RegistrationScreen
+        <AuthStack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="Register"
+          component={RegistrationScreen}
+        />
+        //! LoginScreen
+        <AuthStack.Screen options={{
+          headerShown: false,
+        }}
+          name="Login"
+          component={LoginScreen}
+        />
+      </AuthStack.Navigator> */}
