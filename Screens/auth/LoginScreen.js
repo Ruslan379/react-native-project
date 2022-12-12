@@ -25,8 +25,9 @@ const initialState = {
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-export default function LoginScreen() {
-  console.log(Platform.OS); //!
+export default function LoginScreen({ navigation }) {
+  console.log("LoginScreen ==>", Platform.OS); //!
+  console.log("navigation;", navigation); //!
   //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
@@ -156,7 +157,8 @@ export default function LoginScreen() {
 
                 {/* //! ---------- Кнопка: Нет аккаунта? Зарегистрироваться ------------ */}
                 <TouchableOpacity
-                  onPress={() => console.log("Переход на страницу Registration")}
+                  // onPress={() => console.log("Переход на страницу Registration")}
+                  onPress={() => navigation.navigate("Register")}
                   activeOpacity={0.8}
                   style={styles.goToLoginPage}
                 >
