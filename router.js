@@ -13,6 +13,13 @@ import PostsScreen from "./Screens/mainScreen/PostsScreen";
 import CreateScreen from "./Screens/mainScreen/CreateScreen";
 import ProfileScreen from "./Screens/mainScreen/ProfileScreen";
 
+//! Icons
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { Octicons } from "@expo/vector-icons";
+
+import { AntDesign } from '@expo/vector-icons';
+
 
 // --------------------------------------------------------------------------------------
 const AuthStack = createStackNavigator();
@@ -47,6 +54,13 @@ export const useRoute = (isAuth) => {
       <MainTab.Screen
         options={{
           headerShown: false,
+          tabBarIcon: ({ focused, size, color }) => (
+            <MaterialCommunityIcons
+              // name="postage-stamp"
+              name="post-outline"
+              size={size}
+              color={color} />
+          ),
         }}
         name="Posts"
         component={PostsScreen}
@@ -55,6 +69,13 @@ export const useRoute = (isAuth) => {
       <MainTab.Screen
         options={{
           headerShown: false,
+          tabBarIcon: ({ focused, size, color }) => (
+            <Ionicons
+              name="add-circle-outline"
+              size={size}
+              color={color}
+            />
+          ),
         }}
         name="Create"
         component={CreateScreen}
@@ -63,6 +84,13 @@ export const useRoute = (isAuth) => {
       <MainTab.Screen
         options={{
           headerShown: false,
+          tabBarIcon: ({ focused, size, color }) => (
+            <Octicons
+              name="person"
+              size={size}
+              color={color}
+            />
+          ),
         }}
         name="Profile"
         component={ProfileScreen}
