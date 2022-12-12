@@ -2,12 +2,18 @@
 import React, { useState } from "react";
 import { useFonts } from "expo-font";
 
+import { createStackNavigator } from '@react-navigation/stack';
+
+
+
 
 import RegistrationScreen from "./Screens/auth/RegistrationScreen.js";
 import LoginScreen from "./Screens/auth/LoginScreen.js";
 // -------------------------------------------------------------------------------------------------------
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+const Stack = createStackNavigator();
+
 export default function App() {
   //! Загрузка шрифтов_NEW
   const [fontsLoaded] = useFonts({
