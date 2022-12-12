@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useFonts } from "expo-font";
 
 
-import RegistrationScreen from "./Screens/RegistrationScreen.js";
-import LoginScreen from "./Screens/LoginScreen.js";
+import RegistrationScreen from "./Screens/auth/RegistrationScreen.js";
+import LoginScreen from "./Screens/auth/LoginScreen.js";
 // -------------------------------------------------------------------------------------------------------
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

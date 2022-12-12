@@ -19,25 +19,23 @@ import {
 
 // -------------------------------------------------------------------------------------------------------
 const initialState = {
-  loginName: "",
   email: "",
   password: ""
 }
 
+
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-export default function RegistrationScreen() {
+export default function LoginScreen() {
   console.log(Platform.OS); //!
   //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
 
-  const [isFocusedLogin, setIsFocusedLogin] = useState(false);
   const [isFocusedMail, setIsFocusedMail] = useState(false);
   const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
   const keboardHide = () => {
     setIsShowKeyboard(false);
-    setIsFocusedLogin(false);
     setIsFocusedMail(false);
     setIsFocusedPassword(false);
     Keyboard.dismiss();
@@ -45,7 +43,6 @@ export default function RegistrationScreen() {
 
   const keboardHideAndSubmit = () => {
     setIsShowKeyboard(false);
-    setIsFocusedLogin(false);
     setIsFocusedMail(false);
     setIsFocusedPassword(false);
     Keyboard.dismiss();
@@ -53,9 +50,10 @@ export default function RegistrationScreen() {
     setState(initialState);
   }
 
-  //! _react-native-strakhura 
+  //! _react-native-strakhura
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
+
 
 
   return (
@@ -72,8 +70,8 @@ export default function RegistrationScreen() {
             top: 0,
             left: 0
           }}
-          // source={require("../assets/images/stars-on-night.jpg")}
-          source={require("../assets/images/Photo_BG.png")}
+          // source={require("../../assets/images/stars-on-night.jpg")}
+          source={require("../../assets/images/Photo_BG.png")}
         >
           <KeyboardAvoidingView
           //! не корректно работает на Android
@@ -83,44 +81,19 @@ export default function RegistrationScreen() {
             <View
               style={{
                 ...styles.whiteContainer,
-                marginBottom: isShowKeyboard ? 150 : 0,
+                marginBottom: isShowKeyboard ? 75 : 0,
               }}
             >
-              {/* //! ------------- контейнер: photoFrame ------------ */}
-              <View style={styles.photoFrame}></View>
-              {/* //! _____________ контейнер: photoFrame _____________ */}
 
 
               {/* //! ---------------- контейнер: form ---------------- */}
               <View style={styles.form}>
 
 
-                {/* //! ------------- текст: Регистрация ------------ */}
-                <Text style={styles.headerTitle}>Регистрация</Text>
-                {/* //! ______________ текст: Регистрация _____________ */}
+                {/* //! ------------- текст: Войти ------------ */}
+                <Text style={styles.headerTitle}>Войти</Text>
+                {/* //! _____________ текст: Войти ____________ */}
 
-
-                {/* //! ------------- Input: Логин ------------ */}
-                <TextInput
-                  style={{
-                    ...styles.input,
-                    backgroundColor: isFocusedLogin ? "#FFFFFF" : "#F6F6F6",
-                    color: isFocusedLogin ? "#212121" : "#BDBDBD",
-                    borderColor: isFocusedLogin ? "#FF6C00" : "#E8E8E8",
-                    marginTop: 32,
-                    marginBottom: 16,
-                  }}
-                  placeholder="Логин"
-                  placeholderTextColor="#BDBDBD"
-                  onFocus={() => {
-                    setIsShowKeyboard(true);
-                    setIsFocusedLogin(true);
-                  }}
-                  onBlur={() => setIsFocusedLogin(false)}
-                  value={state.loginName}
-                  onChangeText={(value) => setState((prevState) => ({ ...prevState, loginName: value }))}
-                />
-                {/* //! ______________ Input: Логин ______________ */}
 
 
                 {/* //! ------ Input: Адрес электронной почты ----- */}
@@ -130,6 +103,7 @@ export default function RegistrationScreen() {
                     backgroundColor: isFocusedMail ? "#FFFFFF" : "#F6F6F6",
                     color: isFocusedMail ? "#212121" : "#BDBDBD",
                     borderColor: isFocusedMail ? "#FF6C00" : "#E8E8E8",
+                    marginTop: 32,
                     marginBottom: 16,
                   }}
                   placeholder="Адрес электронной почты"
@@ -168,29 +142,29 @@ export default function RegistrationScreen() {
 
 
 
-                {/* //! ------------- Кнопка: Зарегистрироваться ------------- */}
+                {/* //! ------------- Кнопка: Войти ------------- */}
                 <TouchableOpacity
                   activeOpacity={0.8}
                   style={styles.btnSubmit}
                   onPress={keboardHideAndSubmit}
                 >
-                  <Text style={styles.btnSubmitTitle}>Зарегистрироваться</Text>
+                  <Text style={styles.btnSubmitTitle}>Войти</Text>
                 </TouchableOpacity>
-                {/* //! ____________ Кнопка "Зарегистрироваться" ______________ */}
+                {/* //! ____________ Кнопка: Войти ______________ */}
 
 
 
-                {/* //! ---------- Кнопка: Уже есть аккаунт? Войти ------------ */}
+                {/* //! ---------- Кнопка: Нет аккаунта? Зарегистрироваться ------------ */}
                 <TouchableOpacity
-                  onPress={() => console.log("Переход на страницу Login")}
+                  onPress={() => console.log("Переход на страницу Registration")}
                   activeOpacity={0.8}
                   style={styles.goToLoginPage}
                 >
                   <Text style={styles.goToLoginPageText}>
-                    Уже есть аккаунт? Войти
+                    Нет аккаунта? Зарегистрироваться
                   </Text>
                 </TouchableOpacity>
-                {/* //! ___________ Кнопка: Уже есть аккаунт? Войти __________ */}
+                {/* //! ___________ Кнопка: Нет аккаунта? Зарегистрироваться __________ */}
               </View>
               {/* //! ________________ контейнер: form ________________ */}
             </View>
@@ -225,32 +199,24 @@ const styles = StyleSheet.create({
   //! Белый контейнер
   whiteContainer: {
     backgroundColor: "#ffffff",
-    height: 549,
+    height: 489,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     alignItems: "center",
     marginBottom: 0,
   },
-  //! photoFrame
-  photoFrame: {
-    width: 120,
-    height: 120,
-    backgroundColor: "#F6F6F6",
-    marginTop: -60,
-    borderRadius: 16,
-  },
   //! Контейнер: form
   form: {
     alignItems: 'center',
   },
-  //! текст: Регистрация
+  //! текст: Войти
   headerTitle: {
     color: "#000000",
     fontSize: 30,
     marginTop: 32,
     fontFamily: "Roboto-Medium",
   },
-  //! Input: Логин + Email + Пароль
+  //! Input: Email + Пароль
   input: {
     marginHorizontal: 16,
     paddingLeft: 16,
@@ -264,7 +230,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
     fontFamily: "Roboto-Regular",
   },
-  //! Кнопка: Зарегистрироваться
+  //! Кнопка: Войти
   btnSubmit: {
     marginTop: 43,
     height: 51,
@@ -274,18 +240,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 100,
   },
-  //! Текст кнопки: Зарегистрироваться
+  //! Текст кнопки: Войти
   btnSubmitTitle: {
     fontSize: 16,
     color: "#FFFFFF",
     fontFamily: "Roboto-Regular",
   },
-  //! Кнопка: Уже есть аккаунт? Войти
+  //! Кнопка: Нет аккаунта? Зарегистрироваться
   goToLoginPage: {
     alignItems: "center",
     marginTop: 16,
   },
-  //! Текст кнопки: Уже есть аккаунт? Войти
+  //! Текст кнопки: Нет аккаунта? Зарегистрироваться
   goToLoginPageText: {
     color: "#000000",
     fontFamily: "Roboto-Regular",
