@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useFonts } from "expo-font";
 
 import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 
@@ -31,9 +32,10 @@ export default function App() {
 
 
   return (
-    <>
+    <NavigationContainer>
+
       <RegistrationScreen />
       {/* <LoginScreen /> */}
-    </>
+    </NavigationContainer>
   )
 }
