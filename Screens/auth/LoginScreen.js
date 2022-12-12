@@ -27,7 +27,7 @@ const initialState = {
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 export default function LoginScreen({ navigation }) {
   console.log("LoginScreen ==>", Platform.OS); //!
-  console.log("navigation;", navigation); //!
+  // console.log("navigation;", navigation); //!
   //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);

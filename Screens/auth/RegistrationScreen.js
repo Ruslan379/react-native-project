@@ -27,7 +27,7 @@ const initialState = {
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 export default function RegistrationScreen({ navigation }) {
   console.log("RegistrationScreen ==>", Platform.OS); //!
-  console.log("navigation;", navigation); //!
+  // console.log("navigation;", navigation); //!
   //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);

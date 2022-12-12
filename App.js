@@ -23,7 +23,7 @@ export default function App() {
     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
   });
 
-  console.log(Platform.OS); //!
+  console.log("App ==>", Platform.OS); //!
 
   // console.log("fontsLoaded:", fontsLoaded); //!
   if (!fontsLoaded) {
@@ -34,6 +34,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <AuthStack.Navigator>
+        {/* //! RegistrationScreen */}
         <AuthStack.Screen
           options={{
             headerShown: false,
@@ -41,6 +42,7 @@ export default function App() {
           name="Register"
           component={RegistrationScreen}
         />
+        {/* //! LoginScreen */}
         <AuthStack.Screen options={{
           headerShown: false,
         }}
@@ -48,9 +50,6 @@ export default function App() {
           component={LoginScreen}
         />
       </AuthStack.Navigator>
-
-      {/* <RegistrationScreen /> */}
-      {/* <LoginScreen /> */}
 
     </NavigationContainer>
   )
