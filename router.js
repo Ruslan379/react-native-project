@@ -42,7 +42,7 @@ export const useRoute = (isAuth) => {
     );
   }
   return (
-    <MainTab.Navigator>
+    <MainTab.Navigator tabBarOptions={{ showLabel: false }}>
       {/* //! PostsScreen */}
       <MainTab.Screen
         options={{
