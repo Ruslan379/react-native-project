@@ -3,54 +3,55 @@ import React, { useState } from "react";
 import { useFonts } from "expo-font";
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { createStackNavigator } from '@react-navigation/stack';
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import { useRoute } from "./router";
 
-//!  auth
-import RegistrationScreen from "./Screens/auth/RegistrationScreen.js";
-import LoginScreen from "./Screens/auth/LoginScreen.js";
-//!  mainScreen
-import PostsScreen from "./Screens/mainScreen/PostsScreen";
-import CreateScreen from "./Screens/mainScreen/CreateScreen";
-import ProfileScreen from "./Screens/mainScreen/ProfileScreen";
+// //!  auth
+// import RegistrationScreen from "./Screens/auth/RegistrationScreen.js";
+// import LoginScreen from "./Screens/auth/LoginScreen.js";
+// //!  mainScreen
+// import PostsScreen from "./Screens/mainScreen/PostsScreen";
+// import CreateScreen from "./Screens/mainScreen/CreateScreen";
+// import ProfileScreen from "./Screens/mainScreen/ProfileScreen";
 
 
 // --------------------------------------------------------------------------------------
-const AuthStack = createStackNavigator();
-const MainTab = createBottomTabNavigator();
+// const AuthStack = createStackNavigator();
+// const MainTab = createBottomTabNavigator();
 
-//! Логика отрисовки страниц auth или mainScreen
-const useRoute = (isAuth) => {
-  if (!isAuth) {
-    return (
-      <AuthStack.Navigator>
-        {/* //! RegistrationScreen */}
-        <AuthStack.Screen
-          options={{
-            headerShown: false,
-          }}
-          name="Register"
-          component={RegistrationScreen}
-        />
-        {/* //! LoginScreen */}
-        <AuthStack.Screen options={{
-          headerShown: false,
-        }}
-          name="Login"
-          component={LoginScreen}
-        />
-      </AuthStack.Navigator>
-    );
-  }
-  return (
-    <MainTab.Navigator>
-      <MainTab.Screen name="Posts" component={PostsScreen} />
-      <MainTab.Screen name="Create" component={CreateScreen} />
-      <MainTab.Screen name="Profile" component={ProfileScreen} />
-    </MainTab.Navigator>
-  );
-};
+// //! Логика отрисовки страниц auth или mainScreen
+// const useRoute = (isAuth) => {
+//   if (!isAuth) {
+//     return (
+//       <AuthStack.Navigator>
+//         {/* //! RegistrationScreen */}
+//         <AuthStack.Screen
+//           options={{
+//             headerShown: false,
+//           }}
+//           name="Register"
+//           component={RegistrationScreen}
+//         />
+//         {/* //! LoginScreen */}
+//         <AuthStack.Screen options={{
+//           headerShown: false,
+//         }}
+//           name="Login"
+//           component={LoginScreen}
+//         />
+//       </AuthStack.Navigator>
+//     );
+//   }
+//   return (
+//     <MainTab.Navigator>
+//       <MainTab.Screen name="Posts" component={PostsScreen} />
+//       <MainTab.Screen name="Create" component={CreateScreen} />
+//       <MainTab.Screen name="Profile" component={ProfileScreen} />
+//     </MainTab.Navigator>
+//   );
+// };
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 export default function App() {
@@ -64,8 +65,8 @@ export default function App() {
   console.log("App ==>", Platform.OS); //!
 
   //! Логика отрисовки страниц auth или mainScreen 
-  const routing = useRoute({}); //! mainScreen
-  // const routing = useRoute(null); //! auth
+  const routing = useRoute(true); //! mainScreen
+  // const routing = useRoute(false); //! auth
 
   //! Проверка наличия шрифтов
   // console.log("fontsLoaded:", fontsLoaded); //!
