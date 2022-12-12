@@ -13,7 +13,7 @@ import LoginScreen from "./Screens/auth/LoginScreen.js";
 // -------------------------------------------------------------------------------------------------------
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-const Stack = createStackNavigator();
+const AuthStack = createStackNavigator();
 
 export default function App() {
   //! Загрузка шрифтов_NEW
@@ -33,9 +33,14 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      {/* <AuthStack.Navigator> */}
+      {/* <AuthStack.Screen name="Register" component={RegisterScreen} /> */}
+      {/* <AuthStack.Screen name="Login" component={LoginScreen} /> */}
+      {/* </AuthStack.Navigator> */}
 
       <RegistrationScreen />
       {/* <LoginScreen /> */}
+
     </NavigationContainer>
   )
 }
