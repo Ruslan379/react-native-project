@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import { useFonts } from "expo-font";
 
-import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 
 
@@ -14,6 +15,7 @@ import LoginScreen from "./Screens/auth/LoginScreen.js";
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const AuthStack = createStackNavigator();
+const MainTab = createBottomTabNavigator();
 
 export default function App() {
   //! Загрузка шрифтов_NEW
