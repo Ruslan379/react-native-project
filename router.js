@@ -10,7 +10,7 @@ import RegistrationScreen from "./Screens/auth/RegistrationScreen.js";
 import LoginScreen from "./Screens/auth/LoginScreen.js";
 //!  mainScreen
 import PostsScreen from "./Screens/mainScreen/PostsScreen";
-import CreateScreen from "./Screens/mainScreen/CreateScreen";
+import CreatePostsScreen from "./Screens/mainScreen/CreatePostsScreen";
 import ProfileScreen from "./Screens/mainScreen/ProfileScreen";
 
 //! Icons
@@ -65,7 +65,7 @@ export const useRoute = (isAuth) => {
         name="Posts"
         component={PostsScreen}
       />
-      {/* //! CreateScreen */}
+      {/* //! CreatePostsScreen */}
       <MainTab.Screen
         options={{
           headerShown: false,
@@ -78,7 +78,7 @@ export const useRoute = (isAuth) => {
           ),
         }}
         name="Create"
-        component={CreateScreen}
+        component={CreatePostsScreen}
       />
       {/* //! ProfileScreen */}
       <MainTab.Screen
