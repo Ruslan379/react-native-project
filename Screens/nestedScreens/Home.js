@@ -10,9 +10,9 @@ const Home = ({ navigation }) => {
       <TouchableOpacity
         onPress={() => navigation.navigate("MapScreen")}
         activeOpacity={0.8}
-        style={styles.goToLoginPage}
+        style={styles.navigationBtn}
       >
-        <Text style={styles.goToLoginPageText}>
+        <Text style={styles.navigationBtnText}>
           Go to map
         </Text>
       </TouchableOpacity>
@@ -20,9 +20,9 @@ const Home = ({ navigation }) => {
       <TouchableOpacity
         onPress={() => navigation.navigate("CommentsScreen")}
         activeOpacity={0.8}
-        style={styles.goToLoginPage}
+        style={styles.navigationBtn}
       >
-        <Text style={styles.goToLoginPageText}>
+        <Text style={styles.navigationBtnText}>
           Go to Comments
         </Text>
       </TouchableOpacity>
@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  //! Кнопка: Уже есть аккаунт? Войти
-  goToLoginPage: {
+  //! Кнопки: Go to map & Go to Comments
+  navigationBtn: {
     alignItems: "center",
     marginTop: 16,
   },
-  //! Текст кнопки: Уже есть аккаунт? Войти
-  goToLoginPageText: {
+  //! Текст кнопок: Go to map & Go to Comments
+  navigationBtnText: {
     color: "#000000",
     fontFamily: "Roboto-Regular",
   },
