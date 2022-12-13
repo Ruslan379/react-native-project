@@ -1,5 +1,5 @@
-// import React, { useState, useEffect, useCallback } from "react";
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
+// import React from "react";
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -7,6 +7,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 //!  auth
 import RegistrationScreen from "./Screens/auth/RegistrationScreen.js";
+// import { RegistrationScreenState } from "./Screens/auth/RegistrationScreen.js";
 import LoginScreen from "./Screens/auth/LoginScreen.js";
 //!  mainScreen
 import PostsScreen from "./Screens/mainScreen/PostsScreen";
@@ -22,11 +23,24 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 // --------------------------------------------------------------------------------------
+// console.log("RegistrationScreenState:", RegistrationScreenState()); //!
+;
+
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
 
 //! Логика отрисовки страниц auth или mainScreen
 export const useRoute = (isAuth) => {
+  //! +++++++++++++++++++++++++++++++++++
+  // const [state, setState] = useState('');
+  // console.log("useRoute-->state:", state)
+
+  // //! Принимаем (query ===> querySearchbar) из Searchbar
+  // const handleFormSubmit = (querySearchbar) => {
+  //   setState(querySearchbar);
+  // };
+
+  //! +++++++++++++++++++++++++++++++++++
   if (!isAuth) {
     return (
       <AuthStack.Navigator>
@@ -37,6 +51,7 @@ export const useRoute = (isAuth) => {
           }}
           name="Register"
           component={RegistrationScreen}
+        // onSubmit={handleFormSubmit}
         />
         {/* //! LoginScreen */}
         <AuthStack.Screen options={{
@@ -53,37 +68,37 @@ export const useRoute = (isAuth) => {
       {/* //! PostsScreen */}
       <MainTab.Screen
         options={{
-          headerShown: false,
+          // headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
             <MaterialCommunityIcons
-              // name="postage-stamp"
-              name="post-outline"
+              name="postage-stamp"
+              // name="post-outline"
               size={size}
               color={color} />
           ),
         }}
-        name="Posts"
+        name="PostsScreen"
         component={PostsScreen}
       />
       {/* //! CreatePostsScreen */}
       <MainTab.Screen
         options={{
-          headerShown: false,
+          // headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
             <Ionicons
               name="add-circle-outline"
-              size={size}
+              size={40}
               color={color}
             />
           ),
         }}
-        name="Create"
+        name="CreatePostsScreen"
         component={CreatePostsScreen}
       />
       {/* //! ProfileScreen */}
       <MainTab.Screen
         options={{
-          headerShown: false,
+          // headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
             <Octicons
               name="person"
@@ -92,7 +107,7 @@ export const useRoute = (isAuth) => {
             />
           ),
         }}
-        name="Profile"
+        name="ProfileScreen"
         component={ProfileScreen}
       />
     </MainTab.Navigator>

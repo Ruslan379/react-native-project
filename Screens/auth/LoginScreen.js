@@ -47,7 +47,7 @@ export default function LoginScreen({ navigation }) {
     setIsFocusedMail(false);
     setIsFocusedPassword(false);
     Keyboard.dismiss();
-    console.log("state:", state); //!
+    console.log("LoginScreen-->state:", state); //!
     setState(initialState);
   }
 

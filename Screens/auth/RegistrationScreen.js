@@ -35,6 +35,12 @@ export default function RegistrationScreen({ navigation }) {
   const [isFocusedLogin, setIsFocusedLogin] = useState(false);
   const [isFocusedMail, setIsFocusedMail] = useState(false);
   const [isFocusedPassword, setIsFocusedPassword] = useState(false);
+  //! Подтверждение регистрации
+  const [onSubmit, setOnSubmit] = useState(false);
+
+  //! ===============================================
+  console.log("RegistrationScreen==>onSubmit:", onSubmit);
+
 
   const keboardHide = () => {
     setIsShowKeyboard(false);
@@ -49,8 +55,9 @@ export default function RegistrationScreen({ navigation }) {
     setIsFocusedLogin(false);
     setIsFocusedMail(false);
     setIsFocusedPassword(false);
+    setOnSubmit(true); //! Подтверждение регистрации
     Keyboard.dismiss();
-    console.log("state:", state); //!
+    console.log("RegistrationScreen-->state:", state); //!
     setState(initialState);
   }
 
@@ -173,7 +180,13 @@ export default function RegistrationScreen({ navigation }) {
                 <TouchableOpacity
                   activeOpacity={0.8}
                   style={styles.btnSubmit}
-                  onPress={keboardHideAndSubmit}
+                  // onPress={keboardHideAndSubmit}
+                  onPress={() => {
+                    keboardHideAndSubmit()
+                    // navigation.navigate("Posts")
+                  }}
+
+                // onSubmit={state}
                 >
                   <Text style={styles.btnSubmitTitle}>Зарегистрироваться</Text>
                 </TouchableOpacity>
@@ -293,3 +306,5 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Regular",
   },
 });
+
+// export RegistrationScreenState

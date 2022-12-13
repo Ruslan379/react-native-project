@@ -22,8 +22,8 @@ export default function App() {
   console.log("App ==>", Platform.OS); //!
 
   //! Логика отрисовки страниц auth или mainScreen 
-  // const routing = useRoute(true); //! mainScreen
-  const routing = useRoute(false); //! auth
+  const routing = useRoute(true); //! mainScreen
+  // const routing = useRoute(false); //! auth
 
   //! Проверка наличия шрифтов
   // console.log("fontsLoaded:", fontsLoaded); //!
