@@ -23,24 +23,11 @@ import { AntDesign } from '@expo/vector-icons';
 
 
 // --------------------------------------------------------------------------------------
-// console.log("RegistrationScreenState:", RegistrationScreenState()); //!
-;
-
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
 
 //! Логика отрисовки страниц auth или mainScreen
 export const useRoute = (isAuth) => {
-  //! +++++++++++++++++++++++++++++++++++
-  // const [state, setState] = useState('');
-  // console.log("useRoute-->state:", state)
-
-  // //! Принимаем (query ===> querySearchbar) из Searchbar
-  // const handleFormSubmit = (querySearchbar) => {
-  //   setState(querySearchbar);
-  // };
-
-  //! +++++++++++++++++++++++++++++++++++
   if (!isAuth) {
     return (
       <AuthStack.Navigator>
@@ -51,7 +38,6 @@ export const useRoute = (isAuth) => {
           }}
           name="Register"
           component={RegistrationScreen}
-        // onSubmit={handleFormSubmit}
         />
         {/* //! LoginScreen */}
         <AuthStack.Screen options={{
