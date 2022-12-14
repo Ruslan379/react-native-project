@@ -19,7 +19,7 @@ const CreatePostsScreen = () => {
   const takePhoto = async () => {
     // const photo = await camera.takePictureAsync();
     // setPhoto(photo.uri);
-    console.log("Camera-->photo:", snap);
+    console.log("Camera-->photo:", snap); //!
   };
 
 
@@ -27,12 +27,12 @@ const CreatePostsScreen = () => {
     <View style={styles.container}>
       <Camera style={styles.camera} ref={setSnap}>
         <TouchableOpacity
-          // onPress={takePhoto}
           activeOpacity={0.8}
           style={styles.snapContainer}
+          // onPress={takePhoto}
           onPress={() => {
+            console.log("Take a photo"); //!
             takePhoto();
-            console.log("Take a photo");
           }}
         >
           <Text style={styles.snap}>SNAP</Text>
