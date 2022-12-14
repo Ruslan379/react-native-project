@@ -80,7 +80,6 @@ const PostsScreen = () => {
   );
 };
 
-
 //! JS-объект со стилями
 const styles = StyleSheet.create({
   //! Кнопка Log-out
