@@ -186,7 +186,6 @@ export default function RegistrationScreen({ navigation }) {
                     // navigation.navigate("Posts")
                   }}
 
-                // onSubmit={state}
                 >
                   <Text style={styles.btnSubmitTitle}>Зарегистрироваться</Text>
                 </TouchableOpacity>

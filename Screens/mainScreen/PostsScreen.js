@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image //? 2.14
+  Image,
+  TouchableOpacity,
 } from 'react-native';
 
 //!  nestedScreens
@@ -19,22 +20,39 @@ const NestedScreen = createStackNavigator();
 const PostsScreen = () => {
   return (
     <>
-      <Image
-        source={require("../../assets/icons/log-out.png")}
-        // source={image}
-        style={{
-          // backgroundColor: "#000000",
-          color: "#ffffff",
-          width: 24,
-          height: 24,
-          // width: windowWidth,
-          // height: windowHeight,
-          // position: 'absolute',
-          // right: 0,
-          // top: 0,
-          // left: 0
+      {/* //! ------------- Кнопка: Log-out ------------- */}
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.btnLogOut}
+        // onPress={keboardHideAndSubmit}
+        onPress={() => {
+          console.log("Log-out");
+          // keboardHideAndSubmit()
+          // navigation.navigate("Posts")
         }}
-      />
+
+      >
+        <Image
+          source={require("../../assets/icons/log-out.png")}
+          // source={image}
+          style={{
+            // backgroundColor: "#000000",
+            // color: "#ffffff",
+            width: 24,
+            height: 24,
+            // paddingLeft: 100,
+            // alignItems: "center",
+            // width: windowWidth,
+            // height: windowHeight,
+            // position: 'absolute',
+            // right: 0,
+            // top: 0,
+            // left: 0
+          }}
+        />
+      </TouchableOpacity>
+      {/* //! ____________ Кнопка Log-out ______________ */}
+
       <NestedScreen.Navigator>
         <NestedScreen.Screen
           // options={{
@@ -61,6 +79,20 @@ const PostsScreen = () => {
     </>
   );
 };
+
+
+//! JS-объект со стилями
+const styles = StyleSheet.create({
+  //! Кнопка Log-out
+  btnLogOut: {
+    marginTop: 54,
+    marginRight: 16,
+    marginBottom: 10,
+    justifyContent: "center",
+    alignItems: "flex-end",
+    // backgroundColor: "#FFFFFF",
+  },
+});
 
 export default PostsScreen;
 
