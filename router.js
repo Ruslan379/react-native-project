@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 // import React from "react";
 
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -71,11 +79,25 @@ export const useRoute = (isAuth) => {
         options={{
           // headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
-            <Ionicons
-              name="add-circle-outline"
-              size={40}
-              color={color}
+            <Image
+              source={require("./assets/icons/log-out.png")}
+              // source={image}
+              style={{
+                // backgroundColor: "#000000",
+                // color: "#ffffff",
+                width: 24,
+                height: 24,
+                // position: 'absolute',
+                // right: 0,
+                // top: 0,
+                // left: 0
+              }}
             />
+            // <Ionicons
+            //   name="add-circle-outline"
+            //   size={40}
+            //   color={color}
+            // />
           ),
         }}
         name="CreatePostsScreen"
