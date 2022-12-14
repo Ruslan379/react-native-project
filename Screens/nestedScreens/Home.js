@@ -7,29 +7,6 @@ const Home = ({ navigation }) => {
     <>
       <View style={styles.container}>
         <Text>Home</Text>
-
-        {/* <TouchableOpacity
-          onPress={() => navigation.navigate("MapScreen")}
-          activeOpacity={0.8}
-          style={styles.navigationBtn}
-        >
-          <Text style={styles.navigationBtnText}>
-            Go to map
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate("CommentsScreen")}
-          activeOpacity={0.8}
-          style={styles.navigationBtn}
-        >
-          <Text style={styles.navigationBtnText}>
-            Go to Comments
-          </Text>
-        </TouchableOpacity> */}
-
-        {/* <Button title="go to map" onPress={() => navigation.navigate("MapScreen")} /> */}
-        {/* <Button title="go to Comments" onPress={() => navigation.navigate("CommentsScreen")} /> */}
       </View>
 
       <TouchableOpacity

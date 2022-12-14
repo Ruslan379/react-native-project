@@ -26,8 +26,10 @@ const PostsScreen = ({ navigation }) => {
         style={styles.btnLogOut}
         // onPress={keboardHideAndSubmit}
         onPress={() => {
-          console.log("Log-out");
+          console.log("PostsScreen-->Log Out");
           // keboardHideAndSubmit()
+          // navigation.navigate("CommentsScreen")
+          // navigation.navigate('Home', { screen: "MapScreen" })
           // navigation.navigate('useRoute', { screen: "Register" })
         }}
       >
