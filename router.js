@@ -79,20 +79,20 @@ export const useRoute = (isAuth) => {
         options={{
           // headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
-            <Image
-              source={require("./assets/icons/log-out.png")}
-              // source={image}
-              style={{
-                // backgroundColor: "#000000",
-                // color: "#ffffff",
-                width: 24,
-                height: 24,
-                // position: 'absolute',
-                // right: 0,
-                // top: 0,
-                // left: 0
-              }}
-            />
+            //! ------------- Кнопка: CreatePostsScreen -------------
+            <View style={styles.btnCreatePostsScreen}>
+              <Image
+                source={require("./assets/icons/create.png")}
+                // source={image}
+                style={{
+                  // color: "#FFFFFF",
+                  width: 24,
+                  height: 24,
+                }}
+              />
+            </View>
+            //! ____________ Кнопка: CreatePostsScreen ______________
+            //! Ionicons
             // <Ionicons
             //   name="add-circle-outline"
             //   size={40}
@@ -122,3 +122,16 @@ export const useRoute = (isAuth) => {
   );
 };
 
+//! JS-объект со стилями
+const styles = StyleSheet.create({
+  //! Кнопка: CreatePostsScreen
+  btnCreatePostsScreen: {
+    width: 70,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    color: "#FFFFFF",
+    borderRadius: 20,
+    backgroundColor: "#FF6C00",
+  },
+});
