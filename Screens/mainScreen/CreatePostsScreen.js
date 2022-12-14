@@ -4,12 +4,12 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
+  // TouchableOpacity,
   Image,
 } from "react-native";
 
 import { Camera } from "expo-camera";
-// import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 
 // -------------------------------------------------------------------
