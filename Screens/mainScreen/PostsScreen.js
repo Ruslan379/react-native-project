@@ -17,7 +17,7 @@ import MapScreen from "../nestedScreens/MapScreen.js";
 
 const NestedScreen = createStackNavigator();
 
-const PostsScreen = () => {
+const PostsScreen = ({ navigation }) => {
   return (
     <>
       {/* //! ------------- Кнопка: Log-out ------------- */}
@@ -28,9 +28,8 @@ const PostsScreen = () => {
         onPress={() => {
           console.log("Log-out");
           // keboardHideAndSubmit()
-          // navigation.navigate("Posts")
+          // navigation.navigate('useRoute', { screen: "Register" })
         }}
-
       >
         <Image
           source={require("../../assets/icons/log-out.png")}
@@ -40,10 +39,6 @@ const PostsScreen = () => {
             // color: "#ffffff",
             width: 24,
             height: 24,
-            // paddingLeft: 100,
-            // alignItems: "center",
-            // width: windowWidth,
-            // height: windowHeight,
             // position: 'absolute',
             // right: 0,
             // top: 0,
