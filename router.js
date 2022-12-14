@@ -64,17 +64,17 @@ export const useRoute = (isAuth) => {
           // headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
             //! ------------- Кнопка: PostsScreen -------------
-            // <View style={styles.btnCreatePostsScreen}>
-            <Image
-              source={require("./assets/icons/posts.png")}
-              // source={image}
-              style={{
-                // color: "#FFFFFF",
-                width: 24,
-                height: 24,
-              }}
-            />
-            // </View>
+            <View style={styles.btnPostsScreen}>
+              <Image
+                source={require("./assets/icons/posts.png")}
+                // source={image}
+                style={{
+                  // color: "#FFFFFF",
+                  width: 24,
+                  height: 24,
+                }}
+              />
+            </View>
             //! ____________ Кнопка: PostsScreen ______________
             //! Icons
             // <MaterialCommunityIcons
@@ -123,17 +123,17 @@ export const useRoute = (isAuth) => {
           // headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
             //! ------------- Кнопка: ProfileScreen -------------
-            // <View style={styles.btnCreatePostsScreen}>
-            <Image
-              source={require("./assets/icons/profile.png")}
-              // source={image}
-              style={{
-                // color: "#FFFFFF",
-                width: 24,
-                height: 24,
-              }}
-            />
-            // </View>
+            <View style={styles.btnProfileScreen}>
+              <Image
+                source={require("./assets/icons/profile.png")}
+                // source={image}
+                style={{
+                  // color: "#FFFFFF",
+                  width: 24,
+                  height: 24,
+                }}
+              />
+            </View>
             //! ____________ Кнопка: ProfileScreen ______________
             //! Icons
             // <Octicons
@@ -152,6 +152,11 @@ export const useRoute = (isAuth) => {
 
 //! JS-объект со стилями
 const styles = StyleSheet.create({
+  //! Кнопка: PostsScreen
+  btnPostsScreen: {
+    // marginRight: -185,
+    marginRight: -39
+  },
   //! Кнопка: CreatePostsScreen
   btnCreatePostsScreen: {
     width: 70,
@@ -162,4 +167,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: "#FF6C00",
   },
+  //! Кнопка: ProfileScreen
+  btnProfileScreen: {
+    // marginRight: -185,
+    marginLeft: -39
+  }
 });
