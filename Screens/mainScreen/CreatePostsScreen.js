@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   View,
   Text,
@@ -13,19 +14,30 @@ import { Camera } from "expo-camera";
 
 // -------------------------------------------------------------------
 const CreatePostsScreen = () => {
-  const [snap, setSnap] = useState(null);
-  // const [photo, setPhoto] = useState(null);
+  const [camera, setCamera] = useState(null);
+  const [photo, setPhoto] = useState(null);
 
   const takePhoto = async () => {
-    // const photo = await camera.takePictureAsync();
-    // setPhoto(photo.uri);
-    console.log("Camera-->photo:", snap); //!
+    const photo = await camera.takePictureAsync();
+    setPhoto(photo.uri);
+    // console.log("Camera-->photo:", photo); //!
   };
 
 
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} ref={setSnap}>
+      <Camera
+        style={styles.camera}
+        ref={setCamera}
+      >
+        {photo && (
+          <View style={styles.takePhotoContainer}>
+            <Image
+              source={{ uri: photo }}
+              style={{ height: 200, width: 200 }}
+            />
+          </View>
+        )}
         <TouchableOpacity
           activeOpacity={0.8}
           style={styles.snapContainer}
@@ -38,16 +50,6 @@ const CreatePostsScreen = () => {
           <Text style={styles.snap}>SNAP</Text>
         </TouchableOpacity>
       </Camera>
-
-      {/* <TouchableOpacity
-        activeOpacity={0.8}
-        style={styles.snapContainer}
-        onPress={() => {
-          console.log("Take a photo");
-        }}
-      >
-        <Text style={styles.snap}>SNAP</Text>
-      </TouchableOpacity> */}
 
     </View>
   );
@@ -79,6 +81,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 20
+  },
+  takePhotoContainer: {
+    position: "absolute",
+    top: 50,
+    left: 10,
+    borderColor: "#fff",
+    borderWidth: 1,
   },
 });
 
