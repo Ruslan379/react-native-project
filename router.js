@@ -12,7 +12,6 @@ import {
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-
 //!  auth
 import RegistrationScreen from "./Screens/auth/RegistrationScreen.js";
 // import { RegistrationScreenState } from "./Screens/auth/RegistrationScreen.js";
@@ -64,11 +63,26 @@ export const useRoute = (isAuth) => {
         options={{
           // headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
-            <MaterialCommunityIcons
-              name="postage-stamp"
-              // name="post-outline"
-              size={size}
-              color={color} />
+            //! ------------- Кнопка: PostsScreen -------------
+            // <View style={styles.btnCreatePostsScreen}>
+            <Image
+              source={require("./assets/icons/posts.png")}
+              // source={image}
+              style={{
+                // color: "#FFFFFF",
+                width: 24,
+                height: 24,
+              }}
+            />
+            // </View>
+            //! ____________ Кнопка: PostsScreen ______________
+            //! Icons
+            // <MaterialCommunityIcons
+            //   name="postage-stamp"
+            //   // name="post-outline"
+            //   size={size}
+            //   color={color} 
+            //   />
           ),
         }}
         name="PostsScreen"
@@ -92,7 +106,7 @@ export const useRoute = (isAuth) => {
               />
             </View>
             //! ____________ Кнопка: CreatePostsScreen ______________
-            //! Ionicons
+            //! Icons
             // <Ionicons
             //   name="add-circle-outline"
             //   size={40}
@@ -108,11 +122,25 @@ export const useRoute = (isAuth) => {
         options={{
           // headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
-            <Octicons
-              name="person"
-              size={size}
-              color={color}
+            //! ------------- Кнопка: ProfileScreen -------------
+            // <View style={styles.btnCreatePostsScreen}>
+            <Image
+              source={require("./assets/icons/profile.png")}
+              // source={image}
+              style={{
+                // color: "#FFFFFF",
+                width: 24,
+                height: 24,
+              }}
             />
+            // </View>
+            //! ____________ Кнопка: ProfileScreen ______________
+            //! Icons
+            // <Octicons
+            //   name="person"
+            //   size={size}
+            //   color={color}
+            // />
           ),
         }}
         name="ProfileScreen"
