@@ -1,22 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
+  Image,
 } from "react-native";
 
 import { Camera } from "expo-camera";
 // import { TouchableOpacity } from "react-native-gesture-handler";
 
+
+// -------------------------------------------------------------------
 const CreatePostsScreen = () => {
+  const [snap, setSnap] = useState(null);
+  // const [photo, setPhoto] = useState(null);
+
+  const takePhoto = async () => {
+    // const photo = await camera.takePictureAsync();
+    // setPhoto(photo.uri);
+    console.log("Camera-->photo:", snap);
+  };
+
+
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera}>
+      <Camera style={styles.camera} ref={setSnap}>
         <TouchableOpacity
+          // onPress={takePhoto}
           activeOpacity={0.8}
           style={styles.snapContainer}
           onPress={() => {
+            takePhoto();
             console.log("Take a photo");
           }}
         >
