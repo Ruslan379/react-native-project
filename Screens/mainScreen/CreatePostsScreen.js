@@ -73,10 +73,11 @@ const CreatePostsScreen = ({ navigation }) => {
     const response = await fetch(photo);
     const file = await response.blob();
     const photoId = uuid.v4();
-    const storageRef = ref(storage, `postImage/${photoId}`);
-    await uploadBytes(storageRef, file);
-    const photoUrl = await getDownloadURL(ref(storage, `postImage/${photoId}`));
-    return photoUrl;
+    // const storageRef = ref(storage, `postImage/${photoId}`);
+    // await uploadBytes(storageRef, file);
+    // const photoUrl = await getDownloadURL(ref(storage, `postImage/${photoId}`));
+    // return photoUrl;
+    return photoId //! это ЗАГЛУШКА --> убрать!!!
   };
 
   const handleSendData = async () => {
@@ -85,19 +86,20 @@ const CreatePostsScreen = ({ navigation }) => {
     Keyboard.dismiss();
     const location = await Location.getCurrentPositionAsync();
     try {
-      await addDoc(collection(db, "posts"), {
-        photo,
-        title: inputState.title,
-        locationDescr: inputState.locationDescr,
-        location: location.coords,
-        userId,
-        userName,
-      });
+      console.log("location:", location);
+      // await addDoc(collection(db, "posts"), {
+      //   photo,
+      //   title: inputState.title,
+      //   locationDescr: inputState.locationDescr,
+      //   location: location.coords,
+      //   userId,
+      //   userName,
+      // });
     } catch (e) {
       Alert.alert("Error adding document: ", e.message);
       console.error("Error adding document: ", e);
     }
-    navigation.navigate("Posts");
+    navigation.navigate("PostsScreen");
     setInputState(initialState);
   };
 
