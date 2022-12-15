@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 
-const MapScreen = () => {
+const MapScreen = ({ route, navigation }) => {
+  const [posts, setPosts] = useState([]);
+  console.log("MapScreen-->route.params:", route.params); //!
+
+
   return (
     <View style={styles.container}>
       {/* <Text>Map Screen</Text> */}

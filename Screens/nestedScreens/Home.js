@@ -14,7 +14,7 @@ import {
 //-------------------------------------------------------------------------------
 const Home = ({ route, navigation }) => {
   const [posts, setPosts] = useState([]);
-  console.log("route.params:", route.params); //!
+  console.log("Home-->route.params:", route.params); //!
 
   useEffect(() => {
     if (route.params) {
