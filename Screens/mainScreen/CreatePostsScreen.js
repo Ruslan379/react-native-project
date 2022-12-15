@@ -88,12 +88,13 @@ const CreatePostsScreen = ({ navigation }) => {
   };
 
   const handleSendData = async () => {
-    const photo = await uploadPhotoToServer();
+    // const photo = await uploadPhotoToServer();
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    const location = await Location.getCurrentPositionAsync();
+    // const location = await Location.getCurrentPositionAsync();
     try {
-      console.log("location:", location);
+      console.log("photo:", photo);
+      // console.log("location:", location);
       // await addDoc(collection(db, "posts"), {
       //   photo,
       //   title: inputState.title,
@@ -107,7 +108,7 @@ const CreatePostsScreen = ({ navigation }) => {
       console.error("Error adding document: ", e);
     }
     navigation.navigate("Home", { photo });
-    setInputState(initialState);
+    // setInputState(initialState);
   };
 
   return (
