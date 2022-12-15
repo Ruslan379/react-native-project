@@ -39,6 +39,7 @@ const initialState = {
 const CreatePostsScreen = ({ navigation }) => {
   const [camera, setCamera] = useState(null);
   const [photo, setPhoto] = useState("");
+  // const [location, setLocation] = useState(null);
 
   const [inputState, setInputState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
@@ -72,8 +73,8 @@ const CreatePostsScreen = ({ navigation }) => {
     const shot = await camera.takePictureAsync();
     const location = await Location.getCurrentPositionAsync(); //! КОНСПЕКТ
     console.log("location:", location); //! КОНСПЕКТ
-    console.log("latitude", location.coords.latitude); //! КОНСПЕК
-    console.log("longitude", location.coords.longitude) //! КОНСПЕК
+    console.log("latitude", location.coords.latitude); //! КОНСПЕКТ
+    console.log("longitude", location.coords.longitude) //! КОНСПЕКТ
     setPhoto(shot.uri);
     console.log("Camera-->photo:", shot); //!
   };

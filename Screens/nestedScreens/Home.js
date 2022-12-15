@@ -50,6 +50,7 @@ const Home = ({ route, navigation }) => {
 
       <TouchableOpacity
         onPress={() => navigation.navigate("MapScreen")}
+        // onPress={() => navigation.navigate("MapScreen", { location: item.location })}
         activeOpacity={0.8}
         style={styles.navigationBtn}
       >
