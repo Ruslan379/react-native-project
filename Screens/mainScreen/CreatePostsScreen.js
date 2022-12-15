@@ -39,7 +39,8 @@ const initialState = {
 const CreatePostsScreen = ({ navigation }) => {
   const [camera, setCamera] = useState(null);
   const [photo, setPhoto] = useState("");
-  // const [location, setLocation] = useState(null);
+  // const [latitude, setLatitude] = useState(null); //! Мой вариант
+  // const [longitude, setLongitude] = useState(null); //! Мой вариант
 
   const [inputState, setInputState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
@@ -76,6 +77,8 @@ const CreatePostsScreen = ({ navigation }) => {
     console.log("latitude", location.coords.latitude); //! КОНСПЕКТ
     console.log("longitude", location.coords.longitude) //! КОНСПЕКТ
     setPhoto(shot.uri);
+    // setLatitude(location.coords.latitude); //! Мой вариант
+    // setLongitude(location.coords.longitude); //! Мой вариант
     console.log("Camera-->photo:", shot); //!
   };
 
@@ -115,6 +118,7 @@ const CreatePostsScreen = ({ navigation }) => {
       Alert.alert("Error adding document: ", e.message);
       console.error("Error adding document: ", e);
     }
+    // navigation.navigate("Home", { photo, latitude, longitude }); //! Мой вариант
     navigation.navigate("Home", { photo });
     // setInputState(initialState);
     // setErrorMsg(null);

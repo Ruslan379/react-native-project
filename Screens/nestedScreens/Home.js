@@ -15,13 +15,27 @@ import {
 const Home = ({ route, navigation }) => {
   const [posts, setPosts] = useState([]);
   console.log("Home-->route.params:", route.params); //!
+  // const { latitude, longitude, photo } = route.params; //! Мой вариант
+  // console.log("Home-->latitude:", latitude); //! Мой вариант
+  // console.log("Home-->longitude:", longitude); //! Мой вариант
 
+  //! Конспект
   useEffect(() => {
     if (route.params) {
       setPosts((prevState) => [...prevState, route.params]);
     }
   }, [route.params]);
   console.log("posts", posts); //!
+
+
+  //! Мой вариант
+  // useEffect(() => {
+  //   if (photo) {
+  //     setPosts((prevState) => [...prevState, photo]);
+  //   }
+  // }, [photo]);
+  // console.log("posts", posts); //!
+
 
 
   return (
@@ -51,6 +65,7 @@ const Home = ({ route, navigation }) => {
       <TouchableOpacity
         onPress={() => navigation.navigate("MapScreen")}
         // onPress={() => navigation.navigate("MapScreen", { location: item.location })}
+        // onPress={() => navigation.navigate("MapScreen", { latitude, longitude })} //! Мой вариант
         activeOpacity={0.8}
         style={styles.navigationBtn}
       >
