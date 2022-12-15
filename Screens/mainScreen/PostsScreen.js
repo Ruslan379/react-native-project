@@ -37,14 +37,8 @@ const PostsScreen = ({ navigation }) => {
           source={require("../../assets/icons/log-out.png")}
           // source={image}
           style={{
-            // backgroundColor: "#000000",
-            // color: "#ffffff",
             width: 24,
             height: 24,
-            // position: 'absolute',
-            // right: 0,
-            // top: 0,
-            // left: 0
           }}
         />
       </TouchableOpacity>

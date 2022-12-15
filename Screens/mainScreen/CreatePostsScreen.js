@@ -42,6 +42,7 @@ const CreatePostsScreen = ({ navigation }) => {
 
   const [inputState, setInputState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   // const { userId, userName } = useSelector((state) => state.auth);
 
@@ -57,7 +58,9 @@ const CreatePostsScreen = ({ navigation }) => {
 
   const [permission, requestPermission] = Camera.useCameraPermissions();
   if (!permission) {
-    return <View />;
+    // setPhoto("");
+    // return <View />;
+    return;
   }
 
   if (!permission.granted) {
@@ -84,7 +87,6 @@ const CreatePostsScreen = ({ navigation }) => {
     // await uploadBytes(storageRef, file);
     // const photoUrl = await getDownloadURL(ref(storage, `postImage/${photoId}`));
     // return photoUrl;
-    return photoId //! это ЗАГЛУШКА --> убрать!!!
   };
 
   const handleSendData = async () => {
@@ -109,6 +111,8 @@ const CreatePostsScreen = ({ navigation }) => {
     }
     navigation.navigate("Home", { photo });
     // setInputState(initialState);
+    // setErrorMsg(null);
+
   };
 
   return (
