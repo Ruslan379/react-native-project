@@ -69,6 +69,8 @@ const CreatePostsScreen = ({ navigation }) => {
   //! Получение ссылки на ФОТО (photo)
   const takePhoto = async () => {
     const shot = await camera.takePictureAsync();
+    const location = await Location.getCurrentPositionAsync(); //! КОНСПЕКТ
+    console.log("location:", location); //! КОНСПЕКТ
     setPhoto(shot.uri);
     console.log("Camera-->photo:", shot); //!
   };
