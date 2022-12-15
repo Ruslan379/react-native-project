@@ -37,10 +37,10 @@ const initialState = {
 
 
 const CreatePostsScreen = ({ navigation }) => {
-  // const CreatePostsScreen = () => {
-  const [inputState, setInputState] = useState(initialState);
   const [camera, setCamera] = useState(null);
   const [photo, setPhoto] = useState("");
+
+  const [inputState, setInputState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   // const { userId, userName } = useSelector((state) => state.auth);
@@ -63,10 +63,17 @@ const CreatePostsScreen = ({ navigation }) => {
   if (!permission.granted) {
     requestPermission();
   }
-
+  //! Получение ссылки на ФОТО (photo)
   const takePhoto = async () => {
     const shot = await camera.takePictureAsync();
     setPhoto(shot.uri);
+    console.log("Camera-->photo:", photo); //!
+  };
+
+  //! Удаление ФОТО (photo)
+  const deletePhoto = async () => {
+    setPhoto("");
+    console.log("deletePhoto:", photo); //!
   };
 
   const uploadPhotoToServer = async () => {
@@ -108,20 +115,23 @@ const CreatePostsScreen = ({ navigation }) => {
       <Camera
         style={styles.camera}
         ref={setCamera}
-        ratio="1:1"
+      // ratio="1:1"
       >
         {photo && (
           <View style={styles.photoContainer}>
             <Image
               source={{ uri: photo }}
               style={styles.photo}
-            >
-            </Image>
+            />
           </View>
         )}
         <View style={styles.snapContainer}>
           <TouchableOpacity
-            onPress={takePhoto}
+            // onPress={takePhoto}
+            onPress={() => {
+              console.log("Take a photo"); //!
+              takePhoto();
+            }}
           >
             <Fontisto name="camera" size={20} color="#ffffff" />
           </TouchableOpacity>
@@ -162,6 +172,28 @@ const CreatePostsScreen = ({ navigation }) => {
       >
         <Text style={styles.buttonText}>Опубликовать</Text>
       </TouchableOpacity>
+
+      {/* //! ------------- Кнопка: btnTrash ------------- */}
+      <TouchableOpacity
+        style={styles.btnTrash}
+        activeOpacity={0.8}
+        // onPress={() => setPhoto("")}
+        onPress={deletePhoto}
+      >
+        {/* <View style={styles.btnTrash}> */}
+        <Image
+          source={require("../../assets/icons/trash.png")}
+          // source={image}
+          style={{
+            // backgroundColor: "#000000",
+            // color: "#dc143c",
+            width: 24,
+            height: 24,
+          }}
+        />
+        {/* </View> */}
+      </TouchableOpacity>
+      {/* //! _____________ Кнопка: btnTrash _____________ */}
     </View>
   );
 };
@@ -177,12 +209,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: 240,
+    // borderWidth: 2,
+    // borderColor: "red",
+    // borderRadius: 50,
   },
   photoContainer: {
     position: "absolute",
     flexDirection: "row",
     top: 0,
     left: 0,
+    // borderRadius: 50,
   },
   photo: {
     flex: 1,
@@ -191,18 +227,12 @@ const styles = StyleSheet.create({
   snapContainer: {
     width: 60,
     height: 60,
+    // borderWidth: 2,
+    // borderColor: "red",
     borderRadius: 50,
     backgroundColor: "rgba(255, 255, 255, 0.3)",
     justifyContent: "center",
     alignItems: "center",
-  },
-  sendButton: {
-    justifyContent: "center",
-    marginTop: 32,
-    marginHorizontal: 16,
-    height: 51,
-    borderRadius: 100,
-    backgroundColor: "#FF6C00",
   },
   form: {
     marginHorizontal: 16,
@@ -227,12 +257,32 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 50,
   },
+  sendButton: {
+    justifyContent: "center",
+    marginTop: 32,
+    marginHorizontal: 16,
+    height: 51,
+    borderRadius: 100,
+    backgroundColor: "#FF6C00",
+  },
   buttonText: {
     fontFamily: "Roboto-Regular",
     fontSize: 16,
     lineHeight: 19,
     textAlign: "center",
     color: "#FFFFFF",
+  },
+  //! Кнопка: btnTrash
+  btnTrash: {
+    marginTop: 120,
+    marginHorizontal: 170,
+    // width: 70,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    // color: "#FFFFFF",
+    borderRadius: 20,
+    backgroundColor: "#dcdcdc",
   },
 });
 
