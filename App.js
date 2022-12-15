@@ -1,9 +1,12 @@
 // import React, { useState, useEffect, useCallback } from "react";
 import React, { useState } from "react";
+import { Provider } from "react-redux";
+
 import { useFonts } from "expo-font";
 
 import { NavigationContainer } from '@react-navigation/native';
 
+import { store } from "./redux/store";
 import { useRoute } from "./router";
 
 
@@ -31,7 +34,11 @@ export default function App() {
     return null;
   };
 
-  return <NavigationContainer>{routing}</NavigationContainer>;
+  return (
+    // <Provider store={store}>
+    <NavigationContainer>{routing}</NavigationContainer>
+    // </Provider>
+  );
 }
 
 
