@@ -118,8 +118,8 @@ const CreatePostsScreen = ({ navigation }) => {
       Alert.alert("Error adding document: ", e.message);
       console.error("Error adding document: ", e);
     }
-    // navigation.navigate("Home", { photo, latitude, longitude }); //! Мой вариант
     navigation.navigate("Home", { photo });
+    // navigation.navigate("Home", { photo, latitude, longitude }); //! Мой вариант
     // setInputState(initialState);
     // setErrorMsg(null);
 

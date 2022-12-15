@@ -31,7 +31,7 @@ const Home = ({ route, navigation }) => {
   //! Мой вариант
   // useEffect(() => {
   //   if (photo) {
-  //     setPosts((prevState) => [...prevState, photo]);
+  //     setPosts((prevState) => [...prevState, { photo }]);
   //   }
   // }, [photo]);
   // console.log("posts", posts); //!
