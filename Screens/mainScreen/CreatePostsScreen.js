@@ -67,11 +67,11 @@ const CreatePostsScreen = ({ navigation }) => {
   const takePhoto = async () => {
     const shot = await camera.takePictureAsync();
     setPhoto(shot.uri);
-    console.log("Camera-->photo:", photo); //!
+    console.log("Camera-->photo:", shot); //!
   };
 
   //! Удаление ФОТО (photo)
-  const deletePhoto = async () => {
+  const deletePhoto = () => {
     setPhoto("");
     console.log("deletePhoto:", photo); //!
   };
@@ -106,7 +106,7 @@ const CreatePostsScreen = ({ navigation }) => {
       Alert.alert("Error adding document: ", e.message);
       console.error("Error adding document: ", e);
     }
-    navigation.navigate("PostsScreen");
+    navigation.navigate("Home", { photo });
     setInputState(initialState);
   };
 

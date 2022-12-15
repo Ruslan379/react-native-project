@@ -2,7 +2,8 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
 
-const Home = ({ navigation }) => {
+const Home = ({ route, navigation }) => {
+  console.log("route.params:", route.params); //!
   return (
     <>
       <View style={styles.container}>
