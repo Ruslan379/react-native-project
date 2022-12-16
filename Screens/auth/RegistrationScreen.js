@@ -16,6 +16,10 @@ import {
   Dimensions, //? 2.14
 } from 'react-native';
 
+import { useDispatch } from "react-redux"; //?
+
+import { authSignUpUser } from "../../redux/auth/authOperations"; //?
+
 
 // -------------------------------------------------------------------------------------------------------
 const initialState = {
@@ -31,6 +35,8 @@ export default function RegistrationScreen({ navigation }) {
   //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
+
+  const dispatch = useDispatch(); //?
 
   const [isFocusedLogin, setIsFocusedLogin] = useState(false);
   const [isFocusedMail, setIsFocusedMail] = useState(false);
@@ -58,6 +64,7 @@ export default function RegistrationScreen({ navigation }) {
     setOnSubmit(true); //! Подтверждение регистрации
     Keyboard.dismiss();
     console.log("RegistrationScreen-->state:", state); //!
+    dispatch(authSignUpUser(state)); //?
     setState(initialState);
   }
 
