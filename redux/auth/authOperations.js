@@ -14,8 +14,11 @@ export const authSignUpUser = ({ email, password, nickname }) =>
     console.log("email:", email); //!
     console.log("password:", password); //!
     try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      console.log("user", user); //!
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      console.log("user:", user); //!
+      console.log("user.displayName:", user.displayName); //!
+      console.log("user.email:", user.email); //!
+      console.log("user.uid:", user.uid); //!
     } catch (error) {
       Alert.alert(error.message);
       console.log(error);
