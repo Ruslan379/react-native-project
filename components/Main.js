@@ -21,7 +21,6 @@ export const Main = () => {
 
   // //! ---- Логика входа в "auth" или в "mainScreen" c Firebase ----
   // const [user, setUser] = useState(null);
-
   // // db.auth().onAuthStateChanged((user) => setUser(user)); //todo --> устарело!!!
   // onAuthStateChanged(auth, (user) => setUser(user));
   // console.log("App==>user:", user); //!
@@ -40,7 +39,6 @@ export const Main = () => {
 
   // //! ---- Логика входа в "auth" или в "mainScreen" c Firebase ----
   // const routing = useRoute(user);
-  // //! ____ Логика входа в "auth" или в "mainScreen" c Firebase ____
 
   //! ____ Логика входа в "auth" или в "mainScreen" c stateChange ____
   const routing = useRoute(stateChange);
