@@ -34,6 +34,7 @@ User6 = {
     password: "Q1w2e3",
     UID: "YDzXdXQ4V2hpcrFcvvpnI0gvrOh2",
 }
+//! Disabled
 User7 = {
     nickname: "Test4",
     email: "tast@i.ua",
