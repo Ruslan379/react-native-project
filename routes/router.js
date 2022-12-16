@@ -13,13 +13,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 //!  auth
-import RegistrationScreen from "./Screens/auth/RegistrationScreen.js";
-// import { RegistrationScreenState } from "./Screens/auth/RegistrationScreen.js";
-import LoginScreen from "./Screens/auth/LoginScreen.js";
+import RegistrationScreen from "../Screens/auth/RegistrationScreen.js";
+import LoginScreen from "../Screens/auth/LoginScreen.js";
 //!  mainScreen
-import PostsScreen from "./Screens/mainScreen/PostsScreen";
-import CreatePostsScreen from "./Screens/mainScreen/CreatePostsScreen";
-import ProfileScreen from "./Screens/mainScreen/ProfileScreen";
+import PostsScreen from "../Screens/mainScreen/PostsScreen";
+import CreatePostsScreen from "../Screens/mainScreen/CreatePostsScreen";
+import ProfileScreen from "../Screens/mainScreen/ProfileScreen";
 
 //! Icons
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -66,7 +65,8 @@ export const useRoute = (isAuth) => {
             //! ------------- Кнопка: PostsScreen -------------
             <View style={styles.btnPostsScreen}>
               <Image
-                source={require("./assets/icons/posts.png")}
+                // source={require("./assets/icons/posts.png")}
+                source={require("../assets/icons/posts.png")}
                 // source={image}
                 style={{
                   // color: "#FFFFFF",
@@ -96,7 +96,7 @@ export const useRoute = (isAuth) => {
             //! ------------- Кнопка: CreatePostsScreen -------------
             <View style={styles.btnCreatePostsScreen}>
               <Image
-                source={require("./assets/icons/create.png")}
+                source={require("../assets/icons/create.png")}
                 // source={image}
                 style={{
                   // color: "#FFFFFF",
@@ -125,7 +125,7 @@ export const useRoute = (isAuth) => {
             //! ------------- Кнопка: ProfileScreen -------------
             <View style={styles.btnProfileScreen}>
               <Image
-                source={require("./assets/icons/profile.png")}
+                source={require("../assets/icons/profile.png")}
                 // source={image}
                 style={{
                   // color: "#FFFFFF",

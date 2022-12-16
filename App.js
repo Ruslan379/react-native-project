@@ -1,13 +1,10 @@
-// import React, { useState, useEffect, useCallback } from "react";
-import React, { useState } from "react";
-import { Provider } from "react-redux";
-
+import React, { useState, useEffect, useCallback } from "react";
+import { Provider, useSelector } from "react-redux";
 import { useFonts } from "expo-font";
-
 import { NavigationContainer } from '@react-navigation/native';
 
 import { store } from "./redux/store";
-import { useRoute } from "./router";
+import { useRoute } from "./routes/router";
 
 //! ---- Логика входа в "auth" или в "mainScreen" c Firebase ----
 // import db from "./firebase/config"; //todo --> устарело!!!
@@ -16,6 +13,7 @@ import app from "./firebase/config.js";
 
 const auth = getAuth(app);
 //! ____ Логика входа в "auth" или в "mainScreen" c Firebase ____
+
 
 // --------------------------------------------------------------------------------------
 

@@ -74,7 +74,28 @@ export const authSignInUser = ({ email, password }) =>
 
 
 //!  Логика входа в "auth" или в "mainScreen"
+export const authStateChangeUser = () => async (dispatch, getState) => {
+  try {
+    onAuthStateChanged(auth, (user) => {
+      console.log(user);
+      if (user) {
+        dispatch(
+          authSlice.actions.updateUserProfile({
+            userId: user.uid,
+            nickname: user.displayName,
+          })
+        );
 
+        dispatch(authSlice.actions.stateChange({ stateChange: true }));
+      }
+    });
+  } catch (error) {
+    Alert.alert(error.message);
+    console.log("error:", error);
+    console.log("error.code:", error.code);
+    console.log("error.message:", error.message);
+  }
+};
 
 
 
