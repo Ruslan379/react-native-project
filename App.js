@@ -9,26 +9,26 @@ import { NavigationContainer } from '@react-navigation/native';
 import { store } from "./redux/store";
 import { useRoute } from "./router";
 
-//! ---- Логика отрисовки страниц auth или mainScreen c Firebase ----
+//! ---- Логика входа в "auth" или в "mainScreen" c Firebase ----
 // import db from "./firebase/config"; //todo --> устарело!!!
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import app from "./firebase/config.js";
 
 const auth = getAuth(app);
-//! ____ Логика отрисовки страниц auth или mainScreen c Firebase ____
+//! ____ Логика входа в "auth" или в "mainScreen" c Firebase ____
 
 // --------------------------------------------------------------------------------------
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 export default function App() {
-  //! ---- Логика отрисовки страниц auth или mainScreen c Firebase ----
+  //! ---- Логика входа в "auth" или в "mainScreen" c Firebase ----
   const [user, setUser] = useState(null);
 
   // db.auth().onAuthStateChanged((user) => setUser(user)); //todo --> устарело!!!
   onAuthStateChanged(auth, (user) => setUser(user));
   console.log("App==>user:", user); //!
-  //! ____ Логика отрисовки страниц auth или mainScreen c Firebase ____
+  //! ____ Логика входа в "auth" или в "mainScreen" c Firebase ____
 
 
   //! Загрузка шрифтов_NEW
@@ -42,12 +42,12 @@ export default function App() {
   console.log("App ==>", Platform.OS); //!
 
 
-  //! Логика отрисовки страниц auth или mainScreen 
-  // const routing = useRoute(false); //! auth
-  // const routing = useRoute(true); //! mainScreen
-  //! ---- Логика отрисовки страниц auth или mainScreen c Firebase ----
-  const routing = useRoute(user); //! mainScreen
-  //! ____ Логика отрисовки страниц auth или mainScreen c Firebase ____
+  //! Логика входа в "auth" или в "mainScreen" 
+  // const routing = useRoute(false); //? auth
+  // const routing = useRoute(true); //* mainScreen
+  //! ---- Логика входа в "auth" или в "mainScreen" c Firebase ----
+  const routing = useRoute(user);
+  //! ____ Логика входа в "auth" или в "mainScreen" c Firebase ____
 
 
   //! Проверка наличия шрифтов

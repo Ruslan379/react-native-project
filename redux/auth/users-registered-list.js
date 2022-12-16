@@ -16,12 +16,14 @@ User3 = {
     password: "Z1x2c3",
     UID: "SYuJnyxln8chSLKlPqvmpYduXYq1",
 }
+//! ------------------------------------------
 User4 = {
     nickname: "Test",
     email: "test@i.ua",
     password: "Q1w2e3",
-    UID: "s8ks9Xg3UKfQVjTqq2trX3TEbTf1",
+    UID: "2D3B5i3SGnWh3IhP6CrB5buM0AB3",
 }
+//! ------------------------------------------
 User5 = {
     nickname: "Test2",
     email: "test2@i.ua",

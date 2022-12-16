@@ -4,6 +4,10 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
+  onAuthStateChanged,
+  signOut,
+
 } from 'firebase/auth';
 
 import app from "../../firebase/config"; //! MY
@@ -22,15 +26,22 @@ export const authSignUpUser = ({ email, password, nickname }) =>
     console.log("SignUp-->email:", email); //!
     console.log("SignUp-->password:", password); //!
     try {
-      const { user } = await createUserWithEmailAndPassword(auth, email, password);
-      console.log("user:", user); //!
-      console.log("user.displayName:", user.displayName); //!
-      console.log("user.email:", user.email); //!
-      console.log("user.uid:", user.uid); //!
+      // const { user } = await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(auth.currentUser, {
+        displayName: nickname,
+      });
+      const updateUser = auth.currentUser;
+      //! user info
+      console.log("updateUser:", updateUser); //!
+      console.log("updateUser.displayName:", updateUser.displayName); //!
+      console.log("updateUser.email:", updateUser.email); //!
+      console.log("updateUser.uid:", updateUser.uid); //!
+
       dispatch(
         authSlice.actions.updateUserProfile({
-          userId: user.uid,
-          nickname: user.displayName,
+          userId: updateUser.uid,
+          nickname: updateUser.displayName,
         })
       );
     } catch (error) {
@@ -40,6 +51,7 @@ export const authSignUpUser = ({ email, password, nickname }) =>
       console.log("error.message:", error.message);
     }
   };
+
 
 //! Войти
 export const authSignInUser = ({ email, password }) =>
@@ -59,6 +71,20 @@ export const authSignInUser = ({ email, password }) =>
       console.log("error.message:", error.message);
     }
   };
+
+
+//!  Логика входа в "auth" или в "mainScreen"
+
+
+
+
+
+
+
+
+
+
+
 
 
 
