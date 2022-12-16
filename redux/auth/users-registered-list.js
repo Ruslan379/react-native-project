@@ -20,7 +20,7 @@ User4 = {
     nickname: "Test",
     email: "test@i.ua",
     password: "Q1w2e3",
-    UID: "P9m5ELPv9CNW1VUetDFYHg7JMNi1",
+    UID: "s8ks9Xg3UKfQVjTqq2trX3TEbTf1",
 }
 User5 = {
     nickname: "Test2",

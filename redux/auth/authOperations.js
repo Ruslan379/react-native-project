@@ -7,10 +7,13 @@ import {
 } from 'firebase/auth';
 
 import app from "../../firebase/config"; //! MY
-
-const auth = getAuth(app); //*
-
 // import { auth } from "../../firebase/config"; //! MY
+
+import { authSlice } from "./authReducer";
+
+
+// -----------------------------------------------------------------------
+const auth = getAuth(app); //*
 
 //! Регистрация
 export const authSignUpUser = ({ email, password, nickname }) =>
@@ -24,6 +27,12 @@ export const authSignUpUser = ({ email, password, nickname }) =>
       console.log("user.displayName:", user.displayName); //!
       console.log("user.email:", user.email); //!
       console.log("user.uid:", user.uid); //!
+      dispatch(
+        authSlice.actions.updateUserProfile({
+          userId: user.uid,
+          nickname: user.displayName,
+        })
+      );
     } catch (error) {
       Alert.alert(error.message);
       console.log("error:", error);
