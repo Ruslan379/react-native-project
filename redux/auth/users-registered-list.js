@@ -18,3 +18,10 @@ User3 = {
     password: "Z1x2c3",
     UID: "SYuJnyxln8chSLKlPqvmpYduXYq1",
 }
+
+User4 = {
+    nickname: "Test",
+    email: "Test@i.ua",
+    password: "Q1w2e3",
+    UID: "P9m5ELPv9CNW1VUetDFYHg7JMNi1",
+}

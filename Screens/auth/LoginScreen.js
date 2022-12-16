@@ -13,7 +13,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
-  Dimensions, //? 2.14
+  Dimensions,
 } from 'react-native';
 
 

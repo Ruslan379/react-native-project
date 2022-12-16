@@ -13,7 +13,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
-  Dimensions, //? 2.14
+  Dimensions,
 } from 'react-native';
 
 import { useDispatch } from "react-redux"; //?
@@ -32,20 +32,16 @@ const initialState = {
 export default function RegistrationScreen({ navigation }) {
   console.log("RegistrationScreen ==>", Platform.OS); //!
   // console.log("navigation;", navigation); //!
+
+  const dispatch = useDispatch(); //?
+
   //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
 
-  const dispatch = useDispatch(); //?
-
   const [isFocusedLogin, setIsFocusedLogin] = useState(false);
   const [isFocusedMail, setIsFocusedMail] = useState(false);
   const [isFocusedPassword, setIsFocusedPassword] = useState(false);
-  //! Подтверждение регистрации
-  const [onSubmit, setOnSubmit] = useState(false);
-
-  //! ===============================================
-  console.log("RegistrationScreen==>onSubmit:", onSubmit);
 
 
   const keboardHide = () => {
@@ -61,10 +57,9 @@ export default function RegistrationScreen({ navigation }) {
     setIsFocusedLogin(false);
     setIsFocusedMail(false);
     setIsFocusedPassword(false);
-    setOnSubmit(true); //! Подтверждение регистрации
     Keyboard.dismiss();
     console.log("RegistrationScreen-->state:", state); //!
-    dispatch(authSignUpUser(state)); //?
+    dispatch(authSignUpUser(state)); //! Регистрация на Firebase
     setState(initialState);
   }
 
