@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+// import React, { useState, useEffect, useCallback } from "react";
 import { Provider, useSelector } from "react-redux";
 import { useFonts } from "expo-font";
 
