@@ -1,18 +1,23 @@
 //*   https://blog.logrocket.com/integrating-firebase-authentication-expo-mobile-app/
 
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+
 import app from "../../firebase/config"; //! MY
 
 const auth = getAuth(app); //*
 
 // import { auth } from "../../firebase/config"; //! MY
 
-
+//! Регистрация
 export const authSignUpUser = ({ email, password, nickname }) =>
   async (dispatch, getState) => {
-    console.log("nickname:", nickname); //!
-    console.log("email:", email); //!
-    console.log("password:", password); //!
+    console.log("SignUp-->nickname:", nickname); //!
+    console.log("SignUp-->email:", email); //!
+    console.log("SignUp-->password:", password); //!
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password);
       console.log("user:", user); //!
@@ -21,11 +26,30 @@ export const authSignUpUser = ({ email, password, nickname }) =>
       console.log("user.uid:", user.uid); //!
     } catch (error) {
       Alert.alert(error.message);
-      console.log(error);
+      console.log("error:", error);
+      console.log("error.code:", error.code);
+      console.log("error.message:", error.message);
     }
   };
 
-
+//! Войти
+export const authSignInUser = ({ email, password }) =>
+  async (dispatch, getState) => {
+    console.log("SignIn-->email:", email); //!
+    console.log("SignIn-->password:", password); //!
+    try {
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      console.log("user:", user); //!
+      // console.log("user.displayName:", user.displayName); //!
+      // console.log("user.email:", user.email); //!
+      // console.log("user.uid:", user.uid); //!
+    } catch (error) {
+      Alert.alert(error.message);
+      console.log("error:", error);
+      console.log("error.code:", error.code);
+      console.log("error.message:", error.message);
+    }
+  };
 
 
 

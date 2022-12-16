@@ -18,25 +18,25 @@ User3 = {
 }
 User4 = {
     nickname: "Test",
-    email: "Test@i.ua",
+    email: "test@i.ua",
     password: "Q1w2e3",
     UID: "P9m5ELPv9CNW1VUetDFYHg7JMNi1",
 }
 User5 = {
     nickname: "Test2",
-    email: "Test2@i.ua",
+    email: "test2@i.ua",
     password: "Q1w2e3",
     UID: "UTWLiEM1epbKr7MBfZHR4QiuXzq1",
 }
 User6 = {
     nickname: "Test3",
-    email: "Test3@i.ua",
+    email: "test3@i.ua",
     password: "Q1w2e3",
     UID: "YDzXdXQ4V2hpcrFcvvpnI0gvrOh2",
 }
 User7 = {
     nickname: "Test4",
-    email: "Tast@i.ua",
+    email: "tast@i.ua",
     password: "Q1w2e3",
     UID: "XWrcH0BOFxcXvCm2atQYS6wi3tO2",
 }

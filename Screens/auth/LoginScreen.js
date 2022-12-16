@@ -16,6 +16,9 @@ import {
   Dimensions,
 } from 'react-native';
 
+import { useDispatch } from "react-redux"; //?
+
+import { authSignInUser } from "../../redux/auth/authOperations"; //?
 
 // -------------------------------------------------------------------------------------------------------
 const initialState = {
@@ -28,6 +31,9 @@ const initialState = {
 export default function LoginScreen({ navigation }) {
   console.log("LoginScreen ==>", Platform.OS); //!
   // console.log("navigation;", navigation); //!
+
+  const dispatch = useDispatch(); //?
+
   //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
@@ -48,6 +54,7 @@ export default function LoginScreen({ navigation }) {
     setIsFocusedPassword(false);
     Keyboard.dismiss();
     console.log("LoginScreen-->state:", state); //!
+    dispatch(authSignInUser(state)); //! Войти на Firebase
     setState(initialState);
   }
 
