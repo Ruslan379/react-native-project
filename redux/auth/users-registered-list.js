@@ -11,3 +11,10 @@ User2 = {
     password: "Z1x2c3",
     UID: "bF4eELO1sTMOqJcRBpUN3dx5izi2",
 }
+
+User3 = {
+    nickname: "Dolli Wizard",
+    email: "Dolli@ukr.net",
+    password: "Z1x2c3",
+    UID: "bF4eELO1sTMOqJcRBpUN3dx5izi2",
+}
