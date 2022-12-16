@@ -1,26 +1,26 @@
 //! Конспект 2
-// import db from "../../firebase/config"; //?
+// // import db from "../../firebase/config"; //?
 
 
-export const authSignUpUser = ({ email, password, nickname }) => async (
-  dispatch,
-  getState
-) => {
-  console.log("nickname:", nickname);
-  console.log("email:", email);
-  console.log("password:", password);
-  try {
-    const user = await db
-      .auth()
-      .createUserWithEmailAndPassword(email, password);
+// export const authSignUpUser = ({ email, password, nickname }) => async (
+//   dispatch,
+//   getState
+// ) => {
+//   console.log("nickname:", nickname);
+//   console.log("email:", email);
+//   console.log("password:", password);
+//   try {
+//     const user = await db
+//       .auth()
+//       .createUserWithEmailAndPassword(email, password);
 
-    console.log("user", user);
-  } catch (error) {
-    console.log("error", error);
+//     console.log("user", user);
+//   } catch (error) {
+//     console.log("error", error);
 
-    console.log("error.message", error.message);
-  }
-};
+//     console.log("error.message", error.message);
+//   }
+// };
 
 //! Конспект 1
 // // import db from "../../firebase/config";
@@ -100,3 +100,26 @@ export const authSignUpUser = ({ email, password, nickname }) => async (
 //     const errorMessage = error.message;
 //     // ..
 //   });
+
+
+
+//!   https://blog.logrocket.com/integrating-firebase-authentication-expo-mobile-app/
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+
+// const auth = getAuth();
+import { auth } from "../../firebase/config";
+
+export const authSignUpUser =
+  ({ email, password, nickname }) =>
+    async (dispatch, getState) => {
+      console.log("nickname:", nickname);
+      console.log("email:", email);
+      console.log("password:", password);
+      try {
+        const user = await createUserWithEmailAndPassword(auth, email, password);
+        console.log("user", user);
+      } catch (error) {
+        Alert.alert(error.message);
+        console.log(error);
+      }
+    };

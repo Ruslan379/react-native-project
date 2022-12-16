@@ -69,10 +69,43 @@
 
 
 //!  ------------- Конспект -------------
-import * as firebase from "firebase";
-import "firebase/auth";
+// import * as firebase from "firebase";
+// import "firebase/auth";
 
-// Your web app's Firebase configuration
+// // Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAA2bIcy0EMJV0AKwnC_AW5FlsojluLGVE",
+//   authDomain: "react-native-project-fson52.firebaseapp.com",
+//   projectId: "react-native-project-fson52",
+//   storageBucket: "react-native-project-fson52.appspot.com",
+//   messagingSenderId: "335714079621",
+//   appId: "1:335714079621:web:0461a01c87cf81111deaec",
+//   measurementId: "G-27Z3FCXWP8"
+// };
+// // Initialize Firebase
+// export default firebase.initializeApp(firebaseConfig)
+
+
+
+//!   https://blog.logrocket.com/integrating-firebase-authentication-expo-mobile-app/
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBSKowWPBCynHTYSFBBnJUqP2pI-pr2GJI",
+//   authDomain: "expo-with-firebase-auth-demo.firebaseapp.com",
+//   projectId: "expo-with-firebase-auth-demo",
+//   storageBucket: "expo-with-firebase-auth-demo.appspot.com",
+//   messagingSenderId: "719336217671",
+//   appId: "1:719336217671:web:efd7e14078045dc9a72562"
+// };
+
+//! Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAA2bIcy0EMJV0AKwnC_AW5FlsojluLGVE",
   authDomain: "react-native-project-fson52.firebaseapp.com",
@@ -82,5 +115,10 @@ const firebaseConfig = {
   appId: "1:335714079621:web:0461a01c87cf81111deaec",
   measurementId: "G-27Z3FCXWP8"
 };
-// Initialize Firebase
-export default firebase.initializeApp(firebaseConfig)
+
+//! Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
+
+export default app;
