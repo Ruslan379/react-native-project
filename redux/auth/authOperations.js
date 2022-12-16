@@ -60,7 +60,7 @@ export const authSignInUser = ({ email, password }) =>
     console.log("SignIn-->password:", password); //!
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
-      console.log("user:", user); //!
+      console.log("SignIn-->user:", user); //!
       // console.log("user.displayName:", user.displayName); //!
       // console.log("user.email:", user.email); //!
       // console.log("user.uid:", user.uid); //!
@@ -77,7 +77,7 @@ export const authSignInUser = ({ email, password }) =>
 export const authStateChangeUser = () => async (dispatch, getState) => {
   try {
     onAuthStateChanged(auth, (user) => {
-      console.log(user);
+      console.log("authStateChangeUser-->user:", user);
       if (user) {
         dispatch(
           authSlice.actions.updateUserProfile({
