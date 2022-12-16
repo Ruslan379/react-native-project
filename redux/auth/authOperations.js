@@ -1,25 +1,26 @@
 //*   https://blog.logrocket.com/integrating-firebase-authentication-expo-mobile-app/
 
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import app from "../../firebase/config"; //! MY
 
-// const auth = getAuth(); //*
+const auth = getAuth(app); //*
 
-import { auth } from "../../firebase/config"; //! MY
+// import { auth } from "../../firebase/config"; //! MY
 
-export const authSignUpUser =
-  ({ email, password, nickname }) =>
-    async (dispatch, getState) => {
-      console.log("nickname:", nickname);
-      console.log("email:", email);
-      console.log("password:", password);
-      try {
-        const user = await createUserWithEmailAndPassword(auth, email, password);
-        console.log("user", user);
-      } catch (error) {
-        Alert.alert(error.message);
-        console.log(error);
-      }
-    };
+
+export const authSignUpUser = ({ email, password, nickname }) =>
+  async (dispatch, getState) => {
+    console.log("nickname:", nickname); //!
+    console.log("email:", email); //!
+    console.log("password:", password); //!
+    try {
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      console.log("user", user); //!
+    } catch (error) {
+      Alert.alert(error.message);
+      console.log(error);
+    }
+  };
 
 
 
