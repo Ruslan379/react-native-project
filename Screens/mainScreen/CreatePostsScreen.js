@@ -22,11 +22,11 @@ import * as Location from "expo-location";
 import { Fontisto } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 
-// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-// import { collection, addDoc } from "firebase/firestore";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, addDoc } from "firebase/firestore";
 
-// import { storage } from "../../firebase/config";
-// import { db } from "../../firebase/config";
+import { storage } from "../../firebase/config";
+import { db } from "../../firebase/config";
 
 
 // -------------------------------------------------------------------
@@ -46,7 +46,7 @@ const CreatePostsScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
 
-  // const { userId, userName } = useSelector((state) => state.auth);
+  const { userId, userName } = useSelector((state) => state.auth);
 
   useEffect(() => {
     (async () => {
@@ -62,8 +62,8 @@ const CreatePostsScreen = ({ navigation }) => {
   const [permission, requestPermission] = Camera.useCameraPermissions();
   if (!permission) {
     // setPhoto("");
-    // return <View />;
-    return;
+    return <View />;
+    // return;
   }
 
   if (!permission.granted) {
@@ -92,36 +92,38 @@ const CreatePostsScreen = ({ navigation }) => {
     const response = await fetch(photo);
     const file = await response.blob();
     const photoId = uuid.v4();
-    // const storageRef = ref(storage, `postImage/${photoId}`);
-    // await uploadBytes(storageRef, file);
-    // const photoUrl = await getDownloadURL(ref(storage, `postImage/${photoId}`));
-    // return photoUrl;
+    const storageRef = ref(storage, `postImage/${photoId}`);
+    await uploadBytes(storageRef, file);
+    const photoUrl = await getDownloadURL(ref(storage, `postImage/${photoId}`));
+    return photoUrl;
   };
 
+  //! https://console.firebase.google.com/project/react-native-project-fson52/storage/react-native-project-fson52.appspot.com/files
+
   const handleSendData = async () => {
-    // const photo = await uploadPhotoToServer();
+    // const photo = await uploadPhotoToServer(); //! FirebaseError: Firebase Storage: User does not have permission to access 'postImage/f0c83595-27ef-4814-bcb9-e4571c070400'. (storage/unauthorized)
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    // const location = await Location.getCurrentPositionAsync();
+    const location = await Location.getCurrentPositionAsync();
     try {
       console.log("photo:", photo);
-      // console.log("location:", location);
-      // await addDoc(collection(db, "posts"), {
-      //   photo,
-      //   title: inputState.title,
-      //   locationDescr: inputState.locationDescr,
-      //   location: location.coords,
-      //   userId,
-      //   userName,
-      // });
+      console.log("location:", location);
+      await addDoc(collection(db, "posts"), {
+        photo,
+        title: inputState.title,
+        locationDescr: inputState.locationDescr,
+        location: location.coords,
+        userId,
+        userName,
+      });
     } catch (e) {
       Alert.alert("Error adding document: ", e.message);
       console.error("Error adding document: ", e);
     }
     navigation.navigate("Home", { photo });
     // navigation.navigate("Home", { photo, latitude, longitude }); //! Мой вариант
-    // setInputState(initialState);
-    // setErrorMsg(null);
+    setInputState(initialState);
+    setErrorMsg(null);
 
   };
 
