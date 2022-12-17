@@ -97,63 +97,15 @@ export const authStateChangeUser = () => async (dispatch, getState) => {
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-//todo не рботает
-// import {
-//   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword,
-//   updateProfile,
-//   signOut,
-//   onAuthStateChanged,
-// } from "firebase/auth";
-
-// import { auth } from "../../firebase/config";
-// import { authSlice } from "./authReducer";
-// import { Alert } from "react-native";
-
-// export const authSignUpUser =
-//   ({ email, password }) =>
-//     async (dispatch, getState) => {
-//       try {
-//         const { user } = await signInWithEmailAndPassword(auth, email, password);
-//         dispatch(
-//           authSlice.actions.updateUserProfile({
-//             userId: user.uid,
-//             userName: user.displayName,
-//           })
-//         );
-//         dispatch(authSlice.actions.stateChange({ stateChange: true }));
-//       } catch (error) {
-//         Alert.alert(error.message);
-//         console.log(error);
-//       }
-//     };
-
-
-//todo Документация с сайта
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-
-// const auth = getAuth();
-
-// createUserWithEmailAndPassword(auth, email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     const user = userCredential.user;
-//     // ...
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // ..
-//   });
+//!  Выход из регистрации --> SignOut
+export const authSignOutUser = () => async (dispatch, getState) => {
+  try {
+    await signOut(auth);
+    dispatch(authSlice.actions.authSignOut());
+  } catch (error) {
+    Alert.alert(error.message);
+    console.log("error:", error);
+    console.log("error.code:", error.code);
+    console.log("error.message:", error.message);
+  }
+};
