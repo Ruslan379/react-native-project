@@ -48,6 +48,7 @@ const CreatePostsScreen = ({ navigation }) => {
 
   const { userId, nickname } = useSelector((state) => state.auth);
 
+
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -59,6 +60,7 @@ const CreatePostsScreen = ({ navigation }) => {
     })();
   }, []);
 
+
   const [permission, requestPermission] = Camera.useCameraPermissions();
   if (!permission) {
     // setPhoto("");
@@ -66,16 +68,24 @@ const CreatePostsScreen = ({ navigation }) => {
     return;
   }
 
+
   if (!permission.granted) {
     requestPermission();
   }
-  //! Получение ссылки на ФОТО (photo)
+
+
+
+  //! Получение ОТНОСИТЕЛЬНОЙ ссылки на ФОТО (photo)
   const takePhoto = async () => {
     const shot = await camera.takePictureAsync();
+
+    //! ---- УДАЛИТЬ -----
     const location = await Location.getCurrentPositionAsync(); //! КОНСПЕКТ
     console.log("location:", location); //! КОНСПЕКТ
     console.log("latitude", location.coords.latitude); //! КОНСПЕКТ
     console.log("longitude", location.coords.longitude) //! КОНСПЕКТ
+    //! ____ УДАЛИТЬ ____
+
     setPhoto(shot.uri);
     // setLatitude(location.coords.latitude); //! Мой вариант
     // setLongitude(location.coords.longitude); //! Мой вариант
@@ -88,6 +98,7 @@ const CreatePostsScreen = ({ navigation }) => {
     console.log("deletePhoto:", photo); //!
   };
 
+  //! Отправка ФОТО (photo) на Storage + Получение АБСОЛЮТНОЙ ссылки на на ФОТО (photo)
   const uploadPhotoToServer = async () => {
     const response = await fetch(photo);
     const file = await response.blob();
@@ -98,23 +109,34 @@ const CreatePostsScreen = ({ navigation }) => {
     await uploadBytes(storageRef, file);
 
     //! FirebaseError: Firebase Storage: User does not have permission to access 'postImage/f0c83595-27ef-4814-bcb9-e4571c070400'. (storage/unauthorized)
+    //?  ++++ Rules Firebase Storage-All: ++++
     // service firebase.storage {
     //   match / b / { bucket } / o {
     //     match / { allPaths=**} {
-    //   allow read, write; //! Заменить на ЭТО
+    //        allow read, write; //! Заменить на ЭТО
     //     }
     //   }
     // }
+    //?  ++++ Rules Firebase Storage-auth: ++++
+    // rules_version = '2';
+    //     service firebase.storage {
+    //       match / b / { bucket } / o {
+    //         match / { allPaths=**} {
+    //         allow read, write: if request.auth != null; //! Заменить на ЭТО
+    //     }
+    //   }
+    // }
+    //_______________________________________________________________________________________________________________________________
 
     const photoUrl = await getDownloadURL(ref(storage, `postImage/${photoId}`));
     console.log("photoUrl:", photoUrl); //!
     return photoUrl;
   };
 
-  //! https://console.firebase.google.com/project/react-native-project-fson52/storage/react-native-project-fson52.appspot.com/files
-
+  //? https://console.firebase.google.com/project/react-native-project-fson52/storage/react-native-project-fson52.appspot.com/files
+  //! Отправка данных на Cloud Firestore
   const handleSendData = async () => {
-    const uploadPhotoUrl = await uploadPhotoToServer();
+    const uploadPhotoUrl = await uploadPhotoToServer(); //! Получаем абсолютную ссылку на photo
     setIsShowKeyboard(false);
     Keyboard.dismiss();
     const location = await Location.getCurrentPositionAsync();
@@ -122,32 +144,27 @@ const CreatePostsScreen = ({ navigation }) => {
       console.log("uploadPhotoUrl:", uploadPhotoUrl); //!
       console.log("location:", location); //!
 
-      //! Realtime Database-1:
-      // {
-      //   "rules": {
-      //     ".read": true,
-      //       ".write": true
-      //   }
-      // }
-      //! Realtime Database-2:
-      // {
-      //   "rules": {
-      //     "posts": {
-      //       ".read": true,
-      //         ".write": true
+      //?  ++++ Rules Cloud Firestore-auth: ++++
+      // rules_version = '2';
+      //   service cloud.firestore {
+      //     match / databases / { database } / documents {
+      //       match / { document=**} {
+      //         allow read, write: if request.auth != null; //! Заменить на ЭТО
       //     }
       //   }
       // }
-      //! ---- Отправка данных на Realtime Database ----
-      // await addDoc(collection(db, "posts"), {
-      //   uploadPhotoUrl,
-      //   title: inputState.title,
-      //   locationDescr: inputState.locationDescr,
-      //   location: location.coords,
-      //   userId,
-      //   nickname,
-      // });
+      //_______________________________________________________________________________________________________________________________
 
+      //! ---- Отправка данных на Cloud Firestore ----
+      await addDoc(collection(db, "posts"), {
+        uploadPhotoUrl,
+        title: inputState.title,
+        locationDescr: inputState.locationDescr,
+        location: location.coords,
+        userId,
+        nickname,
+      });
+      //! ____ Отправка данных на Cloud Firestore ____
     } catch (e) {
       Alert.alert("Error adding document: ", e.message);
       console.error("Error adding document: ", e);
