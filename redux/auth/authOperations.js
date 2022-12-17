@@ -1,7 +1,7 @@
 //*   https://blog.logrocket.com/integrating-firebase-authentication-expo-mobile-app/
 
 import {
-  getAuth,
+  // getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
@@ -10,14 +10,14 @@ import {
 
 } from 'firebase/auth';
 
-import app from "../../firebase/config"; //! MY
-// import { auth } from "../../firebase/config"; //! MY
+// import { app } from "../../firebase/config"; //! MY
+import { auth } from "../../firebase/config";
 
 import { authSlice } from "./authReducer";
 
 
 // -----------------------------------------------------------------------
-const auth = getAuth(app); //*
+// const auth = getAuth(app); //! MY
 
 //! Регистрация
 export const authSignUpUser = ({ email, password, nickname }) =>
