@@ -15,9 +15,23 @@ import Home from "../nestedScreens/Home.js";
 import CommentsScreen from "../nestedScreens/CommentsScreen.js";
 import MapScreen from "../nestedScreens/MapScreen.js";
 
+//!  Выход из регистрации --> SignOut (Кнопка: Log-out)
+import { authSignOutUser } from "../../redux/auth/authOperations";
+import { useDispatch } from "react-redux";
+
+//------------------------------------------------------------------------------
 const NestedScreen = createStackNavigator();
 
+
+
 const PostsScreen = ({ navigation }) => {
+  //!  Выход из регистрации --> SignOut (Кнопка: Log-out)
+  const dispatch = useDispatch();
+  const signOut = () => {
+    dispatch(authSignOutUser());
+  };
+
+
   return (
     <>
       {/* //! ------------- Кнопка: Log-out ------------- */}
@@ -27,6 +41,7 @@ const PostsScreen = ({ navigation }) => {
         // onPress={keboardHideAndSubmit}
         onPress={() => {
           console.log("PostsScreen-->Log Out");
+          signOut(); //!  Выход из регистрации
           // keboardHideAndSubmit()
           // navigation.navigate("CommentsScreen")
           // navigation.navigate('Home', { screen: "MapScreen" })
