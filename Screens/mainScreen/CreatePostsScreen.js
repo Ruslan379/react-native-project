@@ -62,8 +62,8 @@ const CreatePostsScreen = ({ navigation }) => {
   const [permission, requestPermission] = Camera.useCameraPermissions();
   if (!permission) {
     // setPhoto("");
-    return <View />;
-    // return;
+    // return <View />;
+    return;
   }
 
   if (!permission.granted) {
@@ -114,12 +114,12 @@ const CreatePostsScreen = ({ navigation }) => {
   //! https://console.firebase.google.com/project/react-native-project-fson52/storage/react-native-project-fson52.appspot.com/files
 
   const handleSendData = async () => {
-    const photo = await uploadPhotoToServer();
+    const uploadPhotoUrl = await uploadPhotoToServer();
     setIsShowKeyboard(false);
     Keyboard.dismiss();
     const location = await Location.getCurrentPositionAsync();
     try {
-      console.log("photo:", photo); //!
+      console.log("uploadPhotoUrl:", uploadPhotoUrl); //!
       console.log("location:", location); //!
 
       //! Realtime Database-1:
@@ -140,7 +140,7 @@ const CreatePostsScreen = ({ navigation }) => {
       // }
       //! ---- Отправка данных на Realtime Database ----
       // await addDoc(collection(db, "posts"), {
-      //   photo,
+      //   uploadPhotoUrl,
       //   title: inputState.title,
       //   locationDescr: inputState.locationDescr,
       //   location: location.coords,
@@ -158,7 +158,7 @@ const CreatePostsScreen = ({ navigation }) => {
     console.log("userId:", userId); //!
     console.log("nickname:", nickname); //!
 
-    navigation.navigate("Home", { photo });
+    navigation.navigate("Home", { uploadPhotoUrl });
     // navigation.navigate("Home", { photo, latitude, longitude }); //! Мой вариант
     setInputState(initialState);
     setErrorMsg(null);

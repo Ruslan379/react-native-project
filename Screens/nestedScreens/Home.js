@@ -15,7 +15,7 @@ import {
 const Home = ({ route, navigation }) => {
   const [posts, setPosts] = useState([]);
   console.log("Home-->route.params:", route.params); //!
-  // const { latitude, longitude, photo } = route.params; //! Мой вариант
+  // const { latitude, longitude, uploadPhotoUrl } = route.params; //! Мой вариант
   // console.log("Home-->latitude:", latitude); //! Мой вариант
   // console.log("Home-->longitude:", longitude); //! Мой вариант
 
@@ -30,10 +30,10 @@ const Home = ({ route, navigation }) => {
 
   //! Мой вариант
   // useEffect(() => {
-  //   if (photo) {
-  //     setPosts((prevState) => [...prevState, { photo }]);
+  //   if (uploadPhotoUrl) {
+  //     setPosts((prevState) => [...prevState, { uploadPhotoUrl }]);
   //   }
-  // }, [photo]);
+  // }, [uploadPhotoUrl]);
   // console.log("posts", posts); //!
 
 
@@ -54,7 +54,7 @@ const Home = ({ route, navigation }) => {
               }}
             >
               <Image
-                source={{ uri: item.photo }}
+                source={{ uri: item.uploadPhotoUrl }}
                 style={{ width: 350, height: 200 }}
               />
             </View>
