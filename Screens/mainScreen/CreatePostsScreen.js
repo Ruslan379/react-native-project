@@ -44,7 +44,7 @@ const CreatePostsScreen = ({ navigation }) => {
 
   const [inputState, setInputState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(null); //todo
+  const [errorMsg, setErrorMsg] = useState(null); //todo ----------------------------------------
 
   const { userId, userName } = useSelector((state) => state.auth);
 
@@ -94,14 +94,21 @@ const CreatePostsScreen = ({ navigation }) => {
     const photoId = uuid.v4();
     console.log("photoId:", photoId); //!
     const storageRef = ref(storage, `postImage/${photoId}`);
-    console.log("storageRef:", storageRef); //!
-    // await uploadBytes(storageRef, file); //! FirebaseError: Firebase Storage: User does not have permission to access 'postImage/f0c83595-27ef-4814-bcb9-e4571c070400'. (storage/unauthorized)
-    // const photoUrl = await getDownloadURL(ref(storage, `postImage/${photoId}`));
-    // return photoUrl;
+    // console.log("storageRef:", storageRef); //!
+    await uploadBytes(storageRef, file);
 
-    navigation.navigate("Home", { photo }); //! временно
-    setInputState(initialState); //! временно
-    setErrorMsg(null); //! временно
+    //! FirebaseError: Firebase Storage: User does not have permission to access 'postImage/f0c83595-27ef-4814-bcb9-e4571c070400'. (storage/unauthorized)
+    // service firebase.storage {
+    //   match / b / { bucket } / o {
+    //     match / { allPaths=**} {
+    //   allow read, write; //! Заменить на ЭТО
+    //     }
+    //   }
+    // }
+
+    const photoUrl = await getDownloadURL(ref(storage, `postImage/${photoId}`));
+    console.log("photoUrl:", photoUrl); //!
+    return photoUrl;
   };
 
   //! https://console.firebase.google.com/project/react-native-project-fson52/storage/react-native-project-fson52.appspot.com/files
@@ -188,8 +195,8 @@ const CreatePostsScreen = ({ navigation }) => {
         </View>
       </View>
       <TouchableOpacity
-        // onPress={handleSendData}
-        onPress={uploadPhotoToServer}
+        onPress={handleSendData}
+        // onPress={uploadPhotoToServer} //! для теста
         activeOpacity={0.8}
         style={styles.sendButton}
       >
