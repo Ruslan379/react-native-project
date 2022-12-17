@@ -44,7 +44,7 @@ const CreatePostsScreen = ({ navigation }) => {
 
   const [inputState, setInputState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null); //todo
 
   const { userId, userName } = useSelector((state) => state.auth);
 
@@ -92,16 +92,22 @@ const CreatePostsScreen = ({ navigation }) => {
     const response = await fetch(photo);
     const file = await response.blob();
     const photoId = uuid.v4();
+    console.log("photoId:", photoId); //!
     const storageRef = ref(storage, `postImage/${photoId}`);
-    await uploadBytes(storageRef, file);
-    const photoUrl = await getDownloadURL(ref(storage, `postImage/${photoId}`));
-    return photoUrl;
+    console.log("storageRef:", storageRef); //!
+    // await uploadBytes(storageRef, file); //! FirebaseError: Firebase Storage: User does not have permission to access 'postImage/f0c83595-27ef-4814-bcb9-e4571c070400'. (storage/unauthorized)
+    // const photoUrl = await getDownloadURL(ref(storage, `postImage/${photoId}`));
+    // return photoUrl;
+
+    navigation.navigate("Home", { photo }); //! временно
+    setInputState(initialState); //! временно
+    setErrorMsg(null); //! временно
   };
 
   //! https://console.firebase.google.com/project/react-native-project-fson52/storage/react-native-project-fson52.appspot.com/files
 
   const handleSendData = async () => {
-    // const photo = await uploadPhotoToServer(); //! FirebaseError: Firebase Storage: User does not have permission to access 'postImage/f0c83595-27ef-4814-bcb9-e4571c070400'. (storage/unauthorized)
+    const photo = await uploadPhotoToServer();
     setIsShowKeyboard(false);
     Keyboard.dismiss();
     const location = await Location.getCurrentPositionAsync();
@@ -124,7 +130,6 @@ const CreatePostsScreen = ({ navigation }) => {
     // navigation.navigate("Home", { photo, latitude, longitude }); //! Мой вариант
     setInputState(initialState);
     setErrorMsg(null);
-
   };
 
   return (
@@ -183,7 +188,8 @@ const CreatePostsScreen = ({ navigation }) => {
         </View>
       </View>
       <TouchableOpacity
-        onPress={handleSendData}
+        // onPress={handleSendData}
+        onPress={uploadPhotoToServer}
         activeOpacity={0.8}
         style={styles.sendButton}
       >
