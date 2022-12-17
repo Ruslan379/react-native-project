@@ -46,7 +46,7 @@ const CreatePostsScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null); //todo ----------------------------------------
 
-  const { userId, userName } = useSelector((state) => state.auth);
+  const { userId, nickname } = useSelector((state) => state.auth);
 
   useEffect(() => {
     (async () => {
@@ -119,20 +119,45 @@ const CreatePostsScreen = ({ navigation }) => {
     Keyboard.dismiss();
     const location = await Location.getCurrentPositionAsync();
     try {
-      console.log("photo:", photo);
-      console.log("location:", location);
-      await addDoc(collection(db, "posts"), {
-        photo,
-        title: inputState.title,
-        locationDescr: inputState.locationDescr,
-        location: location.coords,
-        userId,
-        userName,
-      });
+      console.log("photo:", photo); //!
+      console.log("location:", location); //!
+
+      //! Realtime Database-1:
+      // {
+      //   "rules": {
+      //     ".read": true,
+      //       ".write": true
+      //   }
+      // }
+      //! Realtime Database-2:
+      // {
+      //   "rules": {
+      //     "posts": {
+      //       ".read": true,
+      //         ".write": true
+      //     }
+      //   }
+      // }
+      //! ---- Отправка данных на Realtime Database ----
+      // await addDoc(collection(db, "posts"), {
+      //   photo,
+      //   title: inputState.title,
+      //   locationDescr: inputState.locationDescr,
+      //   location: location.coords,
+      //   userId,
+      //   nickname,
+      // });
+
     } catch (e) {
       Alert.alert("Error adding document: ", e.message);
       console.error("Error adding document: ", e);
     }
+    console.log("inputState.title:", inputState.title); //!
+    console.log("inputState.locationDescr:", inputState.locationDescr); //!
+    console.log("location.coords:", location.coords); //!
+    console.log("userId:", userId); //!
+    console.log("nickname:", nickname); //!
+
     navigation.navigate("Home", { photo });
     // navigation.navigate("Home", { photo, latitude, longitude }); //! Мой вариант
     setInputState(initialState);
