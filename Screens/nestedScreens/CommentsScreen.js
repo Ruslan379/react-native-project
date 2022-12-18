@@ -25,8 +25,6 @@ import { AntDesign } from "@expo/vector-icons";
 const CommentsScreen = ({ route }) => {
   console.log("CommentsScreen-->route.params:", route.params); //!
   const { postId, photo } = route.params;
-  // const { postId, photo, nicknamePost } = route.params;
-  // console.log("nicknamePost:", nicknamePost);
 
   const { nickname } = useSelector((state) => state.auth);
 
@@ -34,6 +32,7 @@ const CommentsScreen = ({ route }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [comment, setComment] = useState("");
   const [allComments, setAllComments] = useState([]);
+
 
   //! Получение постов с Firestore
   const getAllComments = async () => {
@@ -68,11 +67,14 @@ const CommentsScreen = ({ route }) => {
   };
 
 
-
   return (
     <TouchableWithoutFeedback onPress={keboardHide}>
       <SafeAreaView style={styles.container}>
+        {/* //!----------- Комментируемое Фото  ----------- */}
         <Image style={styles.photo} source={{ uri: photo }} />
+        {/* //!___________ Комментируемое Фото  ___________ */}
+
+        {/* //!-------------------- Список КОММЕНТАРИЕВ (свои и чужие) -------------------- */}
         <FlatList
           data={allComments}
           keyExtractor={(item) => item.id}
@@ -91,7 +93,10 @@ const CommentsScreen = ({ route }) => {
               </View>
             </View>
           )}
-        />
+        >
+        </FlatList>
+        {/* //!_____________________ Список КОММЕНТАРИЕВ (свои и чужие) _____________________ */}
+
         {/* //!-------------------- ИНПУТ -------------------- */}
         <View style={styles.inputContainer}>
           <TextInput
