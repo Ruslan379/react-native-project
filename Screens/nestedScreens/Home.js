@@ -10,6 +10,9 @@ import {
   Image
 } from "react-native";
 
+import { db } from "../../firebase/config";
+import { collection, onSnapshot } from "firebase/firestore";
+
 
 //-------------------------------------------------------------------------------
 const Home = ({ route, navigation }) => {
@@ -19,16 +22,14 @@ const Home = ({ route, navigation }) => {
   // console.log("Home-->latitude:", latitude); //! Мой вариант
   // console.log("Home-->longitude:", longitude); //! Мой вариант
 
-  //! Конспект
-  useEffect(() => {
-    if (route.params) {
-      setPosts((prevState) => [...prevState, route.params]);
-    }
-  }, [route.params]);
-  console.log("posts", posts); //!
+  //! Конспект - Получение постов с CreatePostsScreen
+  // useEffect(() => {
+  //   if (route.params) {
+  //     setPosts((prevState) => [...prevState, route.params]);
+  //   }
+  // }, [route.params]);
 
-
-  //! Мой вариант
+  //! Мой вариант - - Получение постов с CreatePostsScreen
   // useEffect(() => {
   //   if (uploadPhotoUrl) {
   //     setPosts((prevState) => [...prevState, { uploadPhotoUrl }]);
@@ -37,6 +38,18 @@ const Home = ({ route, navigation }) => {
   // console.log("posts", posts); //!
 
 
+  //! Получение постов с Firebase
+  const getAllPosts = async () => {
+    await onSnapshot(collection(db, "posts"), (data) => {
+      setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+  };
+
+  useEffect(() => {
+    getAllPosts();
+  }, []);
+
+  console.log("posts", posts); //!
 
   return (
     <>

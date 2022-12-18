@@ -46,7 +46,13 @@ const CreatePostsScreen = ({ navigation }) => {
 
   const [inputState, setInputState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(null); //todo ----------------------------------------
+  const [errorMsg, setErrorMsg] = useState(null);
+  const [resetCamera, setResetCamera] = useState(false); //todo --------------------------------------------
+
+  const toggleCamera = () => {
+    setResetCamera(!resetCamera);
+    // setResetCamera(true);
+  };
 
   const { userId, nickname } = useSelector((state) => state.auth);
 
@@ -61,20 +67,26 @@ const CreatePostsScreen = ({ navigation }) => {
       }
       // let location = await Location.getCurrentPositionAsync({}); //??????
       //! Manual entry location
+      // 50.485723, 30.521819
       const location = {
         timestamp: 1671381599684,
         mocked: false,
         coords: {
           altitude: 129.3000030517578,
           heading: 0,
-          latitude: 50.5263646,
-          longitude: 30.5991683,
+          latitude: 50.485723,
+          longitude: 30.521819,
           altitudeAccuracy: 1
         },
       }
+
       //! Automatic entry location
       // const location = await Location.getCurrentPositionAsync(); //?
       setLocation(location); //?
+
+      // setResetCamera(true)
+      toggleCamera()
+      console.log("useEffect-->resetCamera:", resetCamera); //!
     })();
   }, []);
 
@@ -110,11 +122,15 @@ const CreatePostsScreen = ({ navigation }) => {
     console.log("Camera-->photo:", shot); //!
   };
 
+
+
   //! Удаление ФОТО (photo)
   const deletePhoto = () => {
     setPhoto("");
     console.log("deletePhoto:", photo); //!
   };
+
+
 
   //! Отправка ФОТО (photo) на Storage + Получение АБСОЛЮТНОЙ ссылки на на ФОТО (photo)
   const uploadPhotoToServer = async () => {
@@ -150,6 +166,9 @@ const CreatePostsScreen = ({ navigation }) => {
     console.log("photoUrl:", photoUrl); //!
     return photoUrl;
   };
+
+
+
 
   //? https://console.firebase.google.com/project/react-native-project-fson52/storage/react-native-project-fson52.appspot.com/files
   //! Отправка данных на Cloud Firestore
@@ -193,18 +212,25 @@ const CreatePostsScreen = ({ navigation }) => {
     console.log("userId:", userId); //!
     console.log("nickname:", nickname); //!
 
-    navigation.navigate("Home", { uploadPhotoUrl });
+    // navigation.navigate("Home", { uploadPhotoUrl });
     // navigation.navigate("Home", { photo, latitude, longitude }); //! Мой вариант
+
     setInputState(initialState);
     setErrorMsg(null);
+
+    toggleCamera();
+    console.log("resetCamera:", resetCamera); //!
+
+    navigation.navigate("Home");
   };
+
+
 
   return (
     <View style={styles.container}>
       <Camera
         style={styles.camera}
         ref={setCamera}
-      // ratio="1:1"
       >
         {photo && (
           <View style={styles.photoContainer}>

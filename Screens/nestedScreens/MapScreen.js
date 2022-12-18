@@ -15,8 +15,8 @@ const MapScreen = ({ route }) => {
       <MapView
         style={{ flex: 1 }}
         initialRegion={{
-          latitude: 50.5262122,
-          longitude: 30.5991799,
+          latitude: 50.485723,
+          longitude: 30.521819,
           // latitude, //! Мой вариант
           // longitude, //! Мой вариант
           latitudeDelta: 0.001,
@@ -24,7 +24,7 @@ const MapScreen = ({ route }) => {
         }}
       >
         <Marker
-          coordinate={{ latitude: 50.5262122, longitude: 30.5991799 }}
+          coordinate={{ latitude: 50.485723, longitude: 30.521819 }}
           // coordinate={{ latitude, longitude }} //! Мой вариант
           title="travel photo"
         />
