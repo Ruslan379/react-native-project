@@ -79,7 +79,6 @@ const CommentsScreen = ({ route }) => {
           renderItem={({ item }) => (
             <View
               // style={{ alignItems: "flex-start" }}
-
               style={
                 (item.nickname === nickname)
                   ? { alignItems: "flex-start" }
@@ -96,7 +95,6 @@ const CommentsScreen = ({ route }) => {
         {/* //!-------------------- ИНПУТ -------------------- */}
         <View style={styles.inputContainer}>
           <TextInput
-            // style={styles.input}
             placeholder={"Комментировать..."}
             value={comment}
             onFocus={() => setIsShowKeyboard(true)}
@@ -131,6 +129,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 8,
     marginTop: 32,
+  },
+  commentContainer: {
+    width: 299,
+    height: 103,
+    backgroundColor: "rgba(0, 0, 0, 0.05)",
+    borderRadius: 6,
+    borderTopLeftRadius: 0,
+    marginBottom: 24,
+    padding: 16,
   },
   inputContainer: {
     flexDirection: "row",
