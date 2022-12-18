@@ -47,22 +47,19 @@ const CommentsScreen = ({ route }) => {
     getAllComments();
   }, []);
 
+  //! Закрытие клавиатуры
   const keboardHide = () => {
     setIsShowKeyboard(false);
     Keyboard.dismiss();
   };
 
+  //! Создание  и отправка поста на Firestore
   const createPost = async () => {
     await addDoc(collection(doc(collection(db, "posts"), postId), "comments"),
       {
         comment,
         nickname,
       });
-    // other variant:
-    // const collectionPosts = collection(db, "posts");
-    // const docPost = doc(collectionPosts, postId);
-    // const collectionComments = collection(docPost, "comments");
-    // await addDoc(collectionComments, { inputState, userName });
     setComment("");
     keboardHide();
   };

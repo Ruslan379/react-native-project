@@ -41,6 +41,7 @@ export default function LoginScreen({ navigation }) {
   const [isFocusedMail, setIsFocusedMail] = useState(false);
   const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
+  //! Закрытие клавиатуры
   const keboardHide = () => {
     setIsShowKeyboard(false);
     setIsFocusedMail(false);

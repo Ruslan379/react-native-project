@@ -44,6 +44,7 @@ export default function RegistrationScreen({ navigation }) {
   const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
 
+  //! Закрытие клавиатуры
   const keboardHide = () => {
     setIsShowKeyboard(false);
     setIsFocusedLogin(false);
