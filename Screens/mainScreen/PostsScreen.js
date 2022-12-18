@@ -113,6 +113,11 @@ const PostsScreen = ({ navigation }) => {
           // }}
           name="MapScreen"
           component={MapScreen}
+          options={{
+            headerTitleAlign: "center",
+            headerTitleStyle: headerTitleStyle,
+            headerTitle: "Локация",
+          }}
         />
       </NestedScreen.Navigator>
     </>
