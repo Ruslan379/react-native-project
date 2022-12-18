@@ -33,7 +33,7 @@ const CommentsScreen = ({ route }) => {
   const [comment, setComment] = useState("");
   const [allComments, setAllComments] = useState([]);
 
-
+  //! Получение постов с Firestore
   const getAllComments = async () => {
     await onSnapshot(
       collection(doc(collection(db, "posts"), postId), "comments"),
@@ -46,6 +46,7 @@ const CommentsScreen = ({ route }) => {
   useEffect(() => {
     getAllComments();
   }, []);
+
 
   //! Закрытие клавиатуры
   const keboardHide = () => {
@@ -69,6 +70,7 @@ const CommentsScreen = ({ route }) => {
   return (
     <TouchableWithoutFeedback onPress={keboardHide}>
       <SafeAreaView style={styles.container}>
+        <Image style={styles.photo} source={{ uri: photo }} />
         {/* //!-------------------- ИНПУТ -------------------- */}
         <View style={styles.inputContainer}>
           <TextInput
@@ -100,6 +102,13 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     // alignItems: "center",
     marginHorizontal: 16,
+  },
+  photo: {
+    minWidth: 343,
+    minHeight: 240,
+    borderRadius: 8,
+    marginBottom: 8,
+    marginTop: 32,
   },
   inputContainer: {
     flexDirection: "row",

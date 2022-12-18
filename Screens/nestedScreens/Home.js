@@ -43,11 +43,13 @@ const Home = ({ navigation }) => {
   // console.log("posts", posts); //!
 
 
-  //! Получение постов с Firebase
+  //! Получение постов с Firestore
   const getAllPosts = async () => {
-    await onSnapshot(collection(db, "posts"), (data) => {
-      setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    });
+    await onSnapshot(
+      collection(db, "posts"),
+      (data) => {
+        setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      });
   };
 
   useEffect(() => {
