@@ -65,7 +65,7 @@ const Home = ({ navigation }) => {
           data={posts}
           keyExtractor={(item, indx) => indx.toString()}
           renderItem={({ item }) => (
-            <View style={styles.postCard}>
+            <View style={styles.postCardContainer}>
               {/* //! -------------- Image -------------- */}
               <TouchableOpacity
                 activeOpacity={0.8}
@@ -97,6 +97,40 @@ const Home = ({ navigation }) => {
               {/* //! ______________ Image ______________ */}
 
               <Text style={styles.title}>{item.title}</Text>
+
+              <View style={styles.linkContainer}>
+
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("CommentsScreen", {
+                      postId: item.id,
+                      photo: item.photo,
+                    })
+                  }
+                >
+                  <FontAwesome5
+                    style={styles.commentIcon}
+                    name="comment"
+                    size={24}
+                    color="#BDBDBD"
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={styles.locationLink}
+                  onPress={() =>
+                    navigation.navigate("MapScreen", { location: item.location })
+                  }
+                >
+                  <SimpleLineIcons
+                    name="location-pin"
+                    size={24}
+                    color="#BDBDBD"
+                  />
+                  <Text style={styles.locationDescr}>{item.locationDescr}</Text>
+                </TouchableOpacity>
+
+              </View>
             </View>
           )}
         >
@@ -139,7 +173,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  postCard: {
+  postCardContainer: {
     marginTop: 32,
   },
   uploadPhotoUrl: {
@@ -156,17 +190,34 @@ const styles = StyleSheet.create({
     color: "#212121",
 
   },
-  //! Кнопки: Go to map & Go to Comments
-  navigationBtn: {
-    alignItems: "center",
-    // marginTop: 16,
-    marginBottom: 30,
+  linkContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
-  //! Текст кнопок: Go to map & Go to Comments
-  navigationBtnText: {
-    color: "red",
+  locationLink: {
+    flexDirection: "row",
+  },
+  locationDescr: {
+    marginLeft: 8,
     fontFamily: "Roboto-Regular",
+    fontSize: 16,
+    lineHeight: 19,
+    textDecorationLine: "underline",
+    color: "#212121",
   },
+
+
+  // //! Кнопки: Go to map & Go to Comments
+  // navigationBtn: {
+  //   alignItems: "center",
+  //   // marginTop: 16,
+  //   marginBottom: 30,
+  // },
+  // //! Текст кнопок: Go to map & Go to Comments
+  // navigationBtnText: {
+  //   color: "red",
+  //   fontFamily: "Roboto-Regular",
+  // },
 });
 
 export default Home;
