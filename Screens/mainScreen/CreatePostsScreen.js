@@ -59,8 +59,21 @@ const CreatePostsScreen = ({ navigation }) => {
         setErrorMsg("Permission to access location was denied");
         return;
       }
-      // let location = await Location.getCurrentPositionAsync({}); //?
-      const location = await Location.getCurrentPositionAsync(); //?
+      // let location = await Location.getCurrentPositionAsync({}); //??????
+      //! Manual entry location
+      const location = {
+        timestamp: 1671381599684,
+        mocked: false,
+        coords: {
+          altitude: 129.3000030517578,
+          heading: 0,
+          latitude: 50.5263646,
+          longitude: 30.5991683,
+          altitudeAccuracy: 1
+        },
+      }
+      //! Automatic entry location
+      // const location = await Location.getCurrentPositionAsync(); //?
       setLocation(location); //?
     })();
   }, []);
@@ -80,7 +93,7 @@ const CreatePostsScreen = ({ navigation }) => {
 
 
 
-  //! Получение ОТНОСИТЕЛЬНОЙ ссылки на ФОТО (photo)
+  //!  Создаем ФОТО (photo) + Получаем ОТНОСИТЕЛЬНУЮ ссылку на ФОТО (photo)
   const takePhoto = async () => {
     const shot = await camera.takePictureAsync();
 
