@@ -91,7 +91,7 @@ export const useRoute = (isAuth) => {
       {/* //! CreatePostsScreen */}
       <MainTab.Screen
         options={{
-          // headerShown: false,
+          headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
             //! ------------- Кнопка: CreatePostsScreen -------------
             <View style={styles.btnCreatePostsScreen}>

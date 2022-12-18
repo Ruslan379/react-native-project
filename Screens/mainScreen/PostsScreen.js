@@ -19,10 +19,22 @@ import MapScreen from "../nestedScreens/MapScreen.js";
 import { authSignOutUser } from "../../redux/auth/authOperations";
 import { useDispatch } from "react-redux";
 
+//! icons
+import { Feather } from "@expo/vector-icons";
+
 //------------------------------------------------------------------------------
 const NestedScreen = createStackNavigator();
 
+const headerTitleStyle = {
+  fontFamily: "Roboto-Medium",
+  fontSize: 17,
+  lineHeight: 22,
 
+  textAlign: "center",
+  letterSpacing: -0.408,
+
+  color: "#212121",
+};
 
 const PostsScreen = ({ navigation }) => {
   //!  Выход из регистрации --> SignOut (Кнопка: Log-out)
@@ -35,7 +47,7 @@ const PostsScreen = ({ navigation }) => {
   return (
     <>
       {/* //! ------------- Кнопка: Log-out ------------- */}
-      <TouchableOpacity
+      {/* <TouchableOpacity
         activeOpacity={0.8}
         style={styles.btnLogOut}
         // onPress={keboardHideAndSubmit}
@@ -56,7 +68,7 @@ const PostsScreen = ({ navigation }) => {
             height: 24,
           }}
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       {/* //! ____________ Кнопка Log-out ______________ */}
 
       <NestedScreen.Navigator>
@@ -66,6 +78,22 @@ const PostsScreen = ({ navigation }) => {
           // }}
           name="Home"
           component={Home}
+          options={{
+            headerRightContainerStyle: { paddingRight: 16 },
+            headerTitleAlign: "center",
+            headerTitleStyle: headerTitleStyle,
+            headerTitle: "Публикации",
+            //! ------------- Кнопка: Log-out ------------- 
+            headerRight: () => (
+              <Feather
+                onPress={signOut}
+                name="log-out"
+                size={24}
+                color="#BDBDBD"
+              />
+            ),
+            //! ____________ Кнопка Log-out ______________
+          }}
         />
         <NestedScreen.Screen
           // options={{
@@ -73,6 +101,11 @@ const PostsScreen = ({ navigation }) => {
           // }}
           name="CommentsScreen"
           component={CommentsScreen}
+          options={{
+            headerTitleAlign: "center",
+            headerTitleStyle: headerTitleStyle,
+            headerTitle: "Комментарии",
+          }}
         />
         <NestedScreen.Screen
           // options={{

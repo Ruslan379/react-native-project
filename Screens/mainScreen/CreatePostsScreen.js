@@ -39,6 +39,8 @@ const initialState = {
 const CreatePostsScreen = ({ navigation }) => {
   const [camera, setCamera] = useState(null);
   const [photo, setPhoto] = useState("");
+  const [location, setLocation] = useState(null); //?
+
   // const [latitude, setLatitude] = useState(null); //! Мой вариант
   // const [longitude, setLongitude] = useState(null); //! Мой вариант
 
@@ -57,6 +59,8 @@ const CreatePostsScreen = ({ navigation }) => {
         setErrorMsg("Permission to access location was denied");
         return;
       }
+      let location = await Location.getCurrentPositionAsync({}); //?
+      setLocation(location); //?
     })();
   }, []);
 
@@ -80,7 +84,7 @@ const CreatePostsScreen = ({ navigation }) => {
     const shot = await camera.takePictureAsync();
 
     //! ---- УДАЛИТЬ -----
-    const location = await Location.getCurrentPositionAsync(); //! КОНСПЕКТ
+    // const location = await Location.getCurrentPositionAsync(); //! КОНСПЕКТ
     console.log("location:", location); //! КОНСПЕКТ
     console.log("latitude", location.coords.latitude); //! КОНСПЕКТ
     console.log("longitude", location.coords.longitude) //! КОНСПЕКТ
@@ -139,7 +143,7 @@ const CreatePostsScreen = ({ navigation }) => {
     const uploadPhotoUrl = await uploadPhotoToServer(); //! Получаем абсолютную ссылку на photo
     setIsShowKeyboard(false);
     Keyboard.dismiss();
-    const location = await Location.getCurrentPositionAsync();
+    // const location = await Location.getCurrentPositionAsync();
     try {
       console.log("uploadPhotoUrl:", uploadPhotoUrl); //!
       console.log("location:", location); //!
