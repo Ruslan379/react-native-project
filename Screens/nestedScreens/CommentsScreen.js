@@ -88,8 +88,8 @@ const CommentsScreen = ({ route }) => {
               }
             >
               <View style={styles.commentContainer}>
-                <Text style={{ color: "#00008b", fontWeight: "bold" }}>{item.comment}</Text>
                 <Text style={{ color: "#8b0000", fontStyle: "italic" }}>{item.nickname}</Text>
+                <Text style={{ color: "#00008b", fontWeight: "bold" }}>{item.comment}</Text>
               </View>
             </View>
           )}
