@@ -72,7 +72,7 @@ const Home = ({ navigation }) => {
                 onPress={() =>
                   navigation.navigate("CommentsScreen", {
                     postId: item.id,
-                    photo: item.photo,
+                    photo: item.uploadPhotoUrl,
                   })
                 }
               >
@@ -107,7 +107,7 @@ const Home = ({ navigation }) => {
                   onPress={() =>
                     navigation.navigate("CommentsScreen", {
                       postId: item.id,
-                      photo: item.photo,
+                      photo: item.uploadPhotoUrl,
                     })
                   }
                 >

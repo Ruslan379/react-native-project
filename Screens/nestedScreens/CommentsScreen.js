@@ -22,17 +22,39 @@ import { collection, addDoc, doc, onSnapshot } from "firebase/firestore";
 import { AntDesign } from "@expo/vector-icons";
 //-------------------------------------------------------------------------------
 
-const CommentsScreen = () => {
+const CommentsScreen = ({ route }) => {
+  console.log("CommentsScreen-->route.params:", route.params); //!
+  const { postId, photo } = route.params;
+
+  const { nickname } = useSelector((state) => state.auth);
+
   //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [comment, setComment] = useState("");
+  const [allComments, setAllComments] = useState([]);
+
+
+  const getAllComments = async () => {
+    await onSnapshot(
+      collection(doc(collection(db, "posts"), postId), "comments"),
+      (data) => {
+        setAllComments(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      }
+    );
+  };
+
+  useEffect(() => {
+    getAllComments();
+  }, []);
+
 
 
   const createPost = async () => {
-    await addDoc(collection(doc(collection(db, "posts"), postId), "comments"), {
-      comment,
-      userName,
-    });
+    await addDoc(collection(doc(collection(db, "posts"), postId), "comments"),
+      {
+        comment,
+        nickname,
+      });
     // other variant:
     // const collectionPosts = collection(db, "posts");
     // const docPost = doc(collectionPosts, postId);
@@ -54,10 +76,10 @@ const CommentsScreen = () => {
           <TextInput
             // style={styles.input}
             placeholder={"Комментировать..."}
-            // value={comment}
-            // onFocus={() => setIsShowKeyboard(true)}
-            // onChangeText={(value) => setComment(value)}
-            onChangeText={null}
+            value={comment}
+            onFocus={() => setIsShowKeyboard(true)}
+            onChangeText={(value) => setComment(value)}
+
           />
           <TouchableOpacity
             style={styles.btnSubmit}
