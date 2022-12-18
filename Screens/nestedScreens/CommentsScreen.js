@@ -25,6 +25,8 @@ import { AntDesign } from "@expo/vector-icons";
 const CommentsScreen = ({ route }) => {
   console.log("CommentsScreen-->route.params:", route.params); //!
   const { postId, photo } = route.params;
+  // const { postId, photo, nicknamePost } = route.params;
+  // console.log("nicknamePost:", nicknamePost);
 
   const { nickname } = useSelector((state) => state.auth);
 
@@ -71,6 +73,26 @@ const CommentsScreen = ({ route }) => {
     <TouchableWithoutFeedback onPress={keboardHide}>
       <SafeAreaView style={styles.container}>
         <Image style={styles.photo} source={{ uri: photo }} />
+        <FlatList
+          data={allComments}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <View
+              // style={{ alignItems: "flex-start" }}
+
+              style={
+                (item.nickname === nickname)
+                  ? { alignItems: "flex-start" }
+                  : { alignItems: "flex-end" }
+              }
+            >
+              <View style={styles.commentContainer}>
+                <Text>{item.comment}</Text>
+                <Text style={{ color: "red" }}>{item.nickname}</Text>
+              </View>
+            </View>
+          )}
+        />
         {/* //!-------------------- ИНПУТ -------------------- */}
         <View style={styles.inputContainer}>
           <TextInput

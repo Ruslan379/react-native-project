@@ -48,7 +48,7 @@ const Home = ({ navigation }) => {
     await onSnapshot(
       collection(db, "posts"),
       (data) => {
-        setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id, })));
       });
   };
 
@@ -65,7 +65,8 @@ const Home = ({ navigation }) => {
       {posts && (
         <FlatList
           data={posts}
-          keyExtractor={(item, indx) => indx.toString()}
+          // keyExtractor={(item, indx) => indx.toString()}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <View style={styles.postCardContainer}>
               {/* //! -------------- Image -------------- */}
