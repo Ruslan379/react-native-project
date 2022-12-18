@@ -76,7 +76,10 @@ const Home = ({ navigation }) => {
                   })
                 }
               >
-                <Image style={styles.photo} source={{ uri: item.uploadPhotoUrl }} />
+                <Image
+                  style={styles.uploadPhotoUrl}
+                  source={{ uri: item.uploadPhotoUrl }}
+                />
               </TouchableOpacity>
 
               {/* <View
@@ -92,12 +95,16 @@ const Home = ({ navigation }) => {
                 />
               </View> */}
               {/* //! ______________ Image ______________ */}
+
+              <Text style={styles.title}>{item.title}</Text>
             </View>
           )}
         >
         </FlatList>
       )}
     </View>
+
+
 
     //todo --------------------  OLD --------------------
     // {/* <TouchableOpacity
@@ -135,11 +142,19 @@ const styles = StyleSheet.create({
   postCard: {
     marginTop: 32,
   },
-  photo: {
-    minWidth: 343,
-    minHeight: 240,
+  uploadPhotoUrl: {
+    width: 343,
+    height: 240,
     borderRadius: 8,
     marginBottom: 8,
+  },
+  title: {
+    marginBottom: 11,
+    fontFamily: "Roboto-Medium",
+    fontSize: 16,
+    lineHeight: 19,
+    color: "#212121",
+
   },
   //! Кнопки: Go to map & Go to Comments
   navigationBtn: {
