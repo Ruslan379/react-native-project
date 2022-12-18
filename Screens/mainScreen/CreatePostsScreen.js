@@ -16,17 +16,16 @@ import {
 import { Camera } from "expo-camera";
 import * as Location from "expo-location";
 
-
-
 //!icons
 import { Fontisto } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { collection, addDoc } from "firebase/firestore";
-
+//!firebase
 import { storage } from "../../firebase/config";
 import { db } from "../../firebase/config";
+
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, addDoc } from "firebase/firestore";
 
 
 // -------------------------------------------------------------------

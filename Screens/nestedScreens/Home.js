@@ -10,9 +10,13 @@ import {
   Image
 } from "react-native";
 
+//!firebase
 import { db } from "../../firebase/config";
 import { collection, onSnapshot } from "firebase/firestore";
 
+//!icons
+import { FontAwesome5 } from "@expo/vector-icons";
+import { SimpleLineIcons } from "@expo/vector-icons";
 
 //-------------------------------------------------------------------------------
 const Home = ({ route, navigation }) => {
@@ -49,30 +53,37 @@ const Home = ({ route, navigation }) => {
     getAllPosts();
   }, []);
 
-  console.log("posts", posts); //!
+  console.log("Home-->posts:", posts); //!
 
   return (
     <>
       <View style={styles.container}>
         {/* <Text>Home</Text> */}
-        <FlatList
-          data={posts}
-          keyExtractor={(item, indx) => indx.toString()}
-          renderItem={({ item }) => (
-            <View
-              style={{
-                marginBottom: 10,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Image
-                source={{ uri: item.uploadPhotoUrl }}
-                style={{ width: 350, height: 200 }}
-              />
-            </View>
-          )}
-        />
+        {posts && (
+          <FlatList
+            data={posts}
+            keyExtractor={(item, indx) => indx.toString()}
+            renderItem={({ item }) => (
+              <View style={styles.postCard}>
+                {/* //! -------------- Image -------------- */}
+                <View
+                  style={{
+                    marginBottom: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Image
+                    source={{ uri: item.uploadPhotoUrl }}
+                    style={{ width: 350, height: 200 }}
+                  />
+                </View>
+                {/* //! ______________ Image ______________ */}
+              </View>
+            )}
+          >
+          </FlatList>
+        )}
       </View>
 
       <TouchableOpacity
@@ -106,6 +117,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     // alignItems: "center",
+  },
+  postCard: {
+    marginTop: 32,
   },
   //! Кнопки: Go to map & Go to Comments
   navigationBtn: {
