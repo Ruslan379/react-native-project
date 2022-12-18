@@ -79,7 +79,6 @@ const CreatePostsScreen = ({ navigation }) => {
           altitudeAccuracy: 1
         },
       }
-
       //! Automatic entry location
       // const location = await Location.getCurrentPositionAsync(); //?
       setLocation(location); //?
@@ -87,17 +86,15 @@ const CreatePostsScreen = ({ navigation }) => {
       // setResetCamera(true)
       toggleCamera()
       console.log("useEffect-->resetCamera:", resetCamera); //!
+      console.log("useEffect-->photo:", photo); //!
     })();
   }, []);
 
 
   const [permission, requestPermission] = Camera.useCameraPermissions();
   if (!permission) {
-    // setPhoto("");
-    // return <View />;
     return;
   }
-
 
   if (!permission.granted) {
     requestPermission();
@@ -126,7 +123,7 @@ const CreatePostsScreen = ({ navigation }) => {
 
   //! Удаление ФОТО (photo)
   const deletePhoto = () => {
-    setPhoto("");
+    setPhoto(null);
     console.log("deletePhoto:", photo); //!
   };
 
@@ -220,6 +217,7 @@ const CreatePostsScreen = ({ navigation }) => {
 
     toggleCamera();
     console.log("resetCamera:", resetCamera); //!
+    setPhoto(null);
 
     navigation.navigate("Home");
   };
