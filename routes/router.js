@@ -32,6 +32,17 @@ import { AntDesign } from '@expo/vector-icons';
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
 
+
+const headerTitleStyle = {
+  fontFamily: "Roboto-Medium",
+  fontSize: 17,
+  lineHeight: 22,
+  textAlign: "center",
+  letterSpacing: -0.408,
+  color: "#212121",
+};
+
+
 //! Логика отрисовки страниц auth или mainScreen
 export const useRoute = (isAuth) => {
   if (!isAuth) {
@@ -91,7 +102,11 @@ export const useRoute = (isAuth) => {
       {/* //! CreatePostsScreen */}
       <MainTab.Screen
         options={{
-          headerShown: false,
+          // headerShown: false,
+          unmountOnBlur: true,
+          headerTitleAlign: "center",
+          headerTitleStyle: headerTitleStyle,
+          headerTitle: "Создать публикацию",
           tabBarIcon: ({ focused, size, color }) => (
             //! ------------- Кнопка: CreatePostsScreen -------------
             <View style={styles.btnCreatePostsScreen}>

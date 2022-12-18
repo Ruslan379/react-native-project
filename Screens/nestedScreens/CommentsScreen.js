@@ -131,18 +131,19 @@ const styles = StyleSheet.create({
   photo: {
     minWidth: 343,
     minHeight: 240,
-    borderRadius: 8,
     marginBottom: 8,
     marginTop: 32,
+    borderRadius: 8,
   },
   commentContainer: {
     width: 299,
     height: 103,
+    padding: 16,
     backgroundColor: "rgba(0, 0, 0, 0.05)",
     borderRadius: 6,
     borderTopLeftRadius: 0,
     marginBottom: 24,
-    padding: 16,
+
   },
   inputContainer: {
     flexDirection: "row",
@@ -150,12 +151,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: 16,
     paddingRight: 8,
+    marginBottom: 16,
     height: 50,
     backgroundColor: "#F6F6F6",
     border: 1,
     borderColor: "#E8E8E8",
     borderRadius: 100,
-    marginBottom: 16,
   },
   btnSubmit: {
     justifyContent: "center",

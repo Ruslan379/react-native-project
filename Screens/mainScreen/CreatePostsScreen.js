@@ -11,6 +11,7 @@ import {
   Image,
   Keyboard,
   Alert,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 import { Camera } from "expo-camera";
@@ -47,6 +48,15 @@ const CreatePostsScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [resetCamera, setResetCamera] = useState(false); //todo --------------------------------------------
+
+  //! Закрытие клавиатуры
+  const keboardHide = () => {
+    setIsShowKeyboard(false);
+    // setIsFocusedLogin(false);
+    // setIsFocusedMail(false);
+    Keyboard.dismiss();
+  };
+
 
   const toggleCamera = () => {
     setResetCamera(!resetCamera);
@@ -220,96 +230,105 @@ const CreatePostsScreen = ({ navigation }) => {
 
 
   return (
-    <View style={styles.container}>
-      <Camera
-        style={styles.camera}
-        ref={setCamera}
+    <TouchableWithoutFeedback onPress={keboardHide}>
+      <View
+        // style={styles.container}
+        style={{
+          ...styles.container,
+          marginTop: isShowKeyboard ? -100 : 0,
+        }}
       >
-        {photo && (
-          <View style={styles.photoContainer}>
-            <Image
-              source={{ uri: photo }}
-              style={styles.photo}
-            />
+        <Camera
+          style={styles.camera}
+          ref={setCamera}
+        >
+          {photo && (
+            <View style={styles.photoContainer}>
+              <Image
+                source={{ uri: photo }}
+                style={styles.photo}
+              />
+            </View>
+          )}
+          <View style={styles.snapContainer}>
+            <TouchableOpacity
+              // onPress={takePhoto}
+              onPress={() => {
+                console.log("Take a photo"); //!
+                takePhoto();
+              }}
+            >
+              <Fontisto name="camera" size={20} color="#ffffff" />
+            </TouchableOpacity>
           </View>
-        )}
-        <View style={styles.snapContainer}>
-          <TouchableOpacity
-            // onPress={takePhoto}
-            onPress={() => {
-              console.log("Take a photo"); //!
-              takePhoto();
-            }}
-          >
-            <Fontisto name="camera" size={20} color="#ffffff" />
-          </TouchableOpacity>
-        </View>
-      </Camera>
-      <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          placeholder={"Название..."}
-          value={inputState.title}
-          onFocus={() => setIsShowKeyboard(true)}
-          onChangeText={(value) =>
-            setInputState((prev) => ({ ...prev, title: value }))
-          }
-        />
-        <View style={styles.locationInputContainer}>
-          <SimpleLineIcons
-            style={styles.locationIcon}
-            name="location-pin"
-            size={24}
-            color="#BDBDBD"
-          />
+        </Camera>
+        <View style={styles.form}>
           <TextInput
-            style={styles.locationInput}
-            placeholder={"Местность..."}
-            value={inputState.locationDescr}
+            style={styles.input}
+            placeholder={"Название..."}
+            value={inputState.title}
             onFocus={() => setIsShowKeyboard(true)}
             onChangeText={(value) =>
-              setInputState((prev) => ({ ...prev, locationDescr: value }))
+              setInputState((prev) => ({ ...prev, title: value }))
             }
           />
+          <View style={styles.locationInputContainer}>
+            <SimpleLineIcons
+              style={styles.locationIcon}
+              name="location-pin"
+              size={24}
+              color="#BDBDBD"
+            />
+            <TextInput
+              style={styles.locationInput}
+              placeholder={"Местность..."}
+              value={inputState.locationDescr}
+              onFocus={() => setIsShowKeyboard(true)}
+              onChangeText={(value) =>
+                setInputState((prev) => ({ ...prev, locationDescr: value }))
+              }
+            />
+          </View>
         </View>
-      </View>
-      <TouchableOpacity
-        onPress={handleSendData}
-        // onPress={uploadPhotoToServer} //! для теста
-        activeOpacity={0.8}
-        style={styles.sendButton}
-      >
-        <Text style={styles.buttonText}>Опубликовать</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          onPress={handleSendData}
+          // onPress={uploadPhotoToServer} //! для теста
+          activeOpacity={0.8}
+          style={styles.sendButton}
+        >
+          <Text style={styles.buttonText}>Опубликовать</Text>
+        </TouchableOpacity>
 
-      {/* //! ------------- Кнопка: btnTrash ------------- */}
-      <TouchableOpacity
-        style={styles.btnTrash}
-        activeOpacity={0.8}
-        // onPress={() => setPhoto("")}
-        onPress={deletePhoto}
-      >
-        {/* <View style={styles.btnTrash}> */}
-        <Image
-          source={require("../../assets/icons/trash.png")}
-          // source={image}
-          style={{
-            // backgroundColor: "#000000",
-            // color: "#dc143c",
-            width: 24,
-            height: 24,
-          }}
-        />
-        {/* </View> */}
-      </TouchableOpacity>
-      {/* //! _____________ Кнопка: btnTrash _____________ */}
-    </View>
+        {/* //! ------------- Кнопка: btnTrash ------------- */}
+        <TouchableOpacity
+          style={styles.btnTrash}
+          activeOpacity={0.8}
+          // onPress={() => setPhoto("")}
+          onPress={deletePhoto}
+        >
+          {/* <View style={styles.btnTrash}> */}
+          <Image
+            source={require("../../assets/icons/trash.png")}
+            // source={image}
+            style={{
+              // backgroundColor: "#000000",
+              // color: "#dc143c",
+              width: 24,
+              height: 24,
+            }}
+          />
+          {/* </View> */}
+        </TouchableOpacity>
+        {/* //! _____________ Кнопка: btnTrash _____________ */}
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // marginBottom: 150
   },
   camera: {
     position: "relative",
