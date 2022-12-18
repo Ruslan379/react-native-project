@@ -25,6 +25,7 @@ import { AntDesign } from "@expo/vector-icons";
 const CommentsScreen = () => {
   //! useState
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [comment, setComment] = useState("");
 
 
   const createPost = async () => {
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     border: 1,
     borderColor: "#E8E8E8",
     borderRadius: 100,
-    marginBottom: 8,
+    marginBottom: 16,
   },
   btnSubmit: {
     justifyContent: "center",
