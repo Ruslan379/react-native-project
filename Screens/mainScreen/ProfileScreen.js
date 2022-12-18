@@ -21,7 +21,7 @@ import { authSignOutUser } from "../../redux/auth/authOperations";
 import { useDispatch } from "react-redux";
 
 //!icons
-import { Feather } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons"; //!  Выход из регистрации --> SignOut (Кнопка: Log-out)
 import { FontAwesome } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 
@@ -33,6 +33,26 @@ const ProfileScreen = () => {
   const signOut = () => {
     dispatch(authSignOutUser());
   };
+
+  const [userPosts, setUserPosts] = useState([]);
+
+  const { userId, nickname } = useSelector((state) => state.auth);
+
+  //! Получение постов с Firestore
+  const getUserPosts = async () => {
+    const collectionByUserId = query(collection(db, "posts"), where("userId", "==", userId));
+    await onSnapshot(
+      collectionByUserId,
+      (data) => {
+        console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))); //!
+        // setUserPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      });
+  };
+
+  useEffect(() => {
+    getUserPosts();
+  }, []);
+
 
 
   return (
