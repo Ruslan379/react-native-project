@@ -60,7 +60,7 @@ export const useRoute = (isAuth) => {
       {/* //! PostsScreen */}
       <MainTab.Screen
         options={{
-          // headerShown: false,
+          headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
             //! ------------- Кнопка: PostsScreen -------------
             <View style={styles.btnPostsScreen}>
@@ -120,7 +120,7 @@ export const useRoute = (isAuth) => {
       {/* //! ProfileScreen */}
       <MainTab.Screen
         options={{
-          // headerShown: false,
+          headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
             //! ------------- Кнопка: ProfileScreen -------------
             <View style={styles.btnProfileScreen}>

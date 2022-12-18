@@ -19,9 +19,10 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 
 //-------------------------------------------------------------------------------
-const Home = ({ route, navigation }) => {
+// const Home = ({ route, navigation }) => {
+const Home = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
-  console.log("Home-->route.params:", route.params); //!
+  // console.log("Home-->route.params:", route.params); //!
   // const { latitude, longitude, uploadPhotoUrl } = route.params; //! Мой вариант
   // console.log("Home-->latitude:", latitude); //! Мой вариант
   // console.log("Home-->longitude:", longitude); //! Мой вариант
@@ -56,58 +57,71 @@ const Home = ({ route, navigation }) => {
   console.log("Home-->posts:", posts); //!
 
   return (
-    <>
-      <View style={styles.container}>
-        {/* <Text>Home</Text> */}
-        {posts && (
-          <FlatList
-            data={posts}
-            keyExtractor={(item, indx) => indx.toString()}
-            renderItem={({ item }) => (
-              <View style={styles.postCard}>
-                {/* //! -------------- Image -------------- */}
-                <View
-                  style={{
-                    marginBottom: 10,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Image
-                    source={{ uri: item.uploadPhotoUrl }}
-                    style={{ width: 350, height: 200 }}
-                  />
-                </View>
-                {/* //! ______________ Image ______________ */}
-              </View>
-            )}
-          >
-          </FlatList>
-        )}
-      </View>
+    // <>
+    <View style={styles.container}>
+      {/* <Text>Home</Text> */}
+      {posts && (
+        <FlatList
+          data={posts}
+          keyExtractor={(item, indx) => indx.toString()}
+          renderItem={({ item }) => (
+            <View style={styles.postCard}>
+              {/* //! -------------- Image -------------- */}
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() =>
+                  navigation.navigate("CommentsScreen", {
+                    postId: item.id,
+                    photo: item.photo,
+                  })
+                }
+              >
+                <Image style={styles.photo} source={{ uri: item.uploadPhotoUrl }} />
+              </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("MapScreen")}
-        // onPress={() => navigation.navigate("MapScreen", { location: item.location })}
-        // onPress={() => navigation.navigate("MapScreen", { latitude, longitude })} //! Мой вариант
-        activeOpacity={0.8}
-        style={styles.navigationBtn}
-      >
-        <Text style={styles.navigationBtnText}>
-          Go to map
-        </Text>
-      </TouchableOpacity>
+              {/* <View
+                style={{
+                  marginBottom: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Image
+                  source={{ uri: item.uploadPhotoUrl }}
+                  style={{ width: 350, height: 200 }}
+                />
+              </View> */}
+              {/* //! ______________ Image ______________ */}
+            </View>
+          )}
+        >
+        </FlatList>
+      )}
+    </View>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("CommentsScreen")}
-        activeOpacity={0.8}
-        style={styles.navigationBtn}
-      >
-        <Text style={styles.navigationBtnText}>
-          Go to Comments
-        </Text>
-      </TouchableOpacity>
-    </>
+    //todo --------------------  OLD --------------------
+    // {/* <TouchableOpacity
+    //   onPress={() => navigation.navigate("MapScreen")}
+    //   // onPress={() => navigation.navigate("MapScreen", { location: item.location })}
+    //   // onPress={() => navigation.navigate("MapScreen", { latitude, longitude })} //! Мой вариант
+    //   activeOpacity={0.8}
+    //   style={styles.navigationBtn}
+    // >
+    //   <Text style={styles.navigationBtnText}>
+    //     Go to map
+    //   </Text>
+    // </TouchableOpacity>
+
+    // <TouchableOpacity
+    //   onPress={() => navigation.navigate("CommentsScreen")}
+    //   activeOpacity={0.8}
+    //   style={styles.navigationBtn}
+    // >
+    //   <Text style={styles.navigationBtnText}>
+    //     Go to Comments
+    //   </Text>
+    // </TouchableOpacity> */}
+    // </>
 
   );
 };
@@ -116,10 +130,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    // alignItems: "center",
+    alignItems: "center",
   },
   postCard: {
     marginTop: 32,
+  },
+  photo: {
+    minWidth: 343,
+    minHeight: 240,
+    borderRadius: 8,
+    marginBottom: 8,
   },
   //! Кнопки: Go to map & Go to Comments
   navigationBtn: {

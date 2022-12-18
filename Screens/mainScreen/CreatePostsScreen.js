@@ -387,7 +387,7 @@ const styles = StyleSheet.create({
   },
   //! Кнопка: btnTrash
   btnTrash: {
-    marginTop: 120,
+    marginTop: 203,
     marginHorizontal: 170,
     // width: 70,
     height: 40,
