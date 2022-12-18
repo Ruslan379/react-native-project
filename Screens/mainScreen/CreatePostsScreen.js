@@ -91,6 +91,7 @@ const CreatePostsScreen = ({ navigation }) => {
 
 
   const [permission, requestPermission] = Camera.useCameraPermissions();
+
   if (!permission) {
     return;
   }
@@ -104,14 +105,12 @@ const CreatePostsScreen = ({ navigation }) => {
   //!  Создаем ФОТО (photo) + Получаем ОТНОСИТЕЛЬНУЮ ссылку на ФОТО (photo)
   const takePhoto = async () => {
     const shot = await camera.takePictureAsync();
-
-    //! ---- УДАЛИТЬ -----
+    //! ---- Можно УДАЛИТЬ -----
     // const location = await Location.getCurrentPositionAsync(); //! КОНСПЕКТ
     console.log("location:", location); //! КОНСПЕКТ
     console.log("latitude", location.coords.latitude); //! КОНСПЕКТ
     console.log("longitude", location.coords.longitude) //! КОНСПЕКТ
-    //! ____ УДАЛИТЬ ____
-
+    //! ____ Можно УДАЛИТЬ ____
     setPhoto(shot.uri);
     // setLatitude(location.coords.latitude); //! Мой вариант
     // setLongitude(location.coords.longitude); //! Мой вариант
@@ -157,7 +156,6 @@ const CreatePostsScreen = ({ navigation }) => {
     //   }
     // }
     //_______________________________________________________________________________________________________________________________
-
     const photoUrl = await getDownloadURL(ref(storage, `postImage/${photoId}`));
     console.log("photoUrl:", photoUrl); //!
     return photoUrl;
@@ -165,8 +163,6 @@ const CreatePostsScreen = ({ navigation }) => {
 
 
 
-
-  //? https://console.firebase.google.com/project/react-native-project-fson52/storage/react-native-project-fson52.appspot.com/files
   //! Отправка данных на Cloud Firestore
   const handleSendData = async () => {
     const uploadPhotoUrl = await uploadPhotoToServer(); //! Получаем абсолютную ссылку на photo
@@ -187,7 +183,6 @@ const CreatePostsScreen = ({ navigation }) => {
       //   }
       // }
       //_______________________________________________________________________________________________________________________________
-
       //! ---- Отправка данных на Cloud Firestore ----
       await addDoc(collection(db, "posts"), {
         uploadPhotoUrl,
@@ -216,6 +211,7 @@ const CreatePostsScreen = ({ navigation }) => {
 
     toggleCamera();
     console.log("resetCamera:", resetCamera); //!
+
     setPhoto(null);
 
     navigation.navigate("Home");

@@ -47,7 +47,10 @@ const CommentsScreen = ({ route }) => {
     getAllComments();
   }, []);
 
-
+  const keboardHide = () => {
+    setIsShowKeyboard(false);
+    Keyboard.dismiss();
+  };
 
   const createPost = async () => {
     await addDoc(collection(doc(collection(db, "posts"), postId), "comments"),
@@ -61,12 +64,10 @@ const CommentsScreen = ({ route }) => {
     // const collectionComments = collection(docPost, "comments");
     // await addDoc(collectionComments, { inputState, userName });
     setComment("");
+    keboardHide();
   };
 
-  const keboardHide = () => {
-    setIsShowKeyboard(false);
-    Keyboard.dismiss();
-  };
+
 
   return (
     <TouchableWithoutFeedback onPress={keboardHide}>
