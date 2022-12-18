@@ -96,10 +96,13 @@ const Home = ({ navigation }) => {
               </View> */}
               {/* //! ______________ Image ______________ */}
 
+              {/* //! -------------- Описание -------------- */}
               <Text style={styles.title}>{item.title}</Text>
+              {/* //! ______________ Описание ______________ */}
 
               <View style={styles.linkContainer}>
 
+                {/* //! --------------- Иконка комментариев --------------- */}
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate("CommentsScreen", {
@@ -115,7 +118,9 @@ const Home = ({ navigation }) => {
                     color="#BDBDBD"
                   />
                 </TouchableOpacity>
+                {/* //! ______________ Иконка комментариев ______________ */}
 
+                {/* //! --------------- ЛОКАЦИЯ (карта) --------------- */}
                 <TouchableOpacity
                   style={styles.locationLink}
                   onPress={() =>
@@ -129,7 +134,7 @@ const Home = ({ navigation }) => {
                   />
                   <Text style={styles.locationDescr}>{item.locationDescr}</Text>
                 </TouchableOpacity>
-
+                {/* //! ______________ ЛОКАЦИЯ (карта) ______________ */}
               </View>
             </View>
           )}
