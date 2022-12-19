@@ -24,6 +24,7 @@ import { useDispatch } from "react-redux";
 //!icons
 import { Feather } from "@expo/vector-icons"; //!  Выход из регистрации --> SignOut (Кнопка: Log-out)
 import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 
 
@@ -113,28 +114,57 @@ const ProfileScreen = () => {
           {userPosts && (
             <FlatList
               data={userPosts}
+              // keyExtractor={(item, indx) => indx.toString()}
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
-                <View style={styles.postCard}>
+                <View style={styles.postCardContainer}>
+                  {/* //! -------------- Image -------------- */}
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    onPress={() =>
+                      navigation.navigate("CommentsScreen", {
+                        postId: item.id,
+                        photo: item.uploadPhotoUrl,
+                      })
+                    }
+                  >
+                    <Image
+                      style={styles.uploadPhotoUrl}
+                      source={{ uri: item.uploadPhotoUrl }}
+                    />
+                  </TouchableOpacity>
 
-                  <Image
-                    style={styles.photoFrame}
-                    source={{ uri: item.uploadPhotoUrl }}
-                  />
+                  {/* //! ______________ Image ______________ */}
 
+                  {/* //! -------------- Описание -------------- */}
                   <Text style={styles.title}>{item.title}</Text>
+                  {/* //! ______________ Описание ______________ */}
 
                   <View style={styles.linkContainer}>
-                    <FontAwesome
-                      style={styles.commentIcon}
-                      name="comment"
-                      size={24}
-                      color="#FF6C00"
-                    />
+
+                    {/* //! --------------- Иконка комментариев --------------- */}
+                    <TouchableOpacity
+                      onPress={() =>
+                        navigation.navigate("CommentsScreen", {
+                          postId: item.id,
+                          photo: item.uploadPhotoUrl,
+                        })
+                      }
+                    >
+                      <FontAwesome5
+                        style={styles.commentIcon}
+                        name="comment"
+                        size={24}
+                        color="#BDBDBD"
+                      />
+                    </TouchableOpacity>
+                    {/* //! ______________ Иконка комментариев ______________ */}
+
+                    {/* //! --------------- ЛОКАЦИЯ (карта) --------------- */}
                     <TouchableOpacity
                       style={styles.locationLink}
                       onPress={() =>
-                        navigation.navigate("Map", { location: item.location })
+                        navigation.navigate("MapScreen", { location: item.location })
                       }
                     >
                       <SimpleLineIcons
@@ -142,14 +172,14 @@ const ProfileScreen = () => {
                         size={24}
                         color="#BDBDBD"
                       />
-                      <Text style={styles.locationDescr}>
-                        {item.locationDescr}
-                      </Text>
+                      <Text style={styles.locationDescr}>{item.locationDescr}</Text>
                     </TouchableOpacity>
+                    {/* //! ______________ ЛОКАЦИЯ (карта) ______________ */}
                   </View>
                 </View>
               )}
-            ></FlatList>
+            >
+            </FlatList>
           )}
 
         </View>
