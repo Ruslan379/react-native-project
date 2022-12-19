@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
   //! Белый контейнер
   whiteContainer: {
     backgroundColor: "#ffffff",
-    height: 549,
+    height: 665,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     alignItems: "center",
@@ -251,11 +251,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   title: {
+    marginBottom: 11,
     fontFamily: "Roboto-Medium",
     fontSize: 16,
     lineHeight: 19,
     color: "#212121",
-    marginBottom: 11,
   },
   linkContainer: {
     flexDirection: "row",
@@ -272,11 +272,10 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
     color: "#212121",
   },
-
 });
 
-
 export default ProfileScreen;
+
 
 
 

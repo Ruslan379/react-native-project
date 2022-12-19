@@ -196,7 +196,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     color: "#212121",
-
   },
   linkContainer: {
     flexDirection: "row",
