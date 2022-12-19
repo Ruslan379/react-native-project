@@ -29,7 +29,7 @@ import { SimpleLineIcons } from "@expo/vector-icons";
 
 
 //------------------------------------------------------------------------------
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   //!  Выход из регистрации --> SignOut (Кнопка: Log-out)
   const dispatch = useDispatch();
   const signOut = () => {
@@ -110,7 +110,6 @@ const ProfileScreen = () => {
           {userPosts && (
             <FlatList
               data={userPosts}
-              // keyExtractor={(item, indx) => indx.toString()}
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
                 <View style={styles.postCardContainer}>
@@ -242,8 +241,8 @@ const styles = StyleSheet.create({
     marginBottom: 33,
     color: "#212121",
   },
-  postCard: {
-    marginBottom: 50,
+  postCardContainer: {
+    marginBottom: 32,
   },
   uploadPhotoUrl: {
     width: 343,
