@@ -108,7 +108,54 @@ const ProfileScreen = () => {
           </TouchableOpacity>
           {/* //! ____________ Кнопка Log-out ______________ */}
 
-
+          <Text style={styles.userName}>{nickname}</Text>
+          {userPosts && (
+            <FlatList
+              data={userPosts}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => (
+                <View style={styles.postCard}>
+                  <Image
+                    style={styles.photoFrame}
+                    source={{ uri: item.uploadPhotoUrl }}
+                  />
+                  <Text style={styles.title}>{item.title}</Text>
+                  <View style={styles.linkContainer}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        navigation.navigate("Comments", {
+                          postId: item.id,
+                          photo: item.photo,
+                        })
+                      }
+                    >
+                      <FontAwesome
+                        style={styles.commentIcon}
+                        name="comment"
+                        size={24}
+                        color="#FF6C00"
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.locationLink}
+                      onPress={() =>
+                        navigation.navigate("Map", { location: item.location })
+                      }
+                    >
+                      <SimpleLineIcons
+                        name="location-pin"
+                        size={24}
+                        color="#BDBDBD"
+                      />
+                      <Text style={styles.locationDescr}>
+                        {item.locationDescr}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )}
+            ></FlatList>
+          )}
 
         </View>
         {/* //! __________________ Белый контейнер __________________ */}
@@ -163,6 +210,12 @@ const styles = StyleSheet.create({
     top: 22,
     right: 16,
     position: "absolute",
+  },
+  uploadPhotoUrl: {
+    width: 343,
+    height: 240,
+    borderRadius: 8,
+    marginBottom: 8,
   },
 });
 
