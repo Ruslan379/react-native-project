@@ -109,33 +109,28 @@ const ProfileScreen = () => {
           {/* //! ____________ Кнопка Log-out ______________ */}
 
           <Text style={styles.userName}>{nickname}</Text>
+
           {userPosts && (
             <FlatList
               data={userPosts}
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
                 <View style={styles.postCard}>
+
                   <Image
                     style={styles.photoFrame}
                     source={{ uri: item.uploadPhotoUrl }}
                   />
+
                   <Text style={styles.title}>{item.title}</Text>
+
                   <View style={styles.linkContainer}>
-                    <TouchableOpacity
-                      onPress={() =>
-                        navigation.navigate("Comments", {
-                          postId: item.id,
-                          photo: item.photo,
-                        })
-                      }
-                    >
-                      <FontAwesome
-                        style={styles.commentIcon}
-                        name="comment"
-                        size={24}
-                        color="#FF6C00"
-                      />
-                    </TouchableOpacity>
+                    <FontAwesome
+                      style={styles.commentIcon}
+                      name="comment"
+                      size={24}
+                      color="#FF6C00"
+                    />
                     <TouchableOpacity
                       style={styles.locationLink}
                       onPress={() =>
@@ -211,12 +206,48 @@ const styles = StyleSheet.create({
     right: 16,
     position: "absolute",
   },
+  userName: {
+    fontFamily: "Roboto-Medium",
+    fontSize: 30,
+    lineHeight: 35,
+    textAlign: "center",
+    letterSpacing: 0.01,
+    marginTop: 32,
+    marginBottom: 33,
+    color: "#212121",
+  },
+  postCard: {
+    marginBottom: 35,
+  },
   uploadPhotoUrl: {
     width: 343,
     height: 240,
     borderRadius: 8,
     marginBottom: 8,
   },
+  title: {
+    fontFamily: "Roboto-Medium",
+    fontSize: 16,
+    lineHeight: 19,
+    color: "#212121",
+    marginBottom: 11,
+  },
+  linkContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  locationLink: {
+    flexDirection: "row",
+  },
+  locationDescr: {
+    marginLeft: 8,
+    fontFamily: "Roboto-Regular",
+    fontSize: 16,
+    lineHeight: 19,
+    textDecorationLine: "underline",
+    color: "#212121",
+  },
+
 });
 
 
