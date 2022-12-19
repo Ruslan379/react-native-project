@@ -77,12 +77,8 @@ const ProfileScreen = () => {
         source={require("../../assets/images/Photo_BG.png")}
       >
         {/* //! ------------------ Белый контейнер---------------------- */}
-        <View
-          style={{
-            ...styles.whiteContainer,
-            // marginBottom: isShowKeyboard ? 150 : 0,
-          }}
-        >
+        <View style={styles.whiteContainer}>
+
           {/* //! ------------- контейнер: photoFrame ------------ */}
           <View style={styles.photoFrame}></View>
           {/* //! _____________ контейнер: photoFrame _____________ */}
@@ -185,9 +181,9 @@ const ProfileScreen = () => {
         </View>
         {/* //! __________________ Белый контейнер __________________ */}
 
-      </ImageBackground>
+      </ImageBackground >
       {/* //! __________________________ Фоновый image __________________________ */}
-    </View>
+    </View >
   );
 };
 
@@ -247,7 +243,7 @@ const styles = StyleSheet.create({
     color: "#212121",
   },
   postCard: {
-    marginBottom: 35,
+    marginBottom: 50,
   },
   uploadPhotoUrl: {
     width: 343,
