@@ -71,7 +71,6 @@ export default function RegistrationScreen({ navigation }) {
 
   return (
     <TouchableWithoutFeedback onPress={keboardHide}>
-
       <View style={styles.container}>
         {/* //! ------------------ Фоновый image --------------------- */}
         <ImageBackground
