@@ -76,20 +76,20 @@ const CreatePostsScreen = ({ navigation }) => {
       }
       // let location = await Location.getCurrentPositionAsync({}); //??????
       //! Manual entry location
-      // 50.485723, 30.521819
-      const location = {
-        timestamp: 1671381599684,
-        mocked: false,
-        coords: {
-          altitude: 129.3000030517578,
-          heading: 0,
-          latitude: 50.485723,
-          longitude: 30.521819,
-          altitudeAccuracy: 1
-        },
-      }
+      //* 50.485723, 30.521819
+      // const location = {
+      //   timestamp: 1671381599684,
+      //   mocked: false,
+      //   coords: {
+      //     altitude: 129.3000030517578,
+      //     heading: 0,
+      //     latitude: 50.485723,
+      //     longitude: 30.521819,
+      //     altitudeAccuracy: 1
+      //   },
+      // }
       //! Automatic entry location
-      // const location = await Location.getCurrentPositionAsync(); //?
+      const location = await Location.getCurrentPositionAsync(); //?
       setLocation(location); //?
 
       // setResetCamera(true)
